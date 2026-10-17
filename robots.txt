@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://claudioamati3-cmyk.github.io/humble-trading/sitemap.xml

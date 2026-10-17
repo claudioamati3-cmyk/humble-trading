@@ -1,0 +1,22 @@
+{
+  "name": "Humble Trading — Calcolatore Lotti Prop Firm & ICT Radar",
+  "short_name": "Humble Trading",
+  "description": "Suite Operativa Gratuita: Calcolatore Lotti XAUUSD e Micro-Futures, Simulatore Rollover Equity, Tasse Prop Firm Italia e Classifica Prop 2026.",
+  "start_url": "./hub.html",
+  "display": "standalone",
+  "background_color": "#060608",
+  "theme_color": "#f59e0b",
+  "lang": "it-IT",
+  "icons": [
+    {
+      "src": "assets/logo/logo_HT_sfondo_luce_radiosa.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/logo/logo_HT_sfondo_luce_radiosa.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUMBLE TRADING — Dall'Abisso alla Luce</title>
+  <meta name="description" content="Il percorso della salita: dall'oscurità dei mercati alla chiarezza del metodo. Community italiana di trading su Discord.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Seamless Fixed Photo Deck (Smooth Slide & Dissolve Transitions, Zero Cuts) -->
+  <div id="bg-deck-container" class="bg-deck-container">
+    <div class="bg-deck-slide active" id="bg-slide-1" style="background-image: url('assets/images/01_abyss.jpg');"></div>
+    <div class="bg-deck-slide" id="bg-slide-2" style="background-image: url('assets/images/02_ascent.jpg');"></div>
+    <div class="bg-deck-slide" id="bg-slide-3" style="background-image: url('assets/images/03_clarity.jpg');"></div>
+    <div class="bg-deck-slide" id="bg-slide-4" style="background-image: url('assets/images/04_truth.jpg');"></div>
+    <div class="bg-deck-slide" id="bg-slide-5" style="background-image: url('assets/images/05_zenith.jpg');"></div>
+  </div>
+
+  <!-- Cinematic Post FX -->
+  <div class="film-grain"></div>
+  <div class="cinematic-vignette"></div>
+
+  <!-- Persistent Spatial Top Bar & HUD -->
+  <div class="spatial-hud">
+    <div class="hud-top-bar">
+      <a href="index.html" class="hud-brand">
+        <img src="assets/logo/logo_HT_sfondo_luce_radiosa.jpg" alt="HUMBLE TRADING" class="hud-brand-logo-img">
+        <div class="hud-brand-text-group">
+          <span class="hud-brand-title">HUMBLE TRADING</span>
+          <span class="hud-brand-sub">/ COMMUNITY DISCORD</span>
+        </div>
+      </a>
+
+      <div class="hud-telemetry-pill">
+        <div class="telemetry-node">
+          <span class="live-pulse-dot"></span>
+          <span>COMMUNITY ATTIVA</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <a href="hub.html" class="hud-cta-link" style="background: rgba(16, 185, 129, 0.14); border-color: rgba(16, 185, 129, 0.35); color: #34D399;">
+          ⚡ Calcolatore Lotti &amp; Classifica Prop
+        </a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener noreferrer" class="hud-cta-link" style="background: rgba(38, 165, 228, 0.14); border-color: rgba(38, 165, 228, 0.35); color: #38BDF8;">
+          Canale Telegram
+        </a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="hud-cta-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          Entra in Discord
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Depth Meter HUD (Right Edge) -->
+  <div class="hud-depth-tracker">
+    <div class="depth-legend">PROFONDITÀ</div>
+    <div class="depth-readout" id="depth-readout">-10.000M</div>
+    <div class="depth-rail">
+      <div class="depth-rail-progress" id="depth-rail-progress"></div>
+    </div>
+    <div class="depth-stage-tag" id="depth-stage-tag">ABISSO PROFONDO</div>
+  </div>
+
+  <!-- Pinned Spatial Experience Container (Pure Community Journey) -->
+  <div class="immersive-experience-wrap">
+
+    <!-- CHAPTER 1: L'ABISSO (-10,000M) -->
+    <section class="chapter-section chapter-hero" id="abisso" data-step="1">
+      <div class="chapter-container">
+        <div class="hero-centered-layout">
+          <div class="chapter-badge-mono">
+            <span class="live-pulse-dot" style="display:inline-block; margin-right:4px;"></span>
+            PASSO I &middot; L'ABISSO DEI MERCATI (-10.000M)
+          </div>
+          <h1 class="hero-massive-headline">
+            Dall'abisso<br>alla <span class="ethereal-italic">Luce</span>.
+          </h1>
+          <p class="hero-manifesto-sub">
+            Il 95% di chi entra nel trading si perde nell'isolamento, nella confusione e nelle false promesse del web. Humble Trading è la community su Discord nata per restituire valore, rispetto e disciplina allo studio dei mercati.
+          </p>
+          <div>
+            <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn-spatial-primary">
+              Inizia la Risalita su Discord
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 2: LA RISALITA (-6,000M) — Tutti i motivi per iscriversi -->
+    <section class="chapter-section" id="risalita" data-step="2">
+      <div class="chapter-container">
+        <div class="chapter-heading-center">
+          <div class="chapter-badge-mono">PASSO II &middot; LA RISALITA (-6.000M)</div>
+          <h2 class="chapter-title-cinematic">I motivi per unirti a Humble Trading.</h2>
+          <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.25rem; margin-top: 1rem;">
+            Uno spazio ordinato e trasparente pensato per chi vuole studiare con serietà, senza scorciatoie né promesse miracolose.
+          </p>
+        </div>
+
+        <div class="spatial-floating-columns">
+          
+          <!-- Column 1: Confronto & Networking -->
+          <div class="floating-column-block">
+            <div class="column-num-tag">01 / CONFRONTO & NETWORKING</div>
+            <h3>Superare l'Isolamento</h3>
+            <p>
+              Uno spazio quotidiano su Discord per confrontarsi con altri aspiranti trader seri, scambiarsi riflessioni oggettive e non sentirsi mai soli di fronte ai mercati.
+            </p>
+          </div>
+
+          <!-- Column 2: Formazione Continua -->
+          <div class="floating-column-block">
+            <div class="column-num-tag">02 / RISORSE DIDATTICHE</div>
+            <h3>Formazione & Archivio</h3>
+            <p>
+              Accesso continuo a dispense, approfondimenti tecnici, registrazioni e guide pratiche sempre a disposizione di tutti i membri, ordinate senza distrazioni.
+            </p>
+          </div>
+
+          <!-- Column 3: Stanze Vocali -->
+          <div class="floating-column-block">
+            <div class="column-num-tag">03 / LIVE REVIEW</div>
+            <h3>Stanze Vocali di Confronto</h3>
+            <p>
+              Sessioni a microfono aperto per discutere a mente fredda cosa ha funzionato, comprendere gli errori ricorrenti e progredire come gruppo.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 3: LA CHIAREZZA (-3,000M) — Come viene gestita la community -->
+    <section class="chapter-section" id="chiarezza" data-step="3">
+      <div class="chapter-container">
+        <div class="chapter-heading-center">
+          <div class="chapter-badge-mono">PASSO III &middot; LA CHIAREZZA (-3.000M)</div>
+          <h2 class="chapter-title-cinematic">Come viene gestita la community.</h2>
+          <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.25rem; margin-top: 1rem;">
+            Un ambiente protetto dal rumore, regolato da standard chiari e moderato attivamente per garantire qualità costante.
+          </p>
+        </div>
+
+        <div class="governance-floating-grid">
+          
+          <div class="governance-block">
+            <div class="governance-tag">01 / ORGANIZZAZIONE</div>
+            <h3>Canali Tematici Separati</h3>
+            <p>
+              Una struttura Discord ordinata con canali dedicati ad annunci, discussione costruttiva, archivio risorse e stanze vocali per evitare qualsiasi confusione.
+            </p>
+          </div>
+
+          <div class="governance-block">
+            <div class="governance-tag">02 / INTEGRITÀ</div>
+            <h3>Moderazione Attiva 24/7</h3>
+            <p>
+              Tolleranza zero per spam, televendite di corsi privati, promozione di broker opachi o comportamenti aggressivi. La serietà del gruppo viene sempre al primo posto.
+            </p>
+          </div>
+
+          <div class="governance-block">
+            <div class="governance-tag">03 / ACCESSO</div>
+            <h3>Accesso Libero su Invito</h3>
+            <p>
+              L'ingresso alla community è aperto a chiunque dimostri rispetto per le regole del gruppo e genuino desiderio di apprendere e confrontarsi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 4: LA VERITÀ (-500M) — Chi siamo & La nostra filosofia -->
+    <section class="chapter-section" id="verita" data-step="4">
+      <div class="chapter-container">
+        <div class="about-floating-layout">
+          <div>
+            <div class="chapter-badge-mono">PASSO IV &middot; LA VERITÀ (-500M)</div>
+            <div class="about-quote-lead">
+              “L'umiltà è la prima regola per sopravvivere e crescere nel tempo.”
+            </div>
+            <div class="about-text-narrative">
+              <p>
+                <strong>Humble Trading</strong> nasce da un collettivo indipendente di trader italiani stanchi della narrazione tossica che domina il web: promesse di rendite facili, noleggi di auto sportive e formule miracolose.
+              </p>
+              <p>
+                Abbiamo creato la stanza in cui noi stessi avremmo voluto entrare: un luogo serio, autentico e focalizzato sul valore dello studio e del supporto reciproco.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <ul class="about-values-list">
+              <li class="about-value-item">
+                <h4>Trasparenza Totale</h4>
+                <p>Parliamo dei momenti di difficoltà e degli errori con la stessa franchezza dei successi, perché è dagli errori che si impara.</p>
+              </li>
+              <li class="about-value-item">
+                <h4>Pensiero Indipendente</h4>
+                <p>Non creiamo dipendenza da segnali: forniamo gli stimoli affinché ciascun membro impari a ragionare con la propria testa.</p>
+              </li>
+              <li class="about-value-item">
+                <h4>Crescita Condivisa</h4>
+                <p>Nessun guru sul piedistallo, solo un gruppo di pari guidato dalla passione comune e dal rispetto reciproco.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 5: LA LUCE (0M SUPERFICIE / IL ZENITH RADIOSO) -->
+    <section class="chapter-section" id="luce" data-step="5">
+      <div class="chapter-container">
+        
+        <div class="zenith-floating-content">
+          <div class="zenith-logo-wrap">
+            <img src="assets/logo/logo_HT_sfondo_luce_radiosa.jpg" alt="HUMBLE TRADING Zenith Logo" class="zenith-logo-img">
+          </div>
+          <div class="chapter-badge-mono" style="color: #0284C7; margin-bottom: 1.5rem;">
+            PASSO V &middot; PROFONDITÀ: 0M &middot; SUPERFICIE RAGGIUNTA
+          </div>
+          <h2>Benvenuto nella Luce di Humble Trading.</h2>
+          <p>
+            Lascia alle spalle l'isolamento dell'abisso ed entra a far parte di una community fondata su serietà, trasparenza e condivisione.
+          </p>
+          <div>
+            <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn-zenith-discord">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+              Entra ora nel Server Discord
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Spatial Minimal Footer in Pure Light -->
+  <footer class="spatial-footer">
+    <div class="footer-spatial-inner">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <img src="assets/logo/logo_HT_sfondo_luce_radiosa.jpg" alt="HUMBLE TRADING" style="width: 26px; height: 26px; border-radius: 6px; object-fit: cover;">
+        <strong>HUMBLE TRADING</strong> &middot; Dall'Abisso alla Luce dei Mercati
+      </div>
+      <div>
+        <a href="hub.html" style="color: inherit; margin-right: 1.5rem;">Strumenti &amp; Classifica Prop 2026</a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener noreferrer" style="color: inherit; margin-right: 1.5rem;">Telegram Ufficiale</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" style="color: inherit; margin-right: 1.5rem;">Discord Ufficiale</a>
+        <a href="mailto:info@humbletrading.it" style="color: inherit;">info@humbletrading.it</a>
+      </div>
+      <div>
+        &copy; 2026 HUMBLE TRADING. Tutti i diritti riservati.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

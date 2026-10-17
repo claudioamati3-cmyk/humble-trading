@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUMBLE TRADING — Calcolatore Lotti XAUUSD, Classifica Prop Firm 2026 & Strumenti</title>
+  <meta name="description" content="Suite operativa gratuita di Humble Trading: Calcolatore Lotti XAUUSD e Micro-Futures, Simulatore Drawdown Equity vs Balance, Calcolatore Tasse Prop Firm Italia, Indicatore TradingView PineScript v5 e Classifica Prop Firm 2026.">
+  <meta name="keywords" content="calcolatore lotti xauusd, prop firm italia 2026, classifica prop firm, propr.xyz, breakout prop, ftmo, tradeify, lucid trading, topstep, tasse prop firm partita iva, humble trading, indicatore tradingview ict">
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/hub.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#f59e0b">
+  <meta property="og:title" content="HUMBLE TRADING — Suite Operativa Gratuita & Classifica Prop Firm 2026">
+  <meta property="og:description" content="Calcolatore Lotti XAUUSD Anti-Bruciatura, Simulatore Rollover Equity, Calcolatore Tasse Payout Italia e Indicatore TradingView PineScript v5.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/hub.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Humble Trading — Calcolatore Lotti XAUUSD & Suite Prop Firm 2026",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/hub.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Humble Trading",
+      "sameAs": [
+        "https://t.me/Hubmles",
+        "https://discord.gg/VFt4y4MY5",
+        "https://www.instagram.com/humbletrading_/",
+        "https://www.tiktok.com/@_humbletrading_"
+      ]
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #060608;
+      --card: #0e0f14;
+      --card-hover: #14161f;
+      --border: rgba(255, 255, 255, 0.09);
+      --gold: #f59e0b;
+      --copper: #d4845a;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --sky: #0284c7;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.55;
+      padding-bottom: 4.5rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem;
+    }
+    /* Top Quick Nav */
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      font-size: 0.82rem;
+    }
+    .top-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+    .top-nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      transition: all 0.15s ease;
+    }
+    .top-nav-links a:hover {
+      color: #fff;
+      border-color: var(--gold);
+    }
+    .header {
+      text-align: center;
+      padding: 1.25rem 0 1.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.75rem;
+    }
+    .brand-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      margin-bottom: 0.85rem;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+    }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+    }
+    h1 {
+      font-size: 1.95rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+    }
+    /* Killzone Radar Bar */
+    .killzone-bar {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(14, 15, 20, 0.95));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .kz-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kz-clock {
+      font-family: monospace;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.12);
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .btn-channel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-channel:hover {
+      transform: translateY(-2px);
+    }
+    .btn-telegram {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.28), rgba(14, 15, 20, 0.95));
+      border-color: rgba(2, 132, 199, 0.5);
+    }
+    .btn-discord {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.28), rgba(14, 15, 20, 0.95));
+      border-color: rgba(88, 101, 242, 0.5);
+    }
+    .channel-meta {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.15rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem;
+      margin-bottom: 1.85rem;
+    }
+    /* Calculator */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.15rem;
+    }
+    label {
+      display: block;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+    select, input {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #060608;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .calc-result {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .lot-number {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: rgba(255,255,255,0.05);
+    }
+    .btn-share:hover {
+      border-color: var(--gold);
+    }
+    /* Prop Rankings */
+    .tier-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .prop-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .prop-item.rank-1 {
+      border-color: rgba(245, 158, 11, 0.5);
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(14, 15, 20, 0.95));
+    }
+    .rank-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .rank-1 .rank-badge { background: var(--gold); color: #000; }
+    .rank-2 .rank-badge { background: rgba(16, 185, 129, 0.2); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.4); }
+    .rank-3 .rank-badge { background: rgba(212, 132, 90, 0.2); color: var(--copper); border: 1px solid rgba(212, 132, 90, 0.4); }
+    .prop-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+    .prop-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+    }
+    .btn-prop {
+      padding: 0.6rem 1.1rem;
+      border-radius: 9px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #000;
+      background: var(--gold);
+      white-space: nowrap;
+    }
+    /* Guide Grid */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+    .guide-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .guide-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+    .guide-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .guide-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+    .guide-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-nav {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .footer-nav a { color: var(--text); text-decoration: none; margin: 0 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="top-nav">
+      <a href="index.html" style="color: #fff; text-decoration: none; font-weight: 800;">&larr; HUMBLE TRADING HOME</a>
+      <div class="top-nav-links">
+        <a href="#calcolatore">🧮 Calcolatore Lotti</a>
+        <a href="#simulatore-equity">⚠️ Trappola Equity 00:00</a>
+        <a href="#simulatore-tasse">🇮🇹 Calcolatore Tasse Prop</a>
+        <a href="indicatore-tradingview-pinescript.html" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">📈 Indicatore TradingView</a>
+        <a href="cheat-sheet-prop-firm.html" style="border-color: rgba(245, 158, 11, 0.4); color: #f59e0b;">🖨️ Cheat Sheet PDF</a>
+      </div>
+    </nav>
+
+    <!-- LIVE KILLZONE RADAR -->
+    <div class="killzone-bar">
+      <div class="kz-left">
+        <span class="kz-clock" id="rome-clock">12:00:00 CET</span>
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 800;" id="kz-status">Radar Sessioni ICT & Liquidità</div>
+          <div style="font-size: 0.76rem; color: var(--muted);" id="kz-sub">Calcolo finestra operativa Londra / New York in corso...</div>
+        </div>
+      </div>
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn-prop" style="background: var(--emerald); color: #000;">🎧 Entra in Sala Operativa Discord</a>
+    </div>
+
+    <header class="header">
+      <img src="assets/logo/logo_HT_sfondo_luce_radiosa.jpg" alt="Humble Trading" class="brand-logo">
+      <div>
+        <span class="badge-live"><span class="dot"></span> HUMBLE TRADING &middot; SUITE OPERATIVA GRATUITA 2026</span>
+      </div>
+      <h1>Calcolatori Prop Firm, Classifiche & Community</h1>
+      <p class="subtitle">Zero segnali da sala scommesse. Usa i nostri calcolatori gratuiti per proteggere il tuo conto funded, scarica l'indicatore TradingView e unisciti a oltre 200 trader italiani su Telegram e Discord.</p>
+
+      <div class="community-grid">
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener noreferrer" class="btn-channel btn-telegram">
+          <div>
+            <span>✈️ Entra nel Canale Telegram (@Hubmles)</span>
+            <span class="channel-meta">163+ Trader &middot; Analisi Pre-Market, Alert & Tabelle PDF</span>
+          </div>
+          <span>&rarr;</span>
+        </a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn-channel btn-discord">
+          <div>
+            <span>💬 Entra nel Server Discord Ufficiale</span>
+            <span class="channel-meta">Stanze Vocali Live, Archivio Didattico & Confronto</span>
+          </div>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- TOOL 1: CALCOLATORE LOTTI & DRAWDOWN PROP FIRM -->
+    <section class="card" id="calcolatore">
+      <div class="section-title">🧮 1. Calcolatore Lotti & Protezione Drawdown (XAUUSD / Forex / Indici / Futures)</div>
+      <p class="section-desc">Calcola istantaneamente la size corretta per non bruciare il Daily Drawdown (-5%) durante gli spike delle 14:30 / 15:30 CET (Apertura NY).</p>
+
+      <div class="calc-grid">
+        <div>
+          <label for="calc-balance">Capitale Conto ($)</label>
+          <select id="calc-balance" onchange="updateCalc()">
+            <option value="10000">$10.000</option>
+            <option value="25000">$25.000</option>
+            <option value="50000">$50.000</option>
+            <option value="100000" selected>$100.000 (Standard Prop)</option>
+            <option value="200000">$200.000</option>
+            <option value="300000">$300.000 (Max Propr.xyz)</option>
+          </select>
+        </div>
+        <div>
+          <label for="calc-risk">Rischio per Trade (%)</label>
+          <select id="calc-risk" onchange="updateCalc()">
+            <option value="0.25">0.25% (Ultra-Conservativo Funded)</option>
+            <option value="0.40" selected>0.40% (Protocollo Humble Trading)</option>
+            <option value="0.50">0.50% (Standard Challenge)</option>
+            <option value="1.00">1.00% (Aggressivo)</option>
+          </select>
+        </div>
+        <div>
+          <label for="calc-asset">Strumento Operativo</label>
+          <select id="calc-asset" onchange="updateCalc()">
+            <option value="xauusd" selected>XAUUSD (Oro CFD — Stop in Punti/$)</option>
+            <option value="forex">EURUSD / GBPUSD (Stop in Pips)</option>
+            <option value="nas100">NAS100 CFD (Stop in Punti Indice)</option>
+            <option value="mnq">MNQ (Micro Nasdaq Futures CME — Punti)</option>
+            <option value="mgc">MGC (Micro Gold Futures CME — Punti/$)</option>
+          </select>
+        </div>
+        <div>
+          <label for="calc-sl" id="sl-label">Stop Loss (Punti Oro, es. 25)</label>
+          <input type="number" id="calc-sl" value="25" min="1" max="500" oninput="updateCalc()">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--muted); font-weight: 700;">Size Massima Consigliata</div>
+          <div class="lot-number" id="res-lots">0.16 Lotti</div>
+        </div>
+        <div>
+          <div style="font-size: 0.88rem; color: #e2e8f0;">Rischio Monetario: <strong id="res-usd" style="color: var(--emerald);">$400</strong></div>
+          <div style="font-size: 0.8rem; color: var(--muted);" id="res-trades-left">Margine prima del Daily Drawdown (5%): <strong>12.5 stop consecutivi</strong></div>
+        </div>
+      </div>
+
+      <div class="share-row">
+        <a id="share-tg" href="#" target="_blank" rel="noopener noreferrer" class="btn-share" style="background: rgba(2, 132, 199, 0.2); border-color: rgba(2, 132, 199, 0.45);">
+          ✈️ Condividi questo Piano di Rischio su Telegram
+        </a>
+        <a id="share-wa" href="#" target="_blank" rel="noopener noreferrer" class="btn-share" style="background: rgba(16, 185, 129, 0.18); border-color: rgba(16, 185, 129, 0.45);">
+          📲 Invia a un amico Trader su WhatsApp
+        </a>
+        <a href="cheat-sheet-prop-firm.html" class="btn-share" style="border-color: rgba(245, 158, 11, 0.4); color: var(--gold);">
+          🖨️ Scarica Tabella Completa PDF
+        </a>
+      </div>
+    </section>
+
+    <!-- TOOL 2: SIMULATORE TRAPPOLA ROLLOVER EQUITY VS BALANCE (00:00 CET) -->
+    <section class="card" id="simulatore-equity">
+      <div class="section-title">⚠️ 2. Simulatore Trappola Rollover Equity vs Balance (Mezzanotte 00:00 CET)</div>
+      <p class="section-desc">Scopri perché lasciare un trade aperto in profitto a mezzanotte può farti bruciare il conto anche se il prezzo torna semplicemente a pareggio (Break-Even).</p>
+
+      <div class="calc-grid">
+        <div>
+          <label for="eq-balance">Bilancio Iniziale Conto ($)</label>
+          <select id="eq-balance" onchange="updateEquitySim()">
+            <option value="10000">$10.000</option>
+            <option value="50000">$50.000</option>
+            <option value="100000" selected>$100.000</option>
+            <option value="200000">$200.000</option>
+          </select>
+        </div>
+        <div>
+          <label for="eq-floating">Profitto Fluttuante Non Chiuso alle 23:59 ($)</label>
+          <input type="number" id="eq-floating" value="3500" min="0" max="50000" step="100" oninput="updateEquitySim()">
+        </div>
+        <div>
+          <label for="eq-dd">Regola Daily Drawdown (%)</label>
+          <select id="eq-dd" onchange="updateEquitySim()">
+            <option value="5" selected>5% (Standard FTMO / Breakout)</option>
+            <option value="4">4%</option>
+            <option value="3">3%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-result" style="background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.35);">
+        <div>
+          <div style="font-size: 0.76rem; text-transform: uppercase; color: #fca5a5; font-weight: 700;">Livello Squalifica su Prop Equity-Based (es. FTMO)</div>
+          <div class="lot-number" id="eq-fail-level" style="color: #f87171;">$98.325</div>
+          <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;" id="eq-warning-text">Se il trade torna a Break-Even ($100.000), ti restano solo $1.675 di margine giornaliero!</div>
+        </div>
+        <div>
+          <div style="font-size: 0.76rem; text-transform: uppercase; color: var(--emerald); font-weight: 700;">Livello Squalifica su Prop Balance-Based (Breakout / Propr.xyz)</div>
+          <div class="lot-number" id="bal-fail-level" style="color: var(--emerald);">$95.000</div>
+          <div style="font-size: 0.8rem; color: var(--muted);">Il tuo limite resta fisso sul Bilancio chiuso: zero trappole a mezzanotte.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 3: SIMULATORE FISCALE PAYOUT PROP FIRM ITALIA -->
+    <section class="card" id="simulatore-tasse">
+      <div class="section-title">🇮🇹 3. Simulatore Netto Payout Prop Firm in Italia (Occasionale vs Forfettario 5%)</div>
+      <p class="section-desc">I payout delle Prop Firm non sono Capital Gain al 26%, ma compensi per prestazioni di servizi/consulenza. Calcola una stima indicativa del tuo netto reale.</p>
+
+      <div class="calc-grid">
+        <div>
+          <label for="tax-gross">Payout Lordo Mensile (€)</label>
+          <input type="number" id="tax-gross" value="2500" min="100" max="50000" step="100" oninput="updateTaxSim()">
+        </div>
+        <div>
+          <label for="tax-regime">Regime Fiscale Stimato</label>
+          <select id="tax-regime" onchange="updateTaxSim()">
+            <option value="forfettario5" selected>Partita IVA Forfettario Startup (5% primi 5 anni)</option>
+            <option value="forfettario15">Partita IVA Forfettario Standard (15%)</option>
+            <option value="occasionale">Prestazione Occasionale (&lt; 5.000€ annui)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--muted); font-weight: 700;">Netto Mensile Stimato in Tasca</div>
+          <div class="lot-number" id="tax-net" style="color: var(--emerald);">1.910 € / mese</div>
+        </div>
+        <div>
+          <div style="font-size: 0.85rem; color: #e2e8f0;" id="tax-breakdown">Imponibile (78%): 1.950€ &middot; Imposta + Contributi stimati: ~590€</div>
+          <div style="font-size: 0.8rem; margin-top: 4px;">
+            <a href="tasse-prop-firm-italia-partita-iva.html" style="color: var(--gold); font-weight: 700;">Leggi la Guida Fiscale Prop Firm Italia 2026 &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASSIFICA PROP FIRM MULTI-ASSET & CFD 2026 -->
+    <section class="card" id="classifica-cfd">
+      <div class="section-title">🏆 Classifica Prop Firm 2026 (On-Chain, Crypto, Oro, Indici & CFD)</div>
+      <p class="section-desc">Selezionate per trasparenza del drawdown, velocità di erogazione dei payout e assenza di Consistency Rule nascoste.</p>
+
+      <div class="tier-list">
+        <div class="prop-item rank-1">
+          <div>
+            <span class="rank-badge">🥇 1° Posto &middot; Tier S+</span>
+            <div class="prop-name">Propr.xyz (On-Chain su Hyperliquid)</div>
+            <div class="prop-tags">
+              <span class="tag">Supportata da SwissBorg</span>
+              <span class="tag">Fino a $300.000</span>
+              <span class="tag">Orderbook Verificabile On-Chain</span>
+              <span class="tag">Payout 80% in USDC in Pochi Minuti</span>
+            </div>
+          </div>
+          <a href="https://www.propr.xyz" target="_blank" rel="noopener noreferrer" class="btn-prop">Vai a Propr.xyz &rarr;</a>
+        </div>
+
+        <div class="prop-item rank-2">
+          <div>
+            <span class="rank-badge">🥈 2° Posto &middot; Tier S</span>
+            <div class="prop-name">Breakout Prop (breakoutprop.com)</div>
+            <div class="prop-tags">
+              <span class="tag">Drawdown 100% Statico sul Bilancio</span>
+              <span class="tag">Zero Consistency Rule</span>
+              <span class="tag">Zero Giorni Minimi</span>
+              <span class="tag">Payout On-Demand 24/7</span>
+            </div>
+          </div>
+          <a href="https://www.breakoutprop.com" target="_blank" rel="noopener noreferrer" class="btn-prop" style="background:#10b981;">Vai a Breakout &rarr;</a>
+        </div>
+
+        <div class="prop-item rank-3">
+          <div>
+            <span class="rank-badge">🥉 3° Posto &middot; Tier A</span>
+            <div class="prop-name">FTMO (Classica CFD)</div>
+            <div class="prop-tags">
+              <span class="tag">Storica (Dal 2015)</span>
+              <span class="tag">Ottima per Swing Trading</span>
+              <span class="tag">Forex, Indici & Materie Prime</span>
+            </div>
+          </div>
+          <a href="https://ftmo.com" target="_blank" rel="noopener noreferrer" class="btn-prop" style="background:#d4845a;">Vai a FTMO &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASSIFICA PROP FIRM FUTURES 2026 -->
+    <section class="card" id="classifica-futures">
+      <div class="section-title">⚡ Classifica Prop Firm FUTURES 2026 (CME: Nasdaq NQ, S&P500 ES, Gold GC)</div>
+      <p class="section-desc">Prezzi centralizzati sul CME di Chicago, zero spread manipolati dal broker e Drawdown End-of-Day.</p>
+
+      <div class="tier-list">
+        <div class="prop-item rank-1">
+          <div>
+            <span class="rank-badge">🥇 1° Posto &middot; Tier S+</span>
+            <div class="prop-name">Tradeify (tradeify.co)</div>
+            <div class="prop-tags">
+              <span class="tag">Drawdown End-of-Day (Bloccato sul Bilancio)</span>
+              <span class="tag">Opzione Instant Funding (Lightning)</span>
+              <span class="tag">Payout fino al 90% & Rapidi</span>
+            </div>
+          </div>
+          <a href="https://tradeify.co" target="_blank" rel="noopener noreferrer" class="btn-prop">Vai a Tradeify &rarr;</a>
+        </div>
+
+        <div class="prop-item rank-2">
+          <div>
+            <span class="rank-badge">🥈 2° Posto &middot; Tier S</span>
+            <div class="prop-name">Lucid Trading (lucidtrading.com)</div>
+            <div class="prop-tags">
+              <span class="tag">Profit Split 90%</span>
+              <span class="tag">Piani LucidFlex Zero Buffer</span>
+              <span class="tag">Payout Approvati in Poche Ore</span>
+            </div>
+          </div>
+          <a href="https://lucidtrading.com" target="_blank" rel="noopener noreferrer" class="btn-prop" style="background:#10b981;">Vai a Lucid &rarr;</a>
+        </div>
+
+        <div class="prop-item rank-3">
+          <div>
+            <span class="rank-badge">🥉 3° Posto &middot; Tier A</span>
+            <div class="prop-name">Topstep (TopstepX)</div>
+            <div class="prop-tags">
+              <span class="tag">1 Solo Step</span>
+              <span class="tag">Drawdown End-of-Day</span>
+              <span class="tag">Piattaforma Proprietaria TopstepX</span>
+            </div>
+          </div>
+          <a href="https://www.topstep.com" target="_blank" rel="noopener noreferrer" class="btn-prop" style="background:#d4845a;">Vai a Topstep &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDE OPERATIVE, INDICATORE TRADINGVIEW E RISORSE GRATUITE -->
+    <section class="card" id="guide-operative">
+      <div class="section-title">📚 Guide Operative, Indicatore TradingView & Risorse Gratuite</div>
+      <p class="section-desc">Approfondimenti tecnici e strumenti open-source realizzati dal collettivo Humble Trading.</p>
+
+      <div class="guide-grid">
+        <a href="indicatore-tradingview-pinescript.html" class="guide-card">
+          <span class="guide-tag">📈 Open-Source PineScript v5</span>
+          <div class="guide-title">Indicatore TradingView: Humble Prop Shield & ICT Killzones</div>
+          <p class="guide-desc">Plotta in automatico sul grafico i massimi/minimi di Londra, la finestra Liquidity Sweep 14:30 CET e la tabella lotti XAUUSD in tempo reale.</p>
+        </a>
+
+        <a href="classifica-prop-firm-2026.html" class="guide-card">
+          <span class="guide-tag">🏆 Dossier Comparativo 2026</span>
+          <div class="guide-title">Confronto Completo Prop Firm CFD, On-Chain & Futures</div>
+          <p class="guide-desc">Analisi tecnica di drawdown statico vs equity, regole news, commissioni e velocità di payout di Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep.</p>
+        </a>
+
+        <a href="tasse-prop-firm-italia-partita-iva.html" class="guide-card">
+          <span class="guide-tag">🇮🇹 Guida Fiscale 2026</span>
+          <div class="guide-title">Payout Prop Firm in Italia: Tasse, Soglia 5.000€ e Forfettario 5%</div>
+          <p class="guide-desc">Perché i payout non sono Capital Gain al 26% ma redditi da servizi, quando serve la Partita IVA e come funziona il regime forfettario.</p>
+        </a>
+
+        <a href="strategia-ict-liquidity-sweep-xauusd.html" class="guide-card">
+          <span class="guide-tag">🎯 Strategia Operativa</span>
+          <div class="guide-title">Setup ICT Liquidity Sweep 14:30 CET su XAUUSD & Nasdaq</div>
+          <p class="guide-desc">Il protocollo meccanico in 3 passi per operare l'apertura di New York aspettando la caccia agli stop di Londra con rischio fisso dello 0,4%.</p>
+        </a>
+
+        <a href="cheat-sheet-prop-firm.html" class="guide-card">
+          <span class="guide-tag">🖨️ PDF da Scrivania</span>
+          <div class="guide-title">Cheat Sheet Anti-Bruciatura Prop Firm (Stampabile)</div>
+          <p class="guide-desc">Tabella rapida dei lotti per conti da $10k, $50k e $100k, checklist pre-market e regole salvavita prima di aprire un trade.</p>
+        </a>
+
+        <a href="assets/Humble_Trading_Journal_Prop_2026.csv" download="Humble_Trading_Journal_Prop_2026.csv" class="guide-card">
+          <span class="guide-tag">📊 Template Excel / Notion / Sheets</span>
+          <div class="guide-title">Scarica il Trading Journal Prop Firm 2026 (.CSV)</div>
+          <p class="guide-desc">Modello pronto all'uso con tracciamento Setup ICT, London Sweep, Rischio %, controllo Rollover 23:45 CET e multipli di R.</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html">&larr; Home Page</a> &middot;
+      <a href="metodo.html">Il Metodo</a> &middot;
+      <a href="servizi.html">Servizi Community</a> &middot;
+      <a href="https://t.me/Hubmles" target="_blank">Canale Telegram (@Hubmles)</a> &middot;
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank">Server Discord</a>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    function updateCalc() {
+      const balance = parseFloat(document.getElementById('calc-balance').value) || 100000;
+      const riskPct = parseFloat(document.getElementById('calc-risk').value) || 0.40;
+      const asset = document.getElementById('calc-asset').value;
+      const sl = Math.max(1, parseFloat(document.getElementById('calc-sl').value) || 25);
+
+      const riskUsd = balance * (riskPct / 100.0);
+      let valuePerPointPerLot = 100.0;
+      let unitName = 'Lotti';
+      const slLabel = document.getElementById('sl-label');
+
+      if (asset === 'xauusd') {
+        valuePerPointPerLot = 100.0;
+        slLabel.textContent = 'Stop Loss (Punti Oro $, es. 25 = 2.5$):';
+      } else if (asset === 'forex') {
+        valuePerPointPerLot = 10.0;
+        slLabel.textContent = 'Stop Loss (Pips Forex, es. 15):';
+      } else if (asset === 'nas100') {
+        valuePerPointPerLot = 1.0;
+        slLabel.textContent = 'Stop Loss (Punti Indice NAS100, es. 40):';
+      } else if (asset === 'mnq') {
+        valuePerPointPerLot = 2.0; // MNQ = $2 per point per contract
+        unitName = 'Contratti MNQ';
+        slLabel.textContent = 'Stop Loss (Punti Nasdaq Futures, es. 25):';
+      } else if (asset === 'mgc') {
+        valuePerPointPerLot = 10.0; // MGC = $10 per $1.00 move per contract
+        unitName = 'Contratti MGC';
+        slLabel.textContent = 'Stop Loss (Dollari Oro Futures, es. 3):';
+      }
+
+      const rawSize = riskUsd / (sl * valuePerPointPerLot);
+      const size = Math.max(0.01, Math.floor(rawSize * 100) / 100);
+      const stopsBeforeDailyDD = (5.0 / riskPct).toFixed(1);
+
+      const sizeText = (asset === 'mnq' || asset === 'mgc')
+        ? Math.max(1, Math.floor(rawSize)) + ' ' + unitName
+        : size.toFixed(2) + ' ' + unitName;
+
+      document.getElementById('res-lots').textContent = sizeText;
+      document.getElementById('res-usd').textContent = '$' + riskUsd.toFixed(0);
+      document.getElementById('res-trades-left').innerHTML =
+        'Margine prima del Daily Drawdown (5%): <strong>' + stopsBeforeDailyDD + ' stop consecutivi</strong>';
+
+      const shareMsg = encodeURIComponent(
+        '📊 Piano Anti-Bruciatura Prop Firm calcolato su Humble Trading:\n' +
+        '• Conto: $' + balance.toLocaleString('it-IT') + '\n' +
+        '• Rischio per trade: ' + riskPct + '% ($' + riskUsd.toFixed(0) + ')\n' +
+        '• Size consigliata: ' + sizeText + '\n\n' +
+        '⚡ Calcola la tua size gratis e scopri la Classifica Prop 2026: https://claudioamati3-cmyk.github.io/humble-trading/hub.html\n' +
+        '✈️ Canale Telegram Ufficiale: https://t.me/Hubmles'
+      );
+      document.getElementById('share-tg').href = 'https://t.me/share/url?url=' + encodeURIComponent('https://claudioamati3-cmyk.github.io/humble-trading/hub.html') + '&text=' + shareMsg;
+      document.getElementById('share-wa').href = 'https://api.whatsapp.com/send?text=' + shareMsg;
+    }
+
+    function updateEquitySim() {
+      const bal = parseFloat(document.getElementById('eq-balance').value) || 100000;
+      const floating = parseFloat(document.getElementById('eq-floating').value) || 0;
+      const ddPct = parseFloat(document.getElementById('eq-dd').value) || 5;
+
+      const equityAtMidnight = bal + floating;
+      const eqFailLevel = equityAtMidnight * (1 - ddPct / 100.0);
+      const balFailLevel = bal * (1 - ddPct / 100.0);
+      const remainingBufferAtBE = bal - eqFailLevel;
+
+      document.getElementById('eq-fail-level').textContent = '$' + Math.round(eqFailLevel).toLocaleString('it-IT');
+      document.getElementById('bal-fail-level').textContent = '$' + Math.round(balFailLevel).toLocaleString('it-IT');
+
+      if (remainingBufferAtBE <= 0) {
+        document.getElementById('eq-warning-text').innerHTML =
+          '🚨 <strong>CONTO BRUCIATO ANCHE IN PROFITTO!</strong> Se il prezzo torna al tuo punto di ingresso ($' + bal.toLocaleString('it-IT') + '), hai già violato il livello $' + Math.round(eqFailLevel).toLocaleString('it-IT') + '!';
+      } else {
+        document.getElementById('eq-warning-text').innerHTML =
+          'Se il trade torna a Break-Even ($' + bal.toLocaleString('it-IT') + '), ti restano solo <strong>$' + Math.round(remainingBufferAtBE).toLocaleString('it-IT') + '</strong> di margine invece di $' + Math.round(bal - balFailLevel).toLocaleString('it-IT') + '!';
+      }
+    }
+
+    function updateTaxSim() {
+      const gross = parseFloat(document.getElementById('tax-gross').value) || 2500;
+      const regime = document.getElementById('tax-regime').value;
+      let net = gross;
+      let desc = '';
+
+      if (regime === 'forfettario5') {
+        const imponibile = gross * 0.78;
+        const inps = imponibile * 0.2607;
+        const imposta = (imponibile - inps) * 0.05;
+        net = gross - inps - imposta;
+        desc = 'Imponibile (78%): ' + Math.round(imponibile) + '€ · INPS Gest. Sep. (~26%) + Imposta Sostitutiva (5%): ~' + Math.round(inps + imposta) + '€';
+      } else if (regime === 'forfettario15') {
+        const imponibile = gross * 0.78;
+        const inps = imponibile * 0.2607;
+        const imposta = (imponibile - inps) * 0.15;
+        net = gross - inps - imposta;
+        desc = 'Imponibile (78%): ' + Math.round(imponibile) + '€ · INPS (~26%) + Imposta Sostitutiva (15%): ~' + Math.round(inps + imposta) + '€';
+      } else {
+        const ritenuta = gross * 0.20;
+        net = gross - ritenuta;
+        desc = 'Attività Occasionale (< 5.000€/anno): Ritenuta/IRPEF stimata ~20% (' + Math.round(ritenuta) + '€). Oltre 5.000€ o se abituale serve Partita IVA.';
+      }
+
+      document.getElementById('tax-net').textContent = Math.round(net).toLocaleString('it-IT') + ' € / mese';
+      document.getElementById('tax-breakdown').textContent = desc;
+    }
+
+    function updateKillzoneClock() {
+      const now = new Date();
+      const romeStr = now.toLocaleTimeString('it-IT', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const hourStr = now.toLocaleTimeString('it-IT', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', hour12: false });
+      document.getElementById('rome-clock').textContent = romeStr + ' CET';
+
+      const parts = hourStr.split(':');
+      const mins = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+      const statusEl = document.getElementById('kz-status');
+      const subEl = document.getElementById('kz-sub');
+
+      if (mins >= 480 && mins < 660) {
+        statusEl.textContent = '🟢 LONDON KILLZONE ATTIVA (08:00 - 11:00 CET)';
+        subEl.textContent = 'Formazione dei massimi e minimi di Londra su XAUUSD e EURUSD.';
+      } else if (mins >= 870 && mins < 990) {
+        statusEl.textContent = '🔥 NEW YORK LIQUIDITY SWEEP WINDOW (14:30 - 16:30 CET)';
+        subEl.textContent = 'Alta volatilità XAUUSD & Nasdaq: attendi la presa di liquidità dei livelli di Londra.';
+      } else if (mins >= 1410 || mins < 60) {
+        statusEl.textContent = '🚨 PERICOLO ROLLOVER & SPREAD (23:30 - 01:00 CET)';
+        subEl.textContent = 'Allargamento spread interbancario e reset Daily Drawdown Equity-based!';
+      } else {
+        statusEl.textContent = '🛡️ MERCATO IN CONSOLIDAMENTO / PREPARAZIONE PRE-MARKET';
+        subEl.textContent = 'Finestre ad alta probabilità: Londra (08:00-11:00 CET) e New York (14:30-16:30 CET).';
+      }
+    }
+
+    updateCalc();
+    updateEquitySim();
+    updateTaxSim();
+    updateKillzoneClock();
+    setInterval(updateKillzoneClock, 1000);
+  </script>
+</body>
+</html>

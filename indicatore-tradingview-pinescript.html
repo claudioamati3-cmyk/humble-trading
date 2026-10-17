@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicatore TradingView PineScript v5 Gratuito: Prop Firm Shield & ICT Killzones — HUMBLE TRADING</title>
+  <meta name="description" content="Scarica gratis il codice PineScript v5 dell'indicatore TradingView di Humble Trading: calcolo automatico lotti XAUUSD Prop Firm sul grafico, massimi/minimi di Londra e NY Liquidity Sweep 14:30 CET.">
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/indicatore-tradingview-pinescript.html">
+  <style>
+    :root {
+      --bg: #060608;
+      --card: #0e0f14;
+      --border: rgba(255, 255, 255, 0.1);
+      --gold: #f59e0b;
+      --emerald: #10b981;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 1.75rem 1.25rem; }
+    .nav { margin-bottom: 1.5rem; font-size: 0.85rem; }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; margin-right: 1rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h1 { font-size: 1.9rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .lead { color: var(--muted); font-size: 1rem; margin-bottom: 1.75rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .feat-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 12px;
+    }
+    .feat-box h3 { font-size: 0.96rem; color: var(--gold); margin-bottom: 0.35rem; }
+    .feat-box p { font-size: 0.84rem; color: var(--muted); }
+    pre {
+      background: #030406;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 1.15rem;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      max-height: 440px;
+      margin-top: 0.85rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.35rem;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-copy { background: var(--gold); color: #000; }
+    .btn-tg { background: #0284c7; color: #fff; }
+    .btn-dc { background: #5865f2; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="hub.html">&larr; Torna all'Hub & Calcolatori</a>
+      <a href="index.html">Home Humble Trading</a>
+      <a href="classifica-prop-firm-2026.html">Classifica Prop 2026</a>
+    </div>
+
+    <span class="badge">Open-Source TradingView PineScript v5</span>
+    <h1>Humble Trading — Prop Firm Shield & ICT Killzones [v5]</h1>
+    <p class="lead">L'indicatore gratuito per TradingView progettato per chi opera su conti Prop Firm (XAUUSD, EURUSD, NAS100, MNQ): disegna in automatico i massimi e minimi di Londra, evidenzia gli Sweep di Liquidità delle 14:30 CET e calcola in tempo reale la size anti-bruciatura direttamente sul grafico.</p>
+
+    <div class="features">
+      <div class="feat-box">
+        <h3>🛡️ Dashboard Lotti & Drawdown sul Grafico</h3>
+        <p>Mostra nell'angolo in alto a destra la size esatta in Lotti o Contratti per rischiare lo 0,40% e quanti stop consecutivi hai di margine prima del 5% Daily Drawdown.</p>
+      </div>
+      <div class="feat-box">
+        <h3>🎯 Massimi & Minimi di Londra Automatici</h3>
+        <p>Traccia automaticamente il London High e London Low (08:00 - 11:00 ora italiana) come bersagli di liquidità per la sessione di New York.</p>
+      </div>
+      <div class="feat-box">
+        <h3>⚡ Rilevatore NY Sweep (14:30 - 16:00 CET) + FVG</h3>
+        <p>Segnala con un triangolo sul grafico quando il prezzo spazza la liquidità di Londra e forma un Fair Value Gap (FVG) istituzionale, più l'allerta Rollover 00:00 CET.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+        <div>
+          <h2 style="font-size: 1.2rem;">📋 Codice Sorgente PineScript v5 (Pronto da Copiare)</h2>
+          <p style="font-size: 0.84rem; color: var(--muted);">Apri TradingView &rarr; scheda "Pine Editor" in basso &rarr; Incolla il codice &rarr; Clicca "Aggiungi al grafico".</p>
+        </div>
+        <button class="btn btn-copy" onclick="copyPineCode()" id="copy-btn">📋 Copia Codice PineScript</button>
+      </div>
+
+      <pre id="pine-code">// © Humble Trading Community (https://t.me/Hubmles | https://discord.gg/VFt4y4MY5)
+//@version=5
+indicator("Humble Trading — Prop Firm Shield & ICT Killzones [v5]", shorttitle="HT Prop Shield & ICT", overlay=true, max_lines_count=500, max_boxes_count=500, max_labels_count=500)
+
+grp_prop = "🛡️ Configurazione Conto Prop Firm (Humble Trading)"
+acc_balance = input.float(100000, "Capitale Conto Prop ($)", minval=1000, step=5000, group=grp_prop)
+risk_pct    = input.float(0.40, "Rischio per Trade (%)", minval=0.10, maxval=3.0, step=0.05, group=grp_prop)
+daily_dd    = input.float(5.0, "Limite Daily Drawdown (%)", minval=1.0, maxval=10.0, step=0.5, group=grp_prop)
+sl_points   = input.float(25.0, "Stop Loss Pianificato (Punti XAUUSD / Pips)", minval=1.0, step=1.0, group=grp_prop)
+asset_type  = input.string("XAUUSD (Oro CFD)", "Tipo Strumento", options=["XAUUSD (Oro CFD)", "Forex (EURUSD/GBPUSD)", "NAS100 CFD", "MNQ (Micro Nasdaq Futures)"], group=grp_prop)
+
+grp_ict = "⚡ Sessioni ICT & Liquidity Sweep (Ora Italiana Europe/Rome)"
+show_lon    = input.bool(true, "Mostra Massimo/Minimo Sessione Londra (08:00-11:00 CET)", group=grp_ict)
+show_ny_kz  = input.bool(true, "Evidenzia Finestra NY Liquidity Sweep (14:30-16:00 CET)", group=grp_ict)
+show_fvg    = input.bool(true, "Evidenzia Fair Value Gap (FVG) Istituzionali", group=grp_ict)
+
+in_london = not na(time(timeframe.period, "0800-1100", "Europe/Rome"))
+in_ny_kz  = not na(time(timeframe.period, "1430-1600", "Europe/Rome"))
+in_roll   = not na(time(timeframe.period, "2345-0100", "Europe/Rome"))
+
+var float lon_high = na
+var float lon_low  = na
+
+if in_london and not in_london[1]
+    lon_high := high
+    lon_low  := low
+else if in_london
+    lon_high := math.max(nz(lon_high, high), high)
+    lon_low  := math.min(nz(lon_low, low), low)
+
+plot(show_lon and not in_london ? lon_high : na, "London High (Buy-Side Liquidity)", color=color.new(#F59E0B, 15), style=plot.style_linebr, linewidth=2)
+plot(show_lon and not in_london ? lon_low  : na, "London Low (Sell-Side Liquidity)", color=color.new(#10B981, 15), style=plot.style_linebr, linewidth=2)
+
+bgcolor(show_ny_kz and in_ny_kz ? color.new(#F59E0B, 92) : na, title="Finestra NY Sweep 14:30-16:00 CET")
+bgcolor(in_roll ? color.new(#EF4444, 90) : na, title="Allerta Rollover Spread 00:00 CET")
+
+bearish_sweep = in_ny_kz and not na(lon_high) and high &gt; lon_high and close &lt; lon_high
+bullish_sweep = in_ny_kz and not na(lon_low)  and low &lt; lon_low   and close &gt; lon_low
+
+plotshape(bearish_sweep, title="Bearish Liquidity Sweep (London High)", style=shape.triangledown, location=location.abovebar, color=#EF4444, size=size.small, text="SWEEP HIGH")
+plotshape(bullish_sweep, title="Bullish Liquidity Sweep (London Low)",  style=shape.triangleup,   location=location.belowbar, color=#10B981, size=size.small, text="SWEEP LOW")
+
+bull_fvg = show_fvg and low &gt; high[2] and close[1] &gt; high[2]
+bear_fvg = show_fvg and high &lt; low[2] and close[1] &lt; low[2]
+
+if bull_fvg and in_ny_kz
+    box.new(bar_index[2], low, bar_index + 4, high[2], border_color=color.new(#10B981, 50), bgcolor=color.new(#10B981, 85))
+
+if bear_fvg and in_ny_kz
+    box.new(bar_index[2], low[2], bar_index + 4, high, border_color=color.new(#EF4444, 50), bgcolor=color.new(#EF4444, 85))
+
+risk_usd = acc_balance * (risk_pct / 100.0)
+val_per_pt = asset_type == "XAUUSD (Oro CFD)" ? 100.0 : asset_type == "Forex (EURUSD/GBPUSD)" ? 10.0 : asset_type == "NAS100 CFD" ? 1.0 : 2.0
+raw_lots = risk_usd / (sl_points * val_per_pt)
+safe_lots = math.floor(raw_lots * 100.0) / 100.0
+consecutive_stops = daily_dd / risk_pct
+
+var table hud = table.new(position.top_right, 2, 7, bgcolor=color.new(#070A10, 10), border_color=color.new(#F59E0B, 50), border_width=1)
+
+if barstate.islast
+    table.cell(hud, 0, 0, "⚡ HUMBLE TRADING SHIELD", text_color=#F59E0B, text_size=size.small, bgcolor=color.new(#14161F, 0))
+    table.cell(hud, 1, 0, "t.me/Hubmles", text_color=#38BDF8, text_size=size.small, bgcolor=color.new(#14161F, 0))
+    table.cell(hud, 0, 1, "Conto Prop / Rischio", text_color=color.gray, text_size=size.tiny)
+    table.cell(hud, 1, 1, "$" + str.tostring(acc_balance, "#,###") + " (" + str.tostring(risk_pct, "#.##") + "% = $" + str.tostring(risk_usd, "#") + ")", text_color=color.white, text_size=size.tiny)
+    table.cell(hud, 0, 2, "SIZE CONSIGLIATA", text_color=#10B981, text_size=size.small)
+    table.cell(hud, 1, 2, str.tostring(safe_lots, "#.##") + (asset_type == "MNQ (Micro Nasdaq Futures)" ? " Contratti" : " Lotti"), text_color=#F59E0B, text_size=size.small)
+    table.cell(hud, 0, 3, "Buffer Daily DD (" + str.tostring(daily_dd, "#.#") + "%)", text_color=color.gray, text_size=size.tiny)
+    table.cell(hud, 1, 3, str.tostring(consecutive_stops, "#.#") + " Stop Consecutivi", text_color=#10B981, text_size=size.tiny)
+    table.cell(hud, 0, 4, "London High / Low", text_color=color.gray, text_size=size.tiny)
+    table.cell(hud, 1, 4, str.tostring(lon_high, "#.##") + " / " + str.tostring(lon_low, "#.##"), text_color=color.white, text_size=size.tiny)
+    table.cell(hud, 0, 5, "Top Prop 2026 CFD / Fut", text_color=color.gray, text_size=size.tiny)
+    table.cell(hud, 1, 5, "Propr.xyz · Breakout · Tradeify", text_color=#F59E0B, text_size=size.tiny)
+    table.cell(hud, 0, 6, "Community Gratuita", text_color=color.gray, text_size=size.tiny)
+    table.cell(hud, 1, 6, "discord.gg/VFt4y4MY5", text_color=#38BDF8, text_size=size.tiny)</pre>
+    </div>
+
+    <div class="card" style="text-align: center;">
+      <h2 style="margin-bottom: 0.5rem;">Vuoi vedere i setup dell'indicatore commentati ogni giorno?</h2>
+      <p style="color: var(--muted); margin-bottom: 1.25rem;">Entra gratis nel Canale Telegram e nella Sala Operativa Discord di Humble Trading.</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener noreferrer" class="btn btn-tg">✈️ Entra su Telegram (@Hubmles)</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn btn-dc">💬 Entra nel Server Discord</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyPineCode() {
+      const text = document.getElementById('pine-code').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✅ Codice Copiato! Incollalo su TradingView';
+        btn.style.background = '#10b981';
+        setTimeout(() => {
+          btn.textContent = '📋 Copia Codice PineScript';
+          btn.style.background = '#f59e0b';
+        }, 3500);
+      });
+    }
+  </script>
+</body>
+</html>

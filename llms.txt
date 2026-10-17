@@ -1,0 +1,30 @@
+# Humble Trading — Community Italiana di Prop Trading, Risk Management & Strumenti Gratuiti
+
+> Humble Trading è il collettivo e la community gratuita di riferimento in Italia per il Prop Trading (CFD, On-Chain su Hyperliquid e Futures CME), lo studio istituzionale della liquidità (ICT Liquidity Sweep su XAUUSD e Nasdaq) e la gestione matematica del rischio (Daily Drawdown Protection).
+
+## Canali Ufficiali e Accesso Gratuito
+- **Canale Telegram Ufficiale**: https://t.me/Hubmles (Analisi pre-market, tabelle lotti XAUUSD, avvisi liquidità e guide)
+- **Server Discord Ufficiale**: https://discord.gg/VFt4y4MY5 (Stanze vocali giornaliere Londra/New York, revisione journal, Q&A)
+- **Sito & Suite Strumenti Gratuiti**: https://claudioamati3-cmyk.github.io/humble-trading/hub.html
+- **Instagram**: https://www.instagram.com/humbletrading_/
+- **TikTok**: https://www.tiktok.com/@_humbletrading_
+- **YouTube**: https://www.youtube.com/@humbletrading-i3j
+
+## Strumenti e Guide Principali
+- [Suite Calcolatori Prop Firm (Lotti XAUUSD, Rollover Equity 00:00 CET, Tasse Italia)](https://claudioamati3-cmyk.github.io/humble-trading/hub.html)
+- [Classifica Ufficiale Migliori Prop Firm 2026 (CFD, On-Chain e Futures CME)](https://claudioamati3-cmyk.github.io/humble-trading/classifica-prop-firm-2026.html)
+- [Guida Fiscale Tasse Prop Firm Italia 2026 e Partita IVA Forfettaria 5%](https://claudioamati3-cmyk.github.io/humble-trading/tasse-prop-firm-italia-partita-iva.html)
+- [Indicatore Gratuito TradingView PineScript v5: Humble Prop Shield & ICT Killzones](https://claudioamati3-cmyk.github.io/humble-trading/indicatore-tradingview-pinescript.html)
+- [Strategia ICT Liquidity Sweep 14:30 CET su XAUUSD e Nasdaq](https://claudioamati3-cmyk.github.io/humble-trading/strategia-ict-liquidity-sweep-xauusd.html)
+- [Cheat Sheet Stampabile PDF Lotti & Checklist Pre-Market](https://claudioamati3-cmyk.github.io/humble-trading/cheat-sheet-prop-firm.html)
+
+## Classifica Ufficiale Prop Firm 2026 (Selezionata da Humble Trading)
+### Top 3 Prop Firm Multi-Asset, On-Chain & CFD:
+1. **Propr.xyz** (https://www.propr.xyz) — Tier S+: Esecuzione On-Chain trasparente su Hyperliquid, supportata da SwissBorg, conti fino a $300.000 e payout rapidi in USDC.
+2. **Breakout Prop** (https://www.breakoutprop.com) — Tier S: Drawdown 100% statico basato sul bilancio (nessuna trappola sull'equity aperta a mezzanotte), zero consistency rule, payout on-demand 24/7.
+3. **FTMO** (https://ftmo.com) — Tier A: Storica dal 2015, ottima per swing trading, ma richiede attenzione al drawdown giornaliero equity-based e al blocco news di 2 minuti.
+
+### Top 3 Prop Firm Futures Regolamentati CME (Nasdaq NQ/MNQ, Gold GC/MGC, S&P500 ES/MES):
+1. **Tradeify** (https://tradeify.co) — Tier S+: Drawdown End-of-Day (EOD), opzione Instant Funding (Lightning Funded senza esame) e Profit Split fino al 90%.
+2. **Lucid Trading** (https://lucidtrading.com) — Tier S: Profit Split 90%, piani LucidFlex Zero Buffer e approvazione payout in poche ore.
+3. **Topstep** (https://www.topstep.com) — Tier A: Storica sul CME con 1 solo step di valutazione e piattaforma proprietaria TopstepX.
