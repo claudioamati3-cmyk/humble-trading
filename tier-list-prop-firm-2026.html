@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier List Prop Firm 2026: Classifica Ufficiale, Valutazione S/A/B e Guida Anti-Scam | Humble Trading</title>
+  <meta name="description" content="La Tier List definitiva delle migliori Prop Firm per trader italiani nel 2026: valutazione oggettiva Tier S+, S, A e le trappole da evitare. Confronto interattivo tra Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid Trading e Topstep." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/tier-list-prop-firm-2026.html" />
+  <meta property="og:title" content="Tier List Prop Firm 2026: Classifica Ufficiale e Guida Anti-Scam | Humble Trading" />
+  <meta property="og:description" content="Scopri quali Prop Firm meritano il Tier S+ e quali evitare. Analisi trasparente di drawdown statico vs trailing, velocità payout e regole di consistenza." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/tier-list-prop-firm-2026.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tier List Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/tier-list-prop-firm-2026.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali criteri determinano la posizione di una Prop Firm nella Tier List?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La nostra valutazione indipendente si basa su 5 pilastri matematici: 1) Trasparenza del Drawdown (Statico o End-of-Day vs Trailing Equity intraday/mezzanotte); 2) Certezza e Velocità dei Payout (tempi medi di approvazione ed erogazione); 3) Qualità dell'Esecuzione (On-Chain Hyperliquid o Futures CME regolamentati vs Broker CFD B-Book); 4) Assenza di Regole Trappola (nessun divieto assurdo di consistenza o news lock non dichiarati); 5) Solidità Finanziaria e Reputazione della Proprietà."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è la migliore Prop Firm On-Chain e CFD nel 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nel segmento On-Chain/Crypto/Multi-Asset, Propr.xyz si posiziona in Tier S+ grazie all'infrastruttura decentralizzata su Hyperliquid (L1 ad altissima velocità), il backing di SwissBorg e i payout istantanei in USDC. Per i CFD con Drawdown 100% Statico sul Balance (senza trappole sull'equity aperta a mezzanotte), Breakout Prop è la scelta Tier S di riferimento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è la migliore Prop Firm per Futures CME?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per operare su Nasdaq (NQ/MNQ), S&P500 (ES/MES) e Oro (GC/MGC) sui Futures CME, Tradeify (Tier S+) offre Drawdown End-of-Day (EOD), opzioni di Instant Funding (Lightning) e split fino al 90%. Lucid Trading (Tier S) si distingue per i piani LucidFlex zero buffer e payout rapidi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Perché FTMO è in Tier A anziché Tier S?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FTMO è la prop firm storica più affidabile dal 2015 con il 100% di payout storici onorati. Tuttavia, il calcolo del Daily Drawdown basato sull'equity fluttuante alle 00:00 CEST (anziché sul bilancio chiuso) e il blocco operativo sulle news ad alto impatto (2 minuti prima/dopo nei conti standard) richiedono una gestione più restrittiva rispetto alle prop con drawdown statico."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --card-alt: #131D2E;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --tier-s-plus: linear-gradient(135deg, #F59E0B, #EC4899);
+      --tier-s: linear-gradient(135deg, #10B981, #06B6D4);
+      --tier-a: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      --tier-b: linear-gradient(135deg, #64748B, #94A3B8);
+      --tier-f: linear-gradient(135deg, #EF4444, #991B1B);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .nav-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      background: rgba(245, 158, 11, 0.12); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 800; line-height: 1.25; margin: 16px 0 12px;
+      background: linear-gradient(135deg, #FFF 30%, var(--amber) 70%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 28px; max-width: 820px; }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .card-title { font-size: 1.25rem; font-weight: 700; color: #FFF; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .card-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; }
+
+    /* Interactive Filters */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted); padding: 8px 16px; border-radius: 999px; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s ease; font-weight: 600;
+    }
+    .filter-btn:hover { background: rgba(56, 189, 248, 0.12); color: var(--cyan); border-color: var(--cyan); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(16, 185, 129, 0.2));
+      color: #FFF; border-color: var(--cyan);
+    }
+
+    /* Tier Row Components */
+    .tier-row {
+      margin-bottom: 24px; border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08); background: rgba(15, 23, 42, 0.5);
+    }
+    .tier-header {
+      padding: 12px 20px; font-weight: 800; font-size: 1.15rem;
+      display: flex; justify-content: space-between; align-items: center;
+      letter-spacing: 0.5px;
+    }
+    .tier-s-plus .tier-header { background: var(--tier-s-plus); color: #000; }
+    .tier-s .tier-header { background: var(--tier-s); color: #000; }
+    .tier-a .tier-header { background: var(--tier-a); color: #FFF; }
+    .tier-f .tier-header { background: var(--tier-f); color: #FFF; }
+
+    .tier-content {
+      padding: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px;
+    }
+    .prop-card {
+      background: var(--card-alt); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 18px; display: flex; flex-direction: column;
+      justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .prop-card:hover { transform: translateY(-3px); border-color: var(--cyan); }
+    .prop-name { font-size: 1.15rem; font-weight: 700; color: #FFF; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+    .prop-type-badge { font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; }
+    .badge-onchain { background: rgba(56, 189, 248, 0.2); color: var(--cyan); }
+    .badge-futures { background: rgba(245, 158, 11, 0.2); color: var(--amber); }
+    .badge-cfd { background: rgba(16, 185, 129, 0.2); color: var(--emerald); }
+    .badge-warning { background: rgba(239, 68, 68, 0.2); color: var(--red); }
+
+    .prop-feature-list { list-style: none; margin: 12px 0 16px; font-size: 0.85rem; color: #CBD5E1; }
+    .prop-feature-list li { margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; }
+    .prop-feature-list li span.icon { flex-shrink: 0; }
+
+    .btn-action {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem;
+      font-weight: 700; transition: all 0.2s ease; text-align: center; width: 100%;
+    }
+    .btn-cyan { background: var(--cyan); color: #050B14; }
+    .btn-cyan:hover { background: #7DD3FC; }
+    .btn-outline { background: rgba(255,255,255,0.06); color: #E2E8F0; border: 1px solid rgba(255,255,255,0.15); margin-top: 8px; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); color: #FFF; }
+
+    /* Interactive Matcher Quiz */
+    .matcher-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(16, 185, 129, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 22px;
+      margin-bottom: 28px;
+    }
+    .matcher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; }
+    .matcher-field label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+    .matcher-field select {
+      width: 100%; background: #0A0F1D; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; color: #FFF; padding: 10px 12px; font-size: 0.88rem; outline: none;
+    }
+    .matcher-result {
+      background: rgba(15, 22, 35, 0.9); border: 1px solid var(--emerald);
+      border-radius: 10px; padding: 16px; margin-top: 14px; display: none;
+    }
+    .result-title { font-size: 1rem; font-weight: 700; color: var(--emerald); margin-bottom: 4px; }
+    .result-text { font-size: 0.88rem; color: #E2E8F0; }
+
+    /* Matrix Table */
+    .table-responsive { overflow-x: auto; margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; }
+    th { background: #0A0E1A; padding: 12px 14px; color: var(--cyan); border-bottom: 1px solid var(--border); font-weight: 600; }
+    td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #CBD5E1; }
+    tr:hover td { background: rgba(56, 189, 248, 0.03); }
+
+    .faq-item { margin-bottom: 16px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
+    .faq-q { font-weight: 700; color: #FFF; margin-bottom: 6px; font-size: 0.95rem; }
+    .faq-a { color: var(--muted); font-size: 0.88rem; }
+
+    .community-cta {
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), rgba(15, 22, 35, 0.95));
+      border: 1px solid var(--cyan); border-radius: 16px; padding: 28px; text-align: center; margin-top: 40px;
+    }
+    .footer { text-align: center; margin-top: 48px; color: #64748B; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div style="font-weight: 800; font-size: 1.1rem; color: #FFF; display: flex; align-items: center; gap: 8px;">
+        ⚡ HUMBLE TRADING
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="hub.html">Hub Strumenti</a>
+        <a href="classifica-prop-firm-2026.html">Classifica</a>
+        <a href="tasse-prop-firm-italia-partita-iva.html">Tasse Prop</a>
+        <a href="indicatore-tradingview-pinescript.html">PineScript v5</a>
+        <a href="https://t.me/Hubmles" target="_blank" style="color: #38BDF8; font-weight: 700;">Telegram @Hubmles</a>
+      </div>
+    </nav>
+
+    <div class="badge">🏆 Benchmark Indipendente 2026</div>
+    <h1>Tier List Prop Firm 2026: La Classifica Ufficiale per Trader Italiani</h1>
+    <p class="subtitle">
+      Zero sponsorship occulte, zero broker B-Book con trailing nascosto. Ecco la Tier List definitiva basata su regole di drawdown, tempi reali di payout, esecuzione su mercati regolamentati CME e innovazione On-Chain Hyperliquid.
+    </p>
+
+    <!-- Quiz Raccomandatore Rapido -->
+    <div class="matcher-box">
+      <div style="font-weight: 700; font-size: 1.05rem; color: #FFF; margin-bottom: 4px;">
+        🎯 Trova la Prop Firm Perfetta per il Tuo Stile di Trading
+      </div>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 16px;">
+        Seleziona le tue preferenze operative e il nostro algoritmo consiglierà la scelta ideale Tier S+ o Tier S.
+      </p>
+      <div class="matcher-grid">
+        <div class="matcher-field">
+          <label>Mercato Principale</label>
+          <select id="match-asset" onchange="runPropMatcher()">
+            <option value="futures">Futures CME (Nasdaq, Oro, S&P)</option>
+            <option value="crypto-multi">Crypto & Multi-Asset On-Chain</option>
+            <option value="cfd-forex">CFD Forex & Metalli</option>
+          </select>
+        </div>
+        <div class="matcher-field">
+          <label>Priorità Drawdown</label>
+          <select id="match-dd" onchange="runPropMatcher()">
+            <option value="static">100% Statico / EOD (Zero trappole a 00:00)</option>
+            <option value="flexible">Trailing Standard accettabile</option>
+          </select>
+        </div>
+        <div class="matcher-field">
+          <label>Velocità Payout</label>
+          <select id="match-payout" onchange="runPropMatcher()">
+            <option value="instant">Istantaneo (Minuti / On-Chain USDC)</option>
+            <option value="fast">Rapido (24h - 48h)</option>
+            <option value="biweekly">Standard (14 giorni)</option>
+          </select>
+        </div>
+      </div>
+      <div id="matcher-result-card" class="matcher-result">
+        <div id="match-prop-title" class="result-title">Raccomandazione Calcolata</div>
+        <div id="match-prop-desc" class="result-text"></div>
+      </div>
+    </div>
+
+    <!-- Barra Filtri Tier List -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterTier('all', this)">Tutte le Prop</button>
+      <button class="filter-btn" onclick="filterTier('futures', this)">Futures CME</button>
+      <button class="filter-btn" onclick="filterTier('onchain-cfd', this)">On-Chain & CFD</button>
+      <button class="filter-btn" onclick="filterTier('tier-s', this)">Solo Tier S+ & S</button>
+    </div>
+
+    <!-- TIER S+ -->
+    <div class="tier-row tier-s-plus" data-tier="s-plus">
+      <div class="tier-header">
+        <span>TIER S+ — LEADER ASSOLUTI DI SETTORE</span>
+        <span style="font-size: 0.85rem; font-weight: 700;">Innovazione & Protezione Massima</span>
+      </div>
+      <div class="tier-content">
+        <!-- Propr.xyz -->
+        <div class="prop-card" data-category="onchain-cfd" data-firm="propr">
+          <div>
+            <div class="prop-name">
+              <span>Propr.xyz</span>
+              <span class="prop-type-badge badge-onchain">On-Chain Hyperliquid</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Multi-Asset Decentralizzato con SwissBorg Backing</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">⚡</span> <strong>Infrastruttura:</strong> L1 Hyperliquid, zero slippage manipolato da broker B-Book.</li>
+              <li><span class="icon">💰</span> <strong>Payout:</strong> Istantaneo in USDC su wallet crypto (senza attese bancarie).</li>
+              <li><span class="icon">🛡️</span> <strong>Conti:</strong> Fino a $300.000 con scaling on-chain.</li>
+              <li><span class="icon">📈</span> <strong>Mercati:</strong> Crypto perpetuals, Oro (XAUUSD), S&P500 e azioni.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="propr-xyz-recensione-guida-hyperliquid-ita.html" class="btn-action btn-cyan">Recensione & Setup Propr.xyz</a>
+            <a href="go.html?prop=propr" target="_blank" class="btn-action btn-outline">Visita Sito Ufficiale ↗</a>
+          </div>
+        </div>
+
+        <!-- Tradeify -->
+        <div class="prop-card" data-category="futures" data-firm="tradeify">
+          <div>
+            <div class="prop-name">
+              <span>Tradeify</span>
+              <span class="prop-type-badge badge-futures">Futures CME</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Piattaforma Futures N.1 per Flessibilità</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">🛡️</span> <strong>Drawdown EOD:</strong> Calcolato a fine giornata, non sull'equity aperta intraday.</li>
+              <li><span class="icon">⚡</span> <strong>Lightning Funded:</strong> Opzione Instant Funding senza esame di valutazione.</li>
+              <li><span class="icon">💵</span> <strong>Profit Split:</strong> Fino al 90% con prelievi veloci.</li>
+              <li><span class="icon">🖥️</span> <strong>Piattaforme:</strong> TradingView, Tradovate, NinjaTrader.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="tradeify-vs-topstep-vs-lucid-futures-ita.html" class="btn-action btn-cyan">Confronto Futures Tradeify</a>
+            <a href="go.html?prop=tradeify" target="_blank" class="btn-action btn-outline">Visita Tradeify ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER S -->
+    <div class="tier-row tier-s" data-tier="s">
+      <div class="tier-header">
+        <span>TIER S — ECCELLENZA OPERATIVA</span>
+        <span style="font-size: 0.85rem; font-weight: 700;">Scelta Primaria per Drawdown Statico</span>
+      </div>
+      <div class="tier-content">
+        <!-- Breakout Prop -->
+        <div class="prop-card" data-category="onchain-cfd" data-firm="breakout">
+          <div>
+            <div class="prop-name">
+              <span>Breakout Prop</span>
+              <span class="prop-type-badge badge-cfd">CFD & Cripto</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Il Drawdown 100% Statico sul Bilancio</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">🛡️</span> <strong>Drawdown Statico:</strong> La soglia non sale mai con i profitti aperti.</li>
+              <li><span class="icon">🌙</span> <strong>Zero Mezzanotte Trap:</strong> Il Daily DD è basato sul bilancio, non sull'equity aperta.</li>
+              <li><span class="icon">⚡</span> <strong>Payout On-Demand:</strong> Prelievi veloci senza vincoli di consistenza severi.</li>
+              <li><span class="icon">📊</span> <strong>Piattaforme:</strong> Breakout Terminal (TradingView integrato) e cTrader.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="breakout-prop-vs-ftmo-drawdown-statico.html" class="btn-action btn-cyan">Analisi Drawdown Breakout</a>
+            <a href="go.html?prop=breakout" target="_blank" class="btn-action btn-outline">Visita Breakout Prop ↗</a>
+          </div>
+        </div>
+
+        <!-- Lucid Trading -->
+        <div class="prop-card" data-category="futures" data-firm="lucid">
+          <div>
+            <div class="prop-name">
+              <span>Lucid Trading</span>
+              <span class="prop-type-badge badge-futures">Futures CME</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Piani LucidFlex e Zero Buffer Payout</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">💎</span> <strong>Zero Buffer:</strong> Prelievi possibili fin dal primo dollaro di profitto dopo l'attivazione.</li>
+              <li><span class="icon">💰</span> <strong>Split 90%:</strong> Tra i payout split più alti nel mercato Futures.</li>
+              <li><span class="icon">⏱️</span> <strong>Approvazione:</strong> Payout processati mediamente entro 24-48 ore.</li>
+              <li><span class="icon">📈</span> <strong>Piattaforme:</strong> Tradovate e TradingView.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="tradeify-vs-topstep-vs-lucid-futures-ita.html" class="btn-action btn-cyan">Dettagli Lucid Trading</a>
+            <a href="go.html?prop=lucid" target="_blank" class="btn-action btn-outline">Visita Lucid Trading ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER A -->
+    <div class="tier-row tier-a" data-tier="a">
+      <div class="tier-header">
+        <span>TIER A — SOLIDE E STORICHE (CON AVVERTENZE OPERATIVE)</span>
+        <span style="font-size: 0.85rem; font-weight: 700;">Affidabilità Storica Dimostrata</span>
+      </div>
+      <div class="tier-content">
+        <!-- FTMO -->
+        <div class="prop-card" data-category="onchain-cfd" data-firm="ftmo">
+          <div>
+            <div class="prop-name">
+              <span>FTMO</span>
+              <span class="prop-type-badge badge-cfd">CFD Forex</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Il Benchmark Storico Mondiale dal 2015</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">🏆</span> <strong>Reputazione:</strong> Oltre 9 anni di pagamenti sempre garantiti.</li>
+              <li><span class="icon">⚠️</span> <strong>Avvertenza Equity 00:00:</strong> Daily Drawdown basato sull'equity fluttuante alle 00:00 CEST.</li>
+              <li><span class="icon">📰</span> <strong>News Lock:</strong> Blocco di 2 minuti prima/dopo news rosse nei conti standard.</li>
+              <li><span class="icon">💻</span> <strong>Piattaforme:</strong> DXtrade, cTrader, MT4/MT5.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="breakout-prop-vs-ftmo-drawdown-statico.html" class="btn-action btn-cyan">Guida Regole FTMO</a>
+            <a href="go.html?prop=ftmo" target="_blank" class="btn-action btn-outline">Visita FTMO ↗</a>
+          </div>
+        </div>
+
+        <!-- Topstep -->
+        <div class="prop-card" data-category="futures" data-firm="topstep">
+          <div>
+            <div class="prop-name">
+              <span>Topstep</span>
+              <span class="prop-type-badge badge-futures">Futures CME</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--muted);">Pioniere del Futures Trading a Chicago</p>
+            <ul class="prop-feature-list">
+              <li><span class="icon">🏛️</span> <strong>Storicità:</strong> Attiva dal 2012, punto di riferimento a Chicago.</li>
+              <li><span class="icon">🎯</span> <strong>1-Step Evaluation:</strong> Un solo passaggio per qualificarsi al funded.</li>
+              <li><span class="icon">⚠️</span> <strong>Payout Rules:</strong> Regole di consistenza sul giorno migliore (max 50% di profitto concentrato).</li>
+              <li><span class="icon">🖥️</span> <strong>Piattaforma:</strong> TopstepX nativa + NinjaTrader/Tradovate.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="tradeify-vs-topstep-vs-lucid-futures-ita.html" class="btn-action btn-cyan">Confronto Topstep</a>
+            <a href="go.html?prop=topstep" target="_blank" class="btn-action btn-outline">Visita Topstep ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER F (DA EVITARE) -->
+    <div class="tier-row tier-f" data-tier="f">
+      <div class="tier-header">
+        <span>TIER F — COSA EVITARE ASSOLUTAMENTE (RED FLAGS)</span>
+        <span style="font-size: 0.85rem; font-weight: 700;">Segnali di Rischio e Truffe</span>
+      </div>
+      <div style="padding: 20px; font-size: 0.88rem; color: #FCA5A5; background: rgba(239, 68, 68, 0.05);">
+        <p style="margin-bottom: 10px; font-weight: 700; color: #FFF;">🚩 Non acquistare mai challenge da Prop Firm che presentano questi parametri:</p>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li>❌ <strong>Trailing Drawdown Intraday Dinamico:</strong> La soglia di stop loss sale tick per tick col massimo profitto non realizzato, strozzando i trade in guadagno.</li>
+          <li>❌ <strong>Regola di Consistenza Impossibile (es. 15%-20%):</strong> Se fai un trade molto buono, vieni costretto a fare centinaia di micro-operazioni per diluire i profitti prima di prelevare.</li>
+          <li>❌ <strong>Broker B-Book Senza Nome:</strong> Mancanza di quotazioni verificabili o broker proprietari offshore senza regolamentazione.</li>
+          <li>❌ <strong>Ritardi nei Payout oltre 14 giorni:</strong> Scuse ripetute su problemi bancari o controlli manuali su trader profittevoli.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Matrice Comparativa Completa -->
+    <div class="card">
+      <div class="card-title">📊 Matrice Comparativa Parametri Ufficiali 2026</div>
+      <p class="card-desc">Confronta fianco a fianco i dati contrattuali e tecnici delle 6 Prop Firm approvate dalla community di Humble Trading.</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Prop Firm</th>
+              <th>Tier</th>
+              <th>Mercato</th>
+              <th>Modello Drawdown</th>
+              <th>Profit Split</th>
+              <th>Velocità Payout</th>
+              <th>Piattaforma</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Propr.xyz</strong></td>
+              <td><span style="color: #F59E0B; font-weight: 800;">S+</span></td>
+              <td>Crypto & Multi-Asset On-Chain</td>
+              <td>Statico On-Chain</td>
+              <td>80% - 90%</td>
+              <td>Istantaneo (USDC)</td>
+              <td>Hyperliquid Web / API</td>
+            </tr>
+            <tr>
+              <td><strong>Tradeify</strong></td>
+              <td><span style="color: #F59E0B; font-weight: 800;">S+</span></td>
+              <td>Futures CME (NQ, ES, GC)</td>
+              <td>End-of-Day (EOD)</td>
+              <td>90%</td>
+              <td>24h - 48h</td>
+              <td>TradingView, Tradovate, Ninja</td>
+            </tr>
+            <tr>
+              <td><strong>Breakout Prop</strong></td>
+              <td><span style="color: #10B981; font-weight: 800;">S</span></td>
+              <td>CFD Forex & Crypto</td>
+              <td>100% Statico sul Bilancio</td>
+              <td>80% - 90%</td>
+              <td>On-Demand (1-2 gg)</td>
+              <td>Breakout Terminal, cTrader</td>
+            </tr>
+            <tr>
+              <td><strong>Lucid Trading</strong></td>
+              <td><span style="color: #10B981; font-weight: 800;">S</span></td>
+              <td>Futures CME</td>
+              <td>End-of-Day / LucidFlex</td>
+              <td>90%</td>
+              <td>Entro 48h</td>
+              <td>Tradovate, TradingView</td>
+            </tr>
+            <tr>
+              <td><strong>FTMO</strong></td>
+              <td><span style="color: #38BDF8; font-weight: 800;">A</span></td>
+              <td>CFD Forex & Metalli</td>
+              <td>Daily Equity (00:00 CEST)</td>
+              <td>80% - 90%</td>
+              <td>Bi-settimanale (14gg)</td>
+              <td>DXtrade, cTrader, MT4/MT5</td>
+            </tr>
+            <tr>
+              <td><strong>Topstep</strong></td>
+              <td><span style="color: #38BDF8; font-weight: 800;">A</span></td>
+              <td>Futures CME</td>
+              <td>Trailing / EOD</td>
+              <td>90%</td>
+              <td>Settimanale</td>
+              <td>TopstepX, Tradovate, Ninja</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sezione FAQ Schema.org -->
+    <div class="card">
+      <div class="card-title">❓ Domande Frequenti sulla Tier List Prop Firm</div>
+      <div class="faq-item">
+        <div class="faq-q">Come viene aggiornata questa Tier List?</div>
+        <div class="faq-a">I parametri vengono revisionati settimanalmente attraverso i report live di payout della community Telegram (@Hubmles), verifiche dirette sui contratti di termini e condizioni e test continui di esecuzione eseguiti dal team di Humble Trading.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Perché non compaiono altre 50 Prop Firm nate negli ultimi mesi?</div>
+        <div class="faq-a">La politica di Humble Trading è rigorosa: elenchiamo esclusivamente entità con comprovata storicità di payout o con trasparenza tecnologica verificabile on-chain/CME. Evitiamo deliberatamente broker B-Book white-label privi di capitale reale a garanzia.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Esistono codici sconto o agevolazioni per la community?</div>
+        <div class="faq-a">Sì. Tramite la pagina ufficiale Humble Trading <a href="go.html" style="color: var(--cyan);">go.html</a> sono sempre attivi i migliori sconti garantiti e le promozioni ufficiali delle singole aziende partner.</div>
+      </div>
+    </div>
+
+    <!-- Community CTA Box -->
+    <div class="community-cta">
+      <h3 style="font-size: 1.6rem; color: #FFF; margin-bottom: 8px;">Unisciti alla Community dei Trader Profittevoli</h3>
+      <p style="color: var(--muted); max-width: 650px; margin: 0 auto 20px; font-size: 0.95rem;">
+        Condividiamo ogni giorno sul canale Telegram <strong>@Hubmles</strong> e su Discord le migliori configurazioni operative, i payout verificati e l'indicatore TradingView PineScript v5 gratuito per non violare mai il Daily Drawdown.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://t.me/Hubmles" target="_blank" class="btn-action btn-cyan" style="width: auto; padding: 12px 24px; font-size: 1rem;">
+          ✈️ Entra nel Canale Telegram @Hubmles
+        </a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn-action btn-outline" style="width: auto; padding: 12px 24px; font-size: 1rem; margin-top: 0;">
+          💬 Accedi al Server Discord
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© 2026 Humble Trading — Community e Risorse per il Prop Trading Professionale. Tutti i diritti riservati.</p>
+      <p style="margin-top: 6px;">Disclaimer: Il trading sui mercati finanziari comporta un elevato rischio di perdite di capitale. Le informazioni presentate hanno finalità esclusivamente formative e matematiche.</p>
+    </footer>
+  </div>
+
+  <script>
+    function filterTier(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.prop-card');
+      const tierRows = document.querySelectorAll('.tier-row');
+
+      if (cat === 'all') {
+        cards.forEach(c => c.style.display = 'flex');
+        tierRows.forEach(r => r.style.display = 'block');
+        return;
+      }
+
+      if (cat === 'tier-s') {
+        tierRows.forEach(r => {
+          const t = r.getAttribute('data-tier');
+          r.style.display = (t === 's-plus' || t === 's') ? 'block' : 'none';
+        });
+        cards.forEach(c => c.style.display = 'flex');
+        return;
+      }
+
+      tierRows.forEach(r => r.style.display = 'block');
+      cards.forEach(c => {
+        const cCat = c.getAttribute('data-category');
+        if (cat === 'futures' && cCat === 'futures') {
+          c.style.display = 'flex';
+        } else if (cat === 'onchain-cfd' && cCat === 'onchain-cfd') {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    function runPropMatcher() {
+      const asset = document.getElementById('match-asset').value;
+      const dd = document.getElementById('match-dd').value;
+      const payout = document.getElementById('match-payout').value;
+
+      const resCard = document.getElementById('matcher-result-card');
+      const resTitle = document.getElementById('match-prop-title');
+      const resDesc = document.getElementById('match-prop-desc');
+
+      let propName = "";
+      let rationale = "";
+
+      if (asset === 'futures') {
+        if (payout === 'fast' || dd === 'static') {
+          propName = "Tradeify (Tier S+)";
+          rationale = "Per i Futures CME, Tradeify garantisce Drawdown End-of-Day (EOD) matematicamente protetto e profit split al 90%, con opzione Lightning Funded per saltare la valutazione.";
+        } else {
+          propName = "Lucid Trading (Tier S) o Topstep (Tier A)";
+          rationale = "Piani flessibili con eccellente liquidità su NinjaTrader e Tradovate.";
+        }
+      } else if (asset === 'crypto-multi' || payout === 'instant') {
+        propName = "Propr.xyz (Tier S+)";
+        rationale = "Infrastruttura L1 decentralizzata su Hyperliquid: zero manipolazioni del book, esecuzione ultra-rapida su Crypto/Oro/S&P e payout istantanei in USDC direttamente nel tuo wallet.";
+      } else {
+        if (dd === 'static') {
+          propName = "Breakout Prop (Tier S)";
+          rationale = "Il punto di riferimento per CFD e Cripto con Drawdown 100% Statico sul Balance: la tua soglia di perdita non sale mai a mezzanotte.";
+        } else {
+          propName = "FTMO (Tier A)";
+          rationale = "La sicurezza della solidità aziendale dal 2015, ideale per swing trading con attenzione alla regola di equity alle 00:00.";
+        }
+      }
+
+      resTitle.innerHTML = "🏆 Scelta Consigliata: " + propName;
+      resDesc.innerHTML = rationale;
+      resCard.style.display = 'block';
+    }
+
+    // Run matcher on load
+    runPropMatcher();
+  </script>
+</body>
+</html>

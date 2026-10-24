@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Regole News Trading & Slippage Prop Firm 2026 | FTMO, Tradeify, Propr.xyz, Topstep | Humble Trading</title>
+  <meta name="description" content="Simulatore e calcolatore regole news trading per Prop Firm 2026. Verifica la finestra di embargo di 2 minuti (FTMO), calcola l'impatto dello slippage su CPI/NFP e confronta CFD vs Futures CME vs On-Chain." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regole-news-trading-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Regole News Trading & Slippage Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Non bruciare il conto per un gap di liquidità su NFP o CPI. Calcola lo slippage reale, controlla le finestre di divieto e confronta le regole tra Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regole-news-trading-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Regole News Trading & Slippage Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regole-news-trading-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è la regola del News Trading su FTMO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sui conti FTMO Standard (normali e funded), è severamente vietato aprire o chiudere ordini 2 minuti prima e 2 minuti dopo il rilascio di una notizia macroeconomica ad alto impatto (cartella rossa). Eventuali profitti generati in questa finestra vengono stornati e, in caso di recidiva, il conto viene squalificato. Sui conti FTMO Swing, invece, il trading durante le news è consentito a fronte di una leva ridotta a 1:30."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "È consentito il News Trading sulle Prop Firm Futures come Tradeify, Lucid e Topstep?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì! Sulle principali Prop Firm Futures regolamentate dal CME (come Tradeify, Lucid Trading e Topstep), il news trading è al 100% consentito senza finestre di embargo. I contratti Futures beneficiano del book centrale standardizzato del CME, anche se occorre prestare attenzione allo slippage durante picchi estremi di volatilità come CPI o NFP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come funziona il News Trading sulle Prop Firm On-Chain come Propr.xyz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Su Propr.xyz, operando sull'infrastruttura decentralizzata L1 di Hyperliquid, non esistono broker intermediari né regole arbitrarie di embargo. L'orderbook è trasparente on-chain, con liquidità CEX-grade, senza freeze di piattaforma a mezzanotte o spread artificialmente allargati dai desk CFD tradizionali."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cos'è lo slippage durante una news e perché può bruciare il Daily Drawdown?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Durante il rilascio di un dato macroeconomico cruciale (es. inflazione CPI o tasso FOMC), la liquidità sul book si assottiglia all'istante creando vuoti di prezzo (gap). Il tuo ordine Stop Loss diventa un ordine a mercato al miglior prezzo disponibile: se il prezzo salta di 15 pips oltre il tuo stop nominale, la perdita reale sarà molto superiore a quella pianificata, potendo travolgere il limite del Max Daily Drawdown consentito."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono le Prop Firm consigliate per chi fa News Trading o scalping sui dati?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le scelte ideali sono: 1) Tradeify e Lucid Trading sui Futures CME, grazie all'assenza di vincoli di calendario e payout ultra-rapidi; 2) Propr.xyz per l'operatività On-Chain senza requote né intermediari B-Book; 3) Breakout Prop per chi preferisce i CFD con Drawdown 100% Statico sul Bilancio e zero restrizioni di orario."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card-bg: #0D111C;
+      --card-border: #1F2937;
+      --accent: #10B981;
+      --accent-hover: #059669;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --blue: #3B82F6;
+      --cyan: #06B6D4;
+      --text-main: #F9FAFB;
+      --text-muted: #94A3B8;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: rgba(13, 17, 28, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 20px;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn-tg {
+      background: #0088cc;
+      color: #fff !important;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .btn-tg:hover { opacity: 0.9; }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.7rem; }
+    }
+
+    .calc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-hint {
+      font-size: 0.75rem;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    select, input[type="number"], input[type="text"] {
+      width: 100%;
+      background: #060911;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    select:focus, input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      height: 6px;
+      border-radius: 3px;
+      background: #1F2937;
+      outline: none;
+    }
+
+    .slider-val {
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 65px;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+
+    .status-box {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .status-box.allowed {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34D399;
+    }
+
+    .status-box.warning {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #FBBF24;
+    }
+
+    .status-box.forbidden {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #F87171;
+    }
+
+    .status-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .status-headline {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .status-detail {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--text-main);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-card {
+      background: #060911;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .metric-value.danger { color: var(--red); }
+    .metric-value.success { color: var(--accent); }
+    .metric-value.warning { color: var(--amber); }
+
+    .progress-bar-container {
+      background: #1F2937;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s, background-color 0.3s;
+    }
+
+    .timer-banner {
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .timer-text {
+      font-size: 0.88rem;
+      color: #E2E8F0;
+    }
+
+    .timer-clock {
+      font-family: monospace;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--cyan);
+      background: rgba(0,0,0,0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    .table-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      background: #070A10;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .tag-allowed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+
+    .tag-restricted {
+      background: rgba(239, 68, 68, 0.15);
+      color: #F87171;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+
+    .tag-caution {
+      background: rgba(245, 158, 11, 0.15);
+      color: #FBBF24;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+
+    .faq-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 40px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .faq-answer {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1));
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .cta-desc {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    .btn-action {
+      background: var(--accent);
+      color: #000;
+      font-weight: 800;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="hub.html" class="brand-link">
+        <span>⚡ HUMBLE TRADING</span>
+        <span class="brand-badge">PRO 2026</span>
+      </a>
+      <div class="nav-links">
+        <a href="hub.html">Hub Strumenti</a>
+        <a href="classifica-prop-firm-2026.html">Classifica</a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener" class="btn-tg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+          Telegram @Hubmles
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-badge">⚠️ Rischio Macroeconomico & Compliance 2026</div>
+    <h1>Calcolatore Regole News Trading & Simulatore Slippage Prop Firm</h1>
+    <p class="lead">
+      Il 72% delle squalifiche involontarie durante CPI e NFP avviene per <strong>violazione della finestra di embargo</strong> o per <strong>slippage dello Stop Loss</strong> che travolge il Daily Drawdown Shield. Verifica i requisiti esatti e simula il rischio reale prima del rilascio.
+    </p>
+
+    <div class="calc-grid">
+      <!-- INPUTS -->
+      <div class="calc-card">
+        <div class="card-title">
+          <span>⚙️ Parametri Evento & Conto</span>
+        </div>
+
+        <div class="form-group">
+          <label for="propSelect">Prop Firm & Tipo Conto</label>
+          <select id="propSelect">
+            <option value="ftmo_standard">FTMO (Conto Standard) — ❌ Regola 2 min</option>
+            <option value="ftmo_swing">FTMO (Conto Swing) — ✅ News Consentite (Leva 1:30)</option>
+            <option value="tradeify">Tradeify (Futures CME) — ✅ Nessun Blocco News (Tier S+)</option>
+            <option value="propr">Propr.xyz (On-Chain Hyperliquid) — ✅ Nessun Blocco (Tier S+)</option>
+            <option value="breakout">Breakout Prop (CFD Static DD) — ✅ News Consentite (Tier S)</option>
+            <option value="lucid">Lucid Trading (Futures CME) — ✅ News Consentite (Tier S)</option>
+            <option value="topstep">Topstep (Futures CME) — ⚠️ News Consentite (Attenzione Trailing)</option>
+          </select>
+          <div class="input-hint" id="propRuleHint">Regola: Divieto assoluto di aprire/chiudere 2 min prima e 2 min dopo.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="newsEvent">Evento Macroeconomico Rilasciato</label>
+          <select id="newsEvent">
+            <option value="cpi" data-pips="45" data-pts="35">CPI Inflazione USA (Impatto Estremo: ~45 pips / ~35 pts)</option>
+            <option value="nfp" data-pips="55" data-pts="45" selected>NFP Non-Farm Payrolls (Impatto Estremo: ~55 pips / ~45 pts)</option>
+            <option value="fomc" data-pips="65" data-pts="50">FOMC Decisione Tassi & Conferenza Powell (~65 pips / ~50 pts)</option>
+            <option value="ppi" data-pips="25" data-pts="20">PPI Indice Prezzi alla Produzione (~25 pips / ~20 pts)</option>
+            <option value="speech" data-pips="50" data-pts="40">Discorso Presidente FED / BCE (Alta Volatilità Bidirezionale)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="accountSize">Taglia Conto Prop Firm ($)</label>
+          <select id="accountSize">
+            <option value="25000">$25.000 (Daily DD tipico: $1.250)</option>
+            <option value="50000">$50.000 (Daily DD tipico: $2.500)</option>
+            <option value="100000" selected>$100.000 (Daily DD tipico: $5.000)</option>
+            <option value="150000">$150.000 (Daily DD tipico: $7.500)</option>
+            <option value="200000">$200.000 (Daily DD tipico: $10.000)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="assetSelect">Asset Operato</label>
+          <select id="assetSelect">
+            <option value="xauusd" selected>Oro (XAUUSD CFD) — Valore Pip: $10/lotto standard</option>
+            <option value="nq">Nasdaq 100 Futures (NQ E-mini) — Valore Punto: $20/ctr</option>
+            <option value="mnq">Micro Nasdaq (MNQ) — Valore Punto: $2/ctr</option>
+            <option value="eurusd">EUR/USD Forex — Valore Pip: $10/lotto</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Taglia Posizione (Lotti / Contratti)</label>
+          <div class="slider-row">
+            <input type="range" id="sizeRange" min="0.1" max="10" step="0.1" value="2.0" />
+            <span class="slider-val" id="sizeVal">2.0 lotti</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Distanza Stop Loss Nominale</label>
+          <div class="slider-row">
+            <input type="range" id="slRange" min="5" max="60" step="1" value="20" />
+            <span class="slider-val" id="slVal">20 pips/pts</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Slippage Stimato per Vuoto di Liquidità</label>
+          <div class="slider-row">
+            <input type="range" id="slipRange" min="0" max="30" step="1" value="8" />
+            <span class="slider-val" id="slipVal">8 pips/pts</span>
+          </div>
+          <div class="input-hint">Nei primi 15 secondi da NFP/CPI lo slippage tipico è tra 5 e 15 pips su CFD.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="ddRemaining">Daily Drawdown Residuo Oggi ($)</label>
+          <input type="number" id="ddRemaining" value="3500" min="100" max="15000" step="50" />
+          <div class="input-hint">Margine di perdita ancora a disposizione prima di violare il Daily Drawdown Shield.</div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="calc-card">
+        <div class="card-title">
+          <span>📊 Diagnosi Live & Rischio Drawdown</span>
+        </div>
+
+        <div id="statusBox" class="status-box forbidden">
+          <div class="status-icon" id="statusIcon">🛑</div>
+          <div>
+            <div class="status-headline" id="statusHead">VIOLAZIONE REGOLE FTMO STANDARD</div>
+            <div class="status-detail" id="statusDesc">
+              Su FTMO Standard è vietato aprire o chiudere posizioni da 2 minuti prima a 2 minuti dopo questo evento. L'eventuale trade verrà cancellato o il conto chiuso.
+            </div>
+          </div>
+        </div>
+
+        <div class="timer-banner" id="timerBox">
+          <div class="timer-text">
+            <strong>Finestra Embargo FTMO:</strong><br/>
+            Da -2:00 a +2:00 dal comunicato
+          </div>
+          <div class="timer-clock" id="embargoStatus">4 MINUTI BLOCCO</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-label">Perdita Nominale (SL)</div>
+            <div class="metric-value" id="nominalLoss">-$400</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Perdita Reale (+ Slippage)</div>
+            <div class="metric-value danger" id="realLoss">-$560</div>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-label">Costo Extra Slippage</div>
+            <div class="metric-value warning" id="extraSlipCost">-$160</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Buffer Daily DD Residuo</div>
+            <div class="metric-value success" id="ddLeft">+$2.940</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600;">
+            <span style="color: var(--text-muted);">Assorbimento Daily Drawdown Shield:</span>
+            <span id="ddPercent">16.0%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ddBar" style="width: 16%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px; padding: 14px; background: #060911; border-radius: 10px; border: 1px solid var(--card-border);">
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--cyan); margin-bottom: 6px;">💡 IL CONSIGLIO OPERATIVO HUMBLE TRADING</div>
+          <p id="actionAdvice" style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.45;">
+            Se vuoi tradare le news senza rischiare la revoca del conto o slippage imprevedibile, passa ai contratti <strong>Futures CME su Tradeify</strong> o all'orderbook <strong>On-Chain di Propr.xyz su Hyperliquid</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="table-section">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 16px;">📋 Tabella Comparativa Regole News Prop Firm 2026</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Asset / Ecosistema</th>
+            <th>Regola News Trading</th>
+            <th>Finestra di Embargo</th>
+            <th>Overnight & Weekend</th>
+            <th>Drawdown Base</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Propr.xyz</strong> <span class="tag-allowed">Tier S+</span></td>
+            <td>On-Chain (Hyperliquid DEX)</td>
+            <td><span class="tag-allowed">100% Consentito</span></td>
+            <td>Nessuna (0 sec)</td>
+            <td>Consentito (Funding P2P)</td>
+            <td>Statico / Bilancio</td>
+          </tr>
+          <tr>
+            <td><strong>Tradeify</strong> <span class="tag-allowed">Tier S+</span></td>
+            <td>Futures Regolamentati CME</td>
+            <td><span class="tag-allowed">100% Consentito</span></td>
+            <td>Nessuna (0 sec)</td>
+            <td>Chiusura prima di EOD</td>
+            <td>End-of-Day (EOD)</td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong> <span class="tag-allowed">Tier S</span></td>
+            <td>CFD Istituzionali</td>
+            <td><span class="tag-allowed">100% Consentito</span></td>
+            <td>Nessuna (0 sec)</td>
+            <td>Consentito</td>
+            <td>100% Statico su Bilancio</td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong> <span class="tag-allowed">Tier S</span></td>
+            <td>Futures Regolamentati CME</td>
+            <td><span class="tag-allowed">100% Consentito</span></td>
+            <td>Nessuna (0 sec)</td>
+            <td>Chiusura prima di EOD</td>
+            <td>End-of-Day (EOD)</td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong> <span class="tag-caution">Tier A</span></td>
+            <td>Futures Regolamentati CME</td>
+            <td><span class="tag-caution">Consentito (Attenzione)</span></td>
+            <td>Nessuna (0 sec)</td>
+            <td>Intraday obbligatorio</td>
+            <td>Trailing EOD</td>
+          </tr>
+          <tr>
+            <td><strong>FTMO Swing</strong> <span class="tag-allowed">Tier A</span></td>
+            <td>CFD Broker Tradizionale</td>
+            <td><span class="tag-allowed">Consentito</span></td>
+            <td>Nessuna (Leva 1:30)</td>
+            <td>Consentito</td>
+            <td>Equity a mezzanotte (CE)</td>
+          </tr>
+          <tr>
+            <td><strong>FTMO Standard</strong> <span class="tag-restricted">Tier A-</span></td>
+            <td>CFD Broker Tradizionale</td>
+            <td><span class="tag-restricted">Severamente Vietato</span></td>
+            <td>2 min prima & 2 min dopo</td>
+            <td>Chiusura obbligatoria W/E</td>
+            <td>Equity a mezzanotte (CE)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="faq-section">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 20px;">❓ Domande Frequenti sul News Trading & Prop Firm</h2>
+      <div class="faq-item">
+        <div class="faq-question">1. Come rileva FTMO la violazione della regola dei 2 minuti?</div>
+        <div class="faq-answer">
+          FTMO sincronizza i server con il calendario economico ufficiale (Forex Factory / FTMO Calendar). Qualsiasi ordine a mercato eseguito, ordine pendente (Buy/Sell Limit o Stop) innescato o Stop Loss/Take Profit toccato tra le 14:28:00 e le 14:32:00 per un evento fissato alle 14:30:00 viene marcato automaticamente dal software di compliance. Se il trade ha generato profitto, il guadagno viene decurtato dal bilancio. Se ha subito perdite, le perdite restano a tuo carico.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">2. Perché lo slippage su CFD è peggiore rispetto ai Futures CME?</div>
+        <div class="faq-answer">
+          Nei broker CFD retail tradizionali, il desk opera in modalità B-Book o stacca la liquidità nei microsecondi antecedenti al dato macro, ampliando lo spread da 1,5 pips a oltre 20-30 pips su XAUUSD. Sui Futures CME (scambiati da Tradeify, Topstep, Lucid), il mercato è un'asta centrale centralizzata a Chicago: lo slippage può verificarsi solo per reali vuoti nel book degli ordini, senza allargamenti artificiali da parte del broker.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">3. Cosa succede se ho un ordine pendente attivo durante il CPI o NFP?</div>
+        <div class="faq-answer">
+          Su FTMO Standard, se il prezzo colpisce il tuo Buy Stop o Sell Limit durante la finestra dei 2 minuti, viene considerata una violazione attiva. Sulle Prop Firm Futures (Tradeify, Lucid, Topstep) e On-Chain (Propr.xyz, Breakout), l'ordine viene eseguito regolarmente al primo prezzo disponibile nel book.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">4. Come calcolare la size corretta per non farsi bruciare dal news trading?</div>
+        <div class="faq-answer">
+          La regola d'oro di Humble Trading: ipotizza sempre uno <strong>slippage minimo pari al 50% del tuo Stop Loss nominale</strong>. Se imposti 20 pips di stop su XAUUSD con un rischio nominale dell'1%, calcola che la perdita reale in caso di gap violento sarà dell'1,5%. Se il tuo Daily Drawdown residuo è del 2%, rischi di trovarti a un soffio dalla squalifica in meno di 3 secondi.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+      <div class="cta-title">Unisciti alla Community di Humble Trading</div>
+      <p class="cta-desc">
+        Ogni mattina analizziamo insieme su Telegram il calendario macroeconomico, le finestre di liquidità ICT e i livelli chiave su XAUUSD e Nasdaq per evitare le trappole delle Prop Firm.
+      </p>
+      <a href="https://t.me/Hubmles" target="_blank" rel="noopener" class="btn-action">
+        Entra Gratis su Telegram @Hubmles
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const propSelect = document.getElementById('propSelect');
+    const newsEvent = document.getElementById('newsEvent');
+    const accountSize = document.getElementById('accountSize');
+    const assetSelect = document.getElementById('assetSelect');
+    const sizeRange = document.getElementById('sizeRange');
+    const sizeVal = document.getElementById('sizeVal');
+    const slRange = document.getElementById('slRange');
+    const slVal = document.getElementById('slVal');
+    const slipRange = document.getElementById('slipRange');
+    const slipVal = document.getElementById('slipVal');
+    const ddRemaining = document.getElementById('ddRemaining');
+
+    const statusBox = document.getElementById('statusBox');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusHead = document.getElementById('statusHead');
+    const statusDesc = document.getElementById('statusDesc');
+    const propRuleHint = document.getElementById('propRuleHint');
+    const timerBox = document.getElementById('timerBox');
+    const embargoStatus = document.getElementById('embargoStatus');
+
+    const nominalLoss = document.getElementById('nominalLoss');
+    const realLoss = document.getElementById('realLoss');
+    const extraSlipCost = document.getElementById('extraSlipCost');
+    const ddLeft = document.getElementById('ddLeft');
+    const ddPercent = document.getElementById('ddPercent');
+    const ddBar = document.getElementById('ddBar');
+    const actionAdvice = document.getElementById('actionAdvice');
+
+    function update() {
+      const prop = propSelect.value;
+      const size = parseFloat(sizeRange.value);
+      const sl = parseFloat(slRange.value);
+      const slip = parseFloat(slipRange.value);
+      const ddRem = parseFloat(ddRemaining.value) || 1000;
+      const asset = assetSelect.value;
+
+      sizeVal.textContent = size.toFixed(1) + (asset.includes('nq') || asset.includes('mnq') ? ' ctr' : ' lotti');
+      slVal.textContent = sl + (asset === 'xauusd' || asset === 'eurusd' ? ' pips' : ' pts');
+      slipVal.textContent = slip + (asset === 'xauusd' || asset === 'eurusd' ? ' pips' : ' pts');
+
+      // Calcola valore punto/pip per unità
+      let pointVal = 10; // XAUUSD o EURUSD
+      if (asset === 'nq') pointVal = 20;
+      if (asset === 'mnq') pointVal = 2;
+
+      const nominal = size * sl * pointVal;
+      const slipCost = size * slip * pointVal;
+      const total = nominal + slipCost;
+      const remainingBuffer = ddRem - total;
+      const pctUsed = Math.min(100, Math.max(0, (total / ddRem) * 100));
+
+      nominalLoss.textContent = '-$' + Math.round(nominal).toLocaleString();
+      realLoss.textContent = '-$' + Math.round(total).toLocaleString();
+      extraSlipCost.textContent = '-$' + Math.round(slipCost).toLocaleString();
+
+      if (remainingBuffer >= 0) {
+        ddLeft.textContent = '+$' + Math.round(remainingBuffer).toLocaleString();
+        ddLeft.className = 'metric-value success';
+      } else {
+        ddLeft.textContent = '-$' + Math.abs(Math.round(remainingBuffer)).toLocaleString();
+        ddLeft.className = 'metric-value danger';
+      }
+
+      ddPercent.textContent = pctUsed.toFixed(1) + '%';
+      ddBar.style.width = pctUsed + '%';
+
+      if (pctUsed > 80) {
+        ddBar.style.backgroundColor = '#EF4444';
+      } else if (pctUsed > 50) {
+        ddBar.style.backgroundColor = '#F59E0B';
+      } else {
+        ddBar.style.backgroundColor = '#10B981';
+      }
+
+      // Regole Prop Firm
+      if (prop === 'ftmo_standard') {
+        propRuleHint.textContent = 'Regola: Divieto assoluto di aprire/chiudere 2 min prima e 2 min dopo.';
+        statusBox.className = 'status-box forbidden';
+        statusIcon.textContent = '🛑';
+        statusHead.textContent = 'VIOLAZIONE REGOLE FTMO STANDARD';
+        statusDesc.textContent = 'Su FTMO Standard è vietato aprire o chiudere posizioni da 2 minuti prima a 2 minuti dopo questo evento. Gli ordini pendenti eseguiti in questo intervallo invalidano i profitti o portano alla chiusura del conto.';
+        timerBox.style.display = 'flex';
+        embargoStatus.textContent = '4 MINUTI BLOCCO';
+        actionAdvice.innerHTML = 'Su FTMO Standard <strong>chiudi qualsiasi operazione almeno 5 minuti prima</strong> della notizia. Per tradare senza vincoli orari, opta per il conto <strong>FTMO Swing</strong> oppure passa a <strong>Tradeify (Futures)</strong> o <strong>Propr.xyz (On-Chain)</strong>.';
+      } else if (prop === 'topstep') {
+        propRuleHint.textContent = 'Regola: News permesse, ma massima attenzione al Trailing Max Drawdown intraday.';
+        timerBox.style.display = 'none';
+        if (remainingBuffer < 0) {
+          statusBox.className = 'status-box forbidden';
+          statusIcon.textContent = '💥';
+          statusHead.textContent = 'DAILY DRAWDOWN VIOLATO PER SLIPPAGE';
+          statusDesc.textContent = 'Anche se Topstep permette il news trading, lo slippage simulato di ' + slip + ' pts porta la perdita a $' + Math.round(total) + ', superando il buffer disponibile di $' + ddRem + '!';
+        } else {
+          statusBox.className = 'status-box warning';
+          statusIcon.textContent = '⚠️';
+          statusHead.textContent = 'NEWS CONSENTITA MA AD ALTO RISCHIO TRAILING';
+          statusDesc.textContent = 'Topstep consente il trading durante la notizia. Tuttavia, poiché il trailing drawdown si calcola sul picco di equity non realizzato, un pullback violento post-notizia potrebbe penalizzarti pesantemente.';
+        }
+        actionAdvice.innerHTML = 'Consigliata la riduzione della size a micro contratti (MNQ invece di NQ) per assorbire lo slippage durante la release macro.';
+      } else {
+        // Tradeify, Propr, Breakout, Lucid, FTMO Swing
+        timerBox.style.display = 'none';
+        propRuleHint.textContent = 'Regola: News trading 100% consentito senza blocchi di orario.';
+        if (remainingBuffer < 0) {
+          statusBox.className = 'status-box forbidden';
+          statusIcon.textContent = '💥';
+          statusHead.textContent = 'DRAWDOWN VIOLATO PER ECCESSO DI RISCHIO';
+          statusDesc.textContent = 'La prop firm autorizza il trading, ma la combinazione di lotti (' + size + ') e slippage stimato ha generato una perdita reale di $' + Math.round(total) + ', superando il limite residuo di $' + ddRem + '!';
+          actionAdvice.innerHTML = 'Riduci la taglia della posizione o aumenta la distanza dal mercato durante i primi 30 secondi dal dato.';
+        } else if (pctUsed > 60) {
+          statusBox.className = 'status-box warning';
+          statusIcon.textContent = '⚠️';
+          statusHead.textContent = 'CONFORME ALLE REGOLE — ATTENZIONE ALLA SIZE';
+          statusDesc.textContent = 'Nessuna restrizione da parte della Prop Firm. Tuttavia lo Stop Loss slittato assorbirebbe il ' + pctUsed.toFixed(1) + '% del tuo Daily Drawdown residuo.';
+          actionAdvice.innerHTML = 'Ottima scelta di Prop Firm! Mantieni il rischio sotto controllo per preservare il cuscino di sicurezza.';
+        } else {
+          statusBox.className = 'status-box allowed';
+          statusIcon.textContent = '🟢';
+          statusHead.textContent = '100% CONFORME & AMPIO MARGINE DI SICUREZZA';
+          statusDesc.textContent = 'News trading autorizzato senza restrizioni. Lo Stop Loss nominale + slippage impegna solo il ' + pctUsed.toFixed(1) + '% del tuo buffer giornaliero.';
+          actionAdvice.innerHTML = 'Parametri perfettamente bilanciati secondo gli standard del Daily Drawdown Shield di Humble Trading.';
+        }
+      }
+    }
+
+    [propSelect, newsEvent, accountSize, assetSelect, sizeRange, slRange, slipRange, ddRemaining].forEach(el => {
+      el.addEventListener('input', update);
+      el.addEventListener('change', update);
+    });
+
+    update();
+  </script>
+</body>
+</html>

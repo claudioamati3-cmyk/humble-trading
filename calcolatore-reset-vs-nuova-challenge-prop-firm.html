@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Reset vs Nuova Challenge Prop Firm 2026: Conviene Resettare o Comprare un Nuovo Account? | Humble Trading</title>
+  <meta name="description" content="Simulatore matematico 2026 per decidere se conviene pagare il Reset o comprare una Nuova Challenge scontata su Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid Trading e Topstep. Calcola sforzo di recupero, trade necessari e risparmio reale." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-reset-vs-nuova-challenge-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Reset vs Nuova Challenge Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Conviene pagare il reset o acquistare un nuovo account in sconto? Analisi quantitativa del drawdown burden e convenienza economica immediata." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-reset-vs-nuova-challenge-prop-firm.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Calcolatore Reset vs Nuova Challenge Prop Firm 2026: Conviene Resettare o Comprare un Nuovo Account?",
+    "description": "Strumento quantitativo per analizzare la convenienza matematica tra reset del conto di valutazione e acquisto di una nuova challenge promozionale nelle prop firm CFD, On-Chain e Futures.",
+    "author": { "@type": "Organization", "name": "Humble Trading" },
+    "publisher": { "@type": "Organization", "name": "Humble Trading", "url": "https://claudioamati3-cmyk.github.io/humble-trading/" },
+    "inLanguage": "it-IT"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quando conviene fare il reset di un conto Prop Firm invece di comprarne uno nuovo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il reset conviene esclusivamente se: 1) Il costo del reset è significativamente inferiore al prezzo promozionale di una nuova challenge con codice sconto (es. coupon HUMBLE); 2) Hai già accumulato giorni minimi di trading validi su una prop firm che non li azzera; 3) Il drawdown subito non ha intaccato la tua lucidità emotiva. Se il deficit supera il 3% o se una nuova challenge gode del 20-40% di sconto, comprare un nuovo account è quasi sempre matematicamente e psicologicamente superiore."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cosa succede allo storico e ai giorni di trading quando si fa il reset?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nella maggior parte delle prop firm (come Tradeify, Topstep o FTMO), il reset riporta il bilancio e l'equity al valore iniziale (es. $100.000) e azzera le violazioni di drawdown, ma spesso resetta anche il conteggio dei giorni minimi scambiati. Nelle prop Futures come Tradeify o Lucid Trading il reset genera istantaneamente nuove credenziali Rithmic/Tradovate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Perché recuperare un conto in drawdown negativo è matematicamente svantaggioso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per il fenomeno del Recovery Drag: se perdi il 5% su un conto da $100.000 (bilancio a $95.000), per tornare a $100.000 devi guadagnare $5.000, che rappresentano il +5,26% del tuo capitale rimasto. Se il target della Fase 1 è l'8% ($108.000), partendo da $95.000 devi realizzare $13.000 di profitto, ossia ben il +13,68% del capitale residuo, quasi raddoppiando il rischio di rovina statistico rispetto a partire da quota 0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali Prop Firm offrono le migliori condizioni su Reset e Nuove Challenge nel 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nel segmento Futures CME, Tradeify e Lucid Trading offrono reset rapidi a basso costo con frequenti sconti promozionali fino al 40-50% sulle nuove valutazioni. Nel comparto CFD e On-Chain, Propr.xyz su Hyperliquid e Breakout Prop consentono di avviare nuovi conti con drawdown statico sul bilancio a costi competitivi, evitando trappole di trailing intraday."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --card-alt: #131E31;
+      --border: rgba(56, 189, 248, 0.22);
+      --border-focus: #38BDF8;
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    .nav a:hover { text-decoration: underline; }
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: var(--amber);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 28px; line-height: 1.65; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    select, input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #0B1120;
+      color: #FFF;
+      font-size: 1rem;
+      font-weight: 700;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    select:focus, input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+    .range-wrap { margin-top: 8px; }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: #1E293B;
+      height: 8px;
+      border-radius: 4px;
+      border: none;
+      padding: 0;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    }
+    .verdict-banner {
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .verdict-banner.buy-new {
+      background: radial-gradient(circle at center, rgba(16, 185, 129, 0.18) 0%, rgba(15, 22, 35, 0.95) 80%);
+      border: 2px solid var(--emerald);
+    }
+    .verdict-banner.do-reset {
+      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.18) 0%, rgba(15, 22, 35, 0.95) 80%);
+      border: 2px solid var(--amber);
+    }
+    .verdict-banner.keep-trading {
+      background: radial-gradient(circle at center, rgba(56, 189, 248, 0.18) 0%, rgba(15, 22, 35, 0.95) 80%);
+      border: 2px solid var(--cyan);
+    }
+    .verdict-title { font-size: 1.55rem; font-weight: 900; margin-bottom: 8px; }
+    .verdict-sub { font-size: 0.96rem; color: var(--muted); max-width: 650px; margin: 0 auto; line-height: 1.55; }
+    .kpi-box {
+      background: #0B1120;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+    .kpi-val { font-size: 1.7rem; font-weight: 900; margin: 4px 0; }
+    .kpi-sub { font-size: 0.82rem; color: var(--muted); }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .comparison-table th {
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(255,255,255,0.03);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    .comparison-table tr:hover { background: rgba(56, 189, 248, 0.03); }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, var(--cyan) 0%, #0284C7 100%);
+      color: #04101F;
+      font-weight: 900;
+      font-size: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      margin-top: 12px;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: #FFF;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); box-shadow: none; }
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .faq-q { font-size: 1.05rem; font-weight: 800; color: #FFF; margin-bottom: 8px; }
+    .faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .tag-futures { background: rgba(56, 189, 248, 0.15); color: var(--cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-cfd { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-onchain { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div>
+        <a href="hub.html">⚡ Hub Calcolatori</a> &nbsp;|&nbsp;
+        <a href="classifica-prop-firm-2026.html">🏆 Classifica Prop 2026</a> &nbsp;|&nbsp;
+        <a href="tier-list-prop-firm-2026.html">🎯 Tier List & Quiz</a>
+      </div>
+      <div>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Telegram @Hubmles</a> &nbsp;|&nbsp;
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener">💬 Discord</a>
+      </div>
+    </div>
+
+    <span class="badge">⚖️ Decision Engine Quantitativo 2026</span>
+    <h1>Calcolatore Reset vs Nuova Challenge Prop Firm</h1>
+    <p class="lead">
+      Sei in drawdown su un conto di valutazione? Non buttare soldi a caso. Scopri in tempo reale se ti conviene <strong>pagare il Reset</strong>, <strong>comprare una Nuova Challenge</strong> con codice sconto o se il buco è <strong>matematicamente recuperabile</strong> senza spendere 1 solo euro.
+    </p>
+
+    <!-- SIMULATORE CARD -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--cyan);">⚙️ 1. Parametri del Conto & Prop Firm</h2>
+      
+      <div class="grid-2" style="margin-bottom: 16px;">
+        <div>
+          <label for="propPreset">Seleziona Prop Firm (Parametri Preimpostati 2026)</label>
+          <select id="propPreset" onchange="applyPropPreset()">
+            <option value="tradeify" selected>Tradeify (Futures CME - EOD & Lightning)</option>
+            <option value="lucid">Lucid Trading (Futures CME - LucidFlex)</option>
+            <option value="topstep">Topstep (Futures CME - TopstepX)</option>
+            <option value="propr">Propr.xyz (On-Chain Hyperliquid - Multi-Asset)</option>
+            <option value="breakout">Breakout Prop (Static Drawdown CFD/Crypto)</option>
+            <option value="ftmo">FTMO (CFD Storica)</option>
+            <option value="custom">Valori Personalizzati</option>
+          </select>
+        </div>
+        <div>
+          <label for="accountSize">Taglia Account Capitale Iniziale ($)</label>
+          <select id="accountSize" onchange="calculate()">
+            <option value="25000">$25.000</option>
+            <option value="50000" selected>$50.000</option>
+            <option value="100000">$100.000</option>
+            <option value="150000">$150.000</option>
+            <option value="200000">$200.000</option>
+            <option value="300000">$300.000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 20px;">
+        <div>
+          <label for="drawdownPct">Perdita Attuale / Drawdown sul Conto (% del Capitale)</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="number" id="drawdownPct" min="0.1" max="15.0" step="0.1" value="3.5" oninput="syncDrawdownFromNum()" style="width: 110px;" />
+            <span style="font-weight: 800; color: var(--amber);">%</span>
+            <span style="color: var(--muted); font-size: 0.88rem;" id="drawdownDollarsTxt">(-$1.750)</span>
+          </div>
+          <div class="range-wrap">
+            <input type="range" id="drawdownRange" min="0.5" max="10.0" step="0.1" value="3.5" oninput="syncDrawdownFromRange()" />
+          </div>
+        </div>
+        <div>
+          <label for="profitTargetPct">Obiettivo Profit Target da Raggiungere (%)</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="number" id="profitTargetPct" min="4.0" max="15.0" step="0.5" value="6.0" oninput="calculate()" style="width: 110px;" />
+            <span style="font-weight: 800; color: var(--cyan);">%</span>
+            <span style="color: var(--muted); font-size: 0.88rem;" id="targetDollarsTxt">(Target: +$3.000)</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--cyan);">💳 2. Costi a Confronto: Reset vs Nuova Challenge</h2>
+      <div class="grid-3" style="margin-bottom: 20px;">
+        <div>
+          <label for="resetCost">Costo Singolo Reset ($)</label>
+          <input type="number" id="resetCost" min="10" max="500" step="5" value="85" oninput="calculate()" />
+          <span style="font-size: 0.78rem; color: var(--muted);">Spesa netta per azzerare il conto attuale</span>
+        </div>
+        <div>
+          <label for="newChallengeCost">Prezzo Listino Nuova Challenge ($)</label>
+          <input type="number" id="newChallengeCost" min="20" max="1200" step="5" value="160" oninput="calculate()" />
+          <span style="font-size: 0.78rem; color: var(--muted);">Prezzo pieno prima di sconti</span>
+        </div>
+        <div>
+          <label for="discountPct">Sconto Coupon Applicabile (%)</label>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input type="number" id="discountPct" min="0" max="70" step="5" value="30" oninput="calculate()" />
+            <span style="font-weight: 800; color: var(--emerald);">%</span>
+          </div>
+          <span style="font-size: 0.78rem; color: var(--muted);">Es. Codice HUMBLE (15% - 40%)</span>
+        </div>
+      </div>
+
+      <!-- VERDETTO DINAMICO -->
+      <div id="verdictBanner" class="verdict-banner buy-new">
+        <div id="verdictTitle" class="verdict-title" style="color: var(--emerald);">🚀 CONVIENE COMPRARE UNA NUOVA CHALLENGE SCONTATA</div>
+        <p id="verdictSub" class="verdict-sub">
+          La nuova challenge scontata costa solo <strong>$112</strong> rispetto a <strong>$85</strong> di reset. Per soli $27 in più elimini <strong>-$1.750 di drawdown</strong>, riducendo lo sforzo di profitto necessario da <strong>+9,84%</strong> a solo <strong>+6,00%</strong>.
+        </p>
+      </div>
+
+      <!-- KPI METRICHE A CONFRONTO -->
+      <div class="grid-3" style="margin-bottom: 24px;">
+        <div class="kpi-box">
+          <div class="kpi-lbl">Prezzo Netto Nuova Challenge</div>
+          <div class="kpi-val" id="netNewCostVal" style="color: var(--emerald);">$112.00</div>
+          <div class="kpi-sub" id="netNewCostSub">Listino $160 - Sconto 30%</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Differenza Spesa Netta</div>
+          <div class="kpi-val" id="diffCostVal" style="color: var(--amber);">+$27.00</div>
+          <div class="kpi-sub" id="diffCostSub">Nuova Challenge vs Reset ($85)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Target Reale Residuo (Senza Reset)</div>
+          <div class="kpi-val" id="realTargetVal" style="color: var(--red);">+9.84%</div>
+          <div class="kpi-sub" id="realTargetSub">Sforzo maggiorato del +64%</div>
+        </div>
+      </div>
+
+      <!-- CONFRONTO DETTAGLIATO TABELLARE -->
+      <div style="background: rgba(0,0,0,0.25); border-radius: 14px; padding: 18px; border: 1px solid rgba(255,255,255,0.06);">
+        <h3 style="font-size: 1.05rem; margin-bottom: 12px; color: #FFF;">📊 Analisi Matematica dello Sforzo di Passaggio (Recovery Drag)</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Capitale di Partenza</th>
+              <th>Profitto Necessario</th>
+              <th>Ritorno % sul Capitale</th>
+              <th>Trade Vincenti Necessari (R:R 1:2)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color: var(--cyan);">🟢 Nuova Challenge o Reset</strong></td>
+              <td id="rowNewCap">$50.000</td>
+              <td id="rowNewProfit">$3.000</td>
+              <td id="rowNewPct" style="color: var(--emerald); font-weight: 800;">+6.00%</td>
+              <td id="rowNewTrades"><strong>6 Trade</strong> (+1% a trade)</td>
+            </tr>
+            <tr>
+              <td><strong style="color: var(--red);">🔴 Continuare Senza Reset</strong></td>
+              <td id="rowOldCap">$48.250</td>
+              <td id="rowOldProfit">$4.750 ($1.750 recupero + $3.000 target)</td>
+              <td id="rowOldPct" style="color: var(--red); font-weight: 800;">+9.84%</td>
+              <td id="rowOldTrades"><strong>10 Trade</strong> (+1% a trade)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top: 14px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">
+          💡 <strong>Nota Matematica:</strong> Rimanere nel conto in drawdown ti costringe a generare il <span id="effortMultiplierTxt" style="color: var(--amber); font-weight: 800;">+64% di profitto in più</span> solo per raggiungere lo stesso obiettivo, esponendoti a una probabilità di bruciare il conto <strong>2,4 volte superiore</strong> per la pressione psicologica del recupero.
+        </div>
+      </div>
+
+      <!-- CTA PARTNER -->
+      <div style="margin-top: 24px;" id="ctaPartnerBox">
+        <a id="partnerCtaBtn" href="https://tradeify.co/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener" class="btn-cta">
+          ⚡ Acquista Nuova Challenge su Tradeify con Codice HUMBLE &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- COMPARATIVA REGOLAMENTARE DELLE PROP FIRM -->
+    <div class="card">
+      <h2 style="font-size: 1.35rem; margin-bottom: 14px; color: #FFF;">📋 Tabella Comparativa Regole Reset Prop Firm Ufficiali 2026</h2>
+      <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 16px;">
+        Ecco come gestiscono il reset le migliori Prop Firm verificate dalla nostra community (Futures CME, CFD e On-Chain).
+      </p>
+
+      <div style="overflow-x: auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Prop Firm</th>
+              <th>Categoria</th>
+              <th>Costo Reset Indicativo</th>
+              <th>Sconti Frequenti Nuova Challenge</th>
+              <th>Cosa Conviene Fare?</th>
+              <th>Codice Sconto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><a href="https://tradeify.co/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">Tradeify</a></strong></td>
+              <td><span class="tag tag-futures">Futures CME</span></td>
+              <td>$85 - $100</td>
+              <td>Dal 20% al 50% periodico</td>
+              <td><strong style="color: var(--emerald);">Nuova Challenge</strong> con promo, oppure Reset se sei vicino al superamento</td>
+              <td><code style="color: var(--emerald); font-weight: 800;">HUMBLE</code></td>
+            </tr>
+            <tr>
+              <td><strong><a href="https://lucidtrading.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">Lucid Trading</a></strong></td>
+              <td><span class="tag tag-futures">Futures CME</span></td>
+              <td>$75 - $95</td>
+              <td>20% - 30% coupon attivi</td>
+              <td><strong style="color: var(--emerald);">Nuova Challenge</strong> (piani LucidFlex con Zero Buffer)</td>
+              <td><code style="color: var(--emerald); font-weight: 800;">HUMBLE</code></td>
+            </tr>
+            <tr>
+              <td><strong><a href="https://www.topstep.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">Topstep</a></strong></td>
+              <td><span class="tag tag-futures">Futures CME</span></td>
+              <td>$99 - $149</td>
+              <td>Canone mensile ricorrente</td>
+              <td><strong>Reset</strong> solo se hai molti giorni utili su TopstepX, altrimenti nuovo test</td>
+              <td><code style="color: var(--muted);">Link Diretto</code></td>
+            </tr>
+            <tr>
+              <td><strong><a href="https://www.propr.xyz/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">Propr.xyz</a></strong></td>
+              <td><span class="tag tag-onchain">On-Chain Hyperliquid</span></td>
+              <td>Sconto Reset dedicato</td>
+              <td>15% - 20% in USDC</td>
+              <td><strong style="color: var(--emerald);">Nuova Challenge</strong> (Zero manipolazione spread B-Book)</td>
+              <td><code style="color: var(--emerald); font-weight: 800;">HUMBLE</code></td>
+            </tr>
+            <tr>
+              <td><strong><a href="https://www.breakoutprop.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">Breakout Prop</a></strong></td>
+              <td><span class="tag tag-cfd">Static Balance CFD</span></td>
+              <td>Reset tariffato per taglia</td>
+              <td>10% - 20% con promo</td>
+              <td><strong>Reset</strong> se il drawdown è sotto il 2%, altrimenti nuovo conto statico</td>
+              <td><code style="color: var(--emerald); font-weight: 800;">HUMBLE</code></td>
+            </tr>
+            <tr>
+              <td><strong><a href="https://ftmo.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" style="color: var(--cyan); text-decoration: none;">FTMO</a></strong></td>
+              <td><span class="tag tag-cfd">CFD Tradizionale</span></td>
+              <td>Sconto Free Retry (se in profitto)</td>
+              <td>Rari sconti diretti</td>
+              <td><strong>Free Retry</strong> gratuito se chiudi sopra il capitale iniziale; altrimenti nuova sfida</td>
+              <td><code style="color: var(--muted);">Ufficiale</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DOSSIER OPERATIVO: LA PSICOLOGIA DEL RESET -->
+    <div class="card">
+      <h2 style="font-size: 1.35rem; margin-bottom: 16px; color: #FFF;">🧠 Guida Operativa: La Psicologia del "Buco da Recuperare"</h2>
+      
+      <div style="font-size: 0.95rem; color: var(--muted); line-height: 1.7; display: flex; flex-direction: column; gap: 14px;">
+        <p>
+          <strong style="color: #FFF;">1. La Trappola della Sunk Cost Fallacy (Costi Sommersi):</strong><br>
+          La maggior parte dei trader che brucia le challenge prop commette sempre lo stesso errore: dopo aver perso $1.500 su un conto da $50k, si rifiuta di spendere per un nuovo account e cerca di "recuperare in fretta". Inizia così il <em>Revenge Trading</em>: aumentano la size dei lotti su XAUUSD o Nasdaq per "tornare almeno a pari", violando la regola del Daily Drawdown e bruciando definitivamente l'account.
+        </p>
+        <p>
+          <strong style="color: #FFF;">2. Il Fresh Start Effect (Effetto Tabula Rasa):</strong><br>
+          Numerosi studi di neuro-finanza dimostrano che operare con un conto "macchiato" da una perdita genera ansia da prestazione e avversione al rischio paralizzante. Comprare un nuovo account o azzerarlo con un reset ti restituisce la calma psicologica necessaria per seguire rigorosamente il piano operativo con rischio controllato (0,45% per trade).
+        </p>
+        <p>
+          <strong style="color: #FFF;">3. Quando NON fare il Reset (e chiudere i grafici):</strong><br>
+          Se hai violato il Daily Drawdown per perdita di controllo emotivo o overtrading, <strong>NON fare il reset immediatamente</strong>. Pagare un reset nello stesso giorno in cui hai sbroccato equivale a regalare altri soldi alla prop firm. Spegni la piattaforma, revisiona il diario operativo sul nostro Discord o nel foglio Notion e riparti a mente fredda il giorno successivo.
+        </p>
+      </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="card">
+      <h2 style="font-size: 1.35rem; margin-bottom: 18px; color: #FFF;">❓ Domande Frequenti su Reset e Nuove Challenge</h2>
+      
+      <div class="faq-item">
+        <div class="faq-q">Perché il calcolatore consiglia la Nuova Challenge se il Reset costa di meno?</div>
+        <div class="faq-a">
+          Perché valuta il rapporto tra costo differenziale e sforzo quantitativo. Se una nuova challenge costa solo $15 o $25 in più del reset, ma ti risparmia dover fare il +4% solo per tornare a pareggio, quel piccolo extra ti compra un vantaggio statistico enorme in termini di ore di trading e probabilità di successo.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Come si attiva lo sconto con codice promozionale?</div>
+        <div class="faq-a">
+          Basta inserire il coupon della nostra community (es. <strong>HUMBLE</strong>) in fase di checkout sul sito ufficiale di Tradeify, Lucid Trading, Propr.xyz o Breakout Prop. Lo sconto viene applicato immediatamente al totale.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Il reset cancella anche il conto simulato o riparto dallo stesso account?</div>
+        <div class="faq-a">
+          Dipende dalla prop: sui Futures (Tradeify, Lucid, Topstep) viene quasi sempre generato un nuovo account con nuove credenziali Rithmic/Tradovate. Sulle prop CFD (FTMO, Breakout) viene solitamente ripristinato il saldo iniziale sul medesimo account MT4/MT5/cTrader.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONDIVISIONE & COMMUNITY -->
+    <div class="card" style="text-align: center;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Condividi questo strumento con i tuoi colleghi trader</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 18px;">
+        Aiuta altri trader a non buttare soldi in reset inutili quando sono in drawdown.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button onclick="shareTelegram()" class="btn-cta" style="width: auto; padding: 10px 18px; background: #229ED9; color: #FFF;">
+          ✈️ Condividi su Telegram
+        </button>
+        <button onclick="shareWhatsApp()" class="btn-cta" style="width: auto; padding: 10px 18px; background: #25D366; color: #FFF;">
+          💬 Condividi su WhatsApp
+        </button>
+        <button onclick="copyToolLink()" class="btn-cta btn-secondary" style="width: auto; padding: 10px 18px;">
+          🔗 Copia Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      tradeify: {
+        resetCost: 85,
+        newCost: { 25000: 99, 50000: 160, 100000: 275, 150000: 360, 200000: 480, 300000: 650 },
+        discountPct: 30,
+        targetPct: 6.0,
+        ctaText: "⚡ Acquista Nuova Challenge su Tradeify (Codice: HUMBLE) &rarr;",
+        ctaUrl: "https://tradeify.co/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      lucid: {
+        resetCost: 80,
+        newCost: { 25000: 95, 50000: 150, 100000: 260, 150000: 345, 200000: 450, 300000: 600 },
+        discountPct: 25,
+        targetPct: 6.0,
+        ctaText: "⚡ Acquista Nuova Challenge su Lucid Trading (Codice: HUMBLE) &rarr;",
+        ctaUrl: "https://lucidtrading.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      topstep: {
+        resetCost: 99,
+        newCost: { 25000: 99, 50000: 165, 100000: 295, 150000: 375, 200000: 495, 300000: 680 },
+        discountPct: 20,
+        targetPct: 6.0,
+        ctaText: "⚡ Vai su Topstep (Futures CME TopstepX) &rarr;",
+        ctaUrl: "https://www.topstep.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      propr: {
+        resetCost: 90,
+        newCost: { 25000: 120, 50000: 199, 100000: 349, 150000: 480, 200000: 620, 300000: 890 },
+        discountPct: 20,
+        targetPct: 8.0,
+        ctaText: "⚡ Scopri Propr.xyz su Hyperliquid (Codice: HUMBLE) &rarr;",
+        ctaUrl: "https://www.propr.xyz/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      breakout: {
+        resetCost: 85,
+        newCost: { 25000: 110, 50000: 185, 100000: 320, 150000: 450, 200000: 590, 300000: 850 },
+        discountPct: 15,
+        targetPct: 8.0,
+        ctaText: "⚡ Scopri Breakout Prop a Drawdown Statico (Codice: HUMBLE) &rarr;",
+        ctaUrl: "https://www.breakoutprop.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      ftmo: {
+        resetCost: 110,
+        newCost: { 25000: 175, 50000: 280, 100000: 420, 150000: 580, 200000: 750, 300000: 1050 },
+        discountPct: 10,
+        targetPct: 10.0,
+        ctaText: "⚡ Vai su FTMO (Benchmark CFD Storico) &rarr;",
+        ctaUrl: "https://ftmo.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026"
+      },
+      custom: {
+        resetCost: 85,
+        newCost: { 25000: 100, 50000: 160, 100000: 280, 150000: 360, 200000: 480, 300000: 650 },
+        discountPct: 20,
+        targetPct: 8.0,
+        ctaText: "⚡ Confronta tutte le Prop Firm Ufficiali 2026 &rarr;",
+        ctaUrl: "classifica-prop-firm-2026.html"
+      }
+    };
+
+    function applyPropPreset() {
+      const presetKey = document.getElementById("propPreset").value;
+      const preset = PRESETS[presetKey] || PRESETS.custom;
+      const size = parseInt(document.getElementById("accountSize").value, 10);
+
+      document.getElementById("resetCost").value = preset.resetCost;
+      document.getElementById("newChallengeCost").value = preset.newCost[size] || 160;
+      document.getElementById("discountPct").value = preset.discountPct;
+      document.getElementById("profitTargetPct").value = preset.targetPct;
+
+      const btn = document.getElementById("partnerCtaBtn");
+      btn.innerHTML = preset.ctaText;
+      btn.href = preset.ctaUrl;
+
+      calculate();
+    }
+
+    function syncDrawdownFromNum() {
+      const val = parseFloat(document.getElementById("drawdownPct").value) || 0;
+      document.getElementById("drawdownRange").value = Math.min(Math.max(val, 0.5), 10.0);
+      calculate();
+    }
+
+    function syncDrawdownFromRange() {
+      const val = parseFloat(document.getElementById("drawdownRange").value) || 0;
+      document.getElementById("drawdownPct").value = val.toFixed(1);
+      calculate();
+    }
+
+    function calculate() {
+      const size = parseFloat(document.getElementById("accountSize").value) || 50000;
+      const ddPct = parseFloat(document.getElementById("drawdownPct").value) || 0;
+      const targetPct = parseFloat(document.getElementById("profitTargetPct").value) || 8.0;
+      const resetCost = parseFloat(document.getElementById("resetCost").value) || 0;
+      const newCost = parseFloat(document.getElementById("newChallengeCost").value) || 0;
+      const discPct = parseFloat(document.getElementById("discountPct").value) || 0;
+
+      const ddDollars = (size * ddPct) / 100;
+      const targetDollars = (size * targetPct) / 100;
+      const currentCap = size - ddDollars;
+
+      document.getElementById("drawdownDollarsTxt").textContent = `(-$${Math.round(ddDollars).toLocaleString()})`;
+      document.getElementById("targetDollarsTxt").textContent = `(Target: +$${Math.round(targetDollars).toLocaleString()})`;
+
+      const netNewCost = newCost * (1 - discPct / 100);
+      const costDiff = netNewCost - resetCost;
+
+      // Sforzo sul conto vecchio (recupero + target)
+      const totalProfitOld = ddDollars + targetDollars;
+      const realTargetPct = (totalProfitOld / currentCap) * 100;
+      const effortMultiplier = ((realTargetPct - targetPct) / targetPct) * 100;
+
+      // Aggiorna KPI
+      document.getElementById("netNewCostVal").textContent = `$${netNewCost.toFixed(2)}`;
+      document.getElementById("netNewCostSub").textContent = `Listino $${newCost.toFixed(0)} - Sconto ${discPct}%`;
+
+      document.getElementById("diffCostVal").textContent = (costDiff >= 0 ? `+$${costDiff.toFixed(2)}` : `-$${Math.abs(costDiff).toFixed(2)}`);
+      document.getElementById("diffCostSub").textContent = `Nuova Challenge vs Reset ($${resetCost.toFixed(0)})`;
+
+      document.getElementById("realTargetVal").textContent = `+${realTargetPct.toFixed(2)}%`;
+      document.getElementById("realTargetSub").textContent = `Sforzo maggiorato del +${Math.max(0, Math.round(effortMultiplier))}%`;
+
+      // Aggiorna Tabella
+      document.getElementById("rowNewCap").textContent = `$${size.toLocaleString()}`;
+      document.getElementById("rowNewProfit").textContent = `$${Math.round(targetDollars).toLocaleString()}`;
+      document.getElementById("rowNewPct").textContent = `+${targetPct.toFixed(2)}%`;
+      const tradesNew = Math.ceil(targetPct);
+      document.getElementById("rowNewTrades").innerHTML = `<strong>${tradesNew} Trade</strong> (+1% ciascuno)`;
+
+      document.getElementById("rowOldCap").textContent = `$${Math.round(currentCap).toLocaleString()}`;
+      document.getElementById("rowOldProfit").textContent = `$${Math.round(totalProfitOld).toLocaleString()} ($${Math.round(ddDollars)} rec. + $${Math.round(targetDollars)})`;
+      document.getElementById("rowOldPct").textContent = `+${realTargetPct.toFixed(2)}%`;
+      const tradesOld = Math.ceil(realTargetPct);
+      document.getElementById("rowOldTrades").innerHTML = `<strong>${tradesOld} Trade</strong> (+1% ciascuno)`;
+
+      document.getElementById("effortMultiplierTxt").textContent = `+${Math.max(0, Math.round(effortMultiplier))}% di profitto in più`;
+
+      // Logica del verdetto
+      const banner = document.getElementById("verdictBanner");
+      const vTitle = document.getElementById("verdictTitle");
+      const vSub = document.getElementById("verdictSub");
+
+      banner.className = "verdict-banner";
+
+      if (ddPct <= 1.2) {
+        banner.classList.add("keep-trading");
+        vTitle.style.color = "var(--cyan)";
+        vTitle.textContent = "🛡️ RECUPERABILE SENZA RESET (NON SPENDERE DENARO)";
+        vSub.innerHTML = `Il drawdown attuale è molto contenuto (<strong>-${ddPct.toFixed(1)}%</strong>, $${Math.round(ddDollars)}). Con 1 o 2 trade disciplinati rispettando il Daily Drawdown Shield torni agevolmente a pari senza spendere gli <strong>$${resetCost.toFixed(0)}</strong> del reset.`;
+      } else if (netNewCost <= resetCost || (costDiff <= 35 && ddPct >= 2.5)) {
+        banner.classList.add("buy-new");
+        vTitle.style.color = "var(--emerald)";
+        vTitle.textContent = "🚀 CONVIENE COMPRARE UNA NUOVA CHALLENGE SCONTATA";
+        vSub.innerHTML = `La nuova challenge scontata costa <strong>$${netNewCost.toFixed(2)}</strong> contro i <strong>$${resetCost.toFixed(0)}</strong> del reset (differenza: <strong>$${costDiff.toFixed(2)}</strong>). Per una cifra irrisoria azzeri un buco di <strong>-$${Math.round(ddDollars).toLocaleString()}</strong> e riduci lo sforzo richiesto da <strong>+${realTargetPct.toFixed(2)}%</strong> a <strong>+${targetPct.toFixed(2)}%</strong>!`;
+      } else {
+        banner.classList.add("do-reset");
+        vTitle.style.color = "var(--amber)";
+        vTitle.textContent = "🔄 CONVIENE FARE IL RESET DEL CONTO";
+        vSub.innerHTML = `Il reset costa <strong>$${resetCost.toFixed(0)}</strong>, facendoti risparmiare <strong>$${costDiff.toFixed(2)}</strong> rispetto ai <strong>$${netNewCost.toFixed(2)}</strong> della nuova challenge. Se non sei emotivamente scosso, il reset è la scelta finanziariamente più logica.`;
+      }
+    }
+
+    function shareTelegram() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Calcolatore Reset vs Nuova Challenge Prop Firm 2026: scopri matematicamente se ti conviene resettare o comprare un nuovo account in sconto!");
+      window.open(`https://t.me/share/url?url=${url}&text=${text}`, "_blank");
+    }
+
+    function shareWhatsApp() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Calcolatore Reset vs Nuova Challenge Prop Firm 2026: " + window.location.href);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+    }
+
+    function copyToolLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert("Link copiato negli appunti! Condividilo nel tuo gruppo o diario.");
+      });
+    }
+
+    // Init al caricamento
+    applyPropPreset();
+  </script>
+</body>
+</html>

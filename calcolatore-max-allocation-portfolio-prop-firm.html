@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Max Allocation & Portafoglio Multi-Prop Firm 2026 ($1M+ Funded Plan) | Humble Trading</title>
+  <meta name="description" content="Simulatore matematico di allocazione del capitale per Prop Trader professionisti: come distribuire un portafoglio finanziato da $100.000 fino a $2.550.000 tra Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep senza violare i massimali per codice fiscale." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-max-allocation-portfolio-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Max Allocation & Portafoglio Multi-Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Costruisci il tuo piano di scaling multi-prop da $1M+: calcola payout mensile aggregato, profit split medio, buffer di drawdown complessivo e conformità ai massimali approvati." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-max-allocation-portfolio-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Max Allocation & Portafoglio Multi-Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-max-allocation-portfolio-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il limite massimo di capitale finanziato ottenibile su una singola Prop Firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ogni Prop Firm applica un tetto massimo di allocazione (Max Allocation Limit) per singolo operatore (codice fiscale / passaporto) per proteggere la propria tesoreria: ad esempio Propr.xyz consente fino a $300.000, Breakout Prop fino a $300.000, FTMO fino a $400.000 sui conti Standard, Topstep fino a 3 conti Express Funded (massimo $450.000), Tradeify fino a $600.000 (o 5 account attivi contemporaneamente) e Lucid Trading fino a $500.000. Per superare $1.000.000 di capitale gestito è indispensabile diversificare su più società."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "È legale copiare le operazioni tra conti di Prop Firm diverse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, il Trade Copier personale (copiare le proprie operazioni da un conto master ai propri conti slave di proprietà dello stesso trader) è al 100% consentito dalla quasi totalità delle Prop Firm serie (Tradeify, Lucid, Topstep, Breakout, Propr.xyz). È invece severamente vietato il cosiddetto Reverse Hedging (aprire Long su una prop e Short sull'altra nello stesso istante) o l'uso di bot copier pubblici condivisi da centinaia di utenti contemporanei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è il vantaggio matematico di avere un portafoglio Multi-Prop invece di una sola prop firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1) Azzeramento del rischio controparte: se una singola prop subisce un blocco tecnico o ritardo bancario, il flusso di cassa degli altri payout non si arresta. 2) Riduzione dello stress da Drawdown: un obiettivo mensile modesto (es. 2%-3%) su $500.000 o $1.000.000 genera tra $10.000 e $25.000 di payout netto mensile con un rischio per trade microscopico (0,20%-0,35%), eliminando la pressione di dover iper-rischiare per fare numeri elevati."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come si gestiscono i payout da $10.000+ al mese in Italia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quando l'attività diventa abituale e i payout superano i 5.000€ annui, la configurazione ottimale per i trader residenti in Italia è la Partita IVA in Regime Forfettario (Codice ATECO 74.90.99 o servizi consulenza): imposta sostitutiva del 5% per 5 anni applicata sul 78% dell'imponibile, oltre ai contributi INPS Gestione Separata, beneficiando di zero ritenute a monte da parte delle prop estere."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none; border-color: var(--cyan);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .kpi {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.85rem; font-weight: 900; font-family: monospace; margin: 6px 0; }
+    .kpi-lbl { font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+    .kpi.green .kpi-val { color: #34d399; }
+    .kpi.blue .kpi-val { color: #38bdf8; }
+    .kpi.amber .kpi-val { color: #fbbf24; }
+    .kpi.purple .kpi-val { color: #c084fc; }
+
+    .table-wrap { overflow-x: auto; margin-top: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+    th { background: #0A0F1A; padding: 14px 16px; font-weight: 800; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    tr:hover { background: rgba(255,255,255,0.02); }
+    .tag-tier {
+      display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 800;
+    }
+    .tier-s { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .tier-a { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+
+    .btn-prop {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      transition: all 0.2s;
+    }
+    .btn-prop:hover {
+      background: #38bdf8;
+      color: #070A10;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(56, 189, 248, 0.12));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin: 32px 0;
+    }
+    .cta-buttons {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 18px;
+    }
+    .cta-btn {
+      display: inline-block; padding: 12px 26px; border-radius: 10px; font-weight: 800; text-decoration: none; font-size: 0.95rem;
+    }
+    .cta-tg { background: #229ED9; color: #fff; }
+    .cta-dc { background: #5865F2; color: #fff; }
+
+    .faq-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .faq-item h3 { font-size: 1.05rem; font-weight: 800; color: #38BDF8; margin-bottom: 8px; }
+    .faq-item p { color: var(--muted); font-size: 0.94rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="hub.html">← Torna all'Hub Calcolatori</a>
+      <div>
+        <a href="classifica-prop-firm-2026.html" style="margin-right: 14px;">🏆 Classifica Prop 2026</a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Telegram @Hubmles</a>
+      </div>
+    </div>
+
+    <span class="badge">🛡️ Architettura Multi-Prop Professionale [2026]</span>
+    <h1>Calcolatore Max Allocation & Portafoglio Multi-Prop Firm</h1>
+    <p class="sub">
+      Scopri come costruire un portafoglio finanziato da <strong>$100.000 a oltre $2.500.000</strong> distribuendo il capitale tra le sole 6 Prop Firm autorizzate senza rischiare il blocco per superamento dei massimali.
+    </p>
+
+    <!-- Form Calcolatore -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 18px; color: #38bdf8;">⚙️ Parametri del Tuo Portafoglio Funded</h2>
+      <div class="grid">
+        <div>
+          <label for="targetCap">Target Capitale Totale ($)</label>
+          <select id="targetCap" onchange="calcolaPortafoglio()">
+            <option value="150000">$150.000 (Entry Level Funded)</option>
+            <option value="300000">$300.000 (Trader Indipendente)</option>
+            <option value="500000" selected>$500.000 (Professionista Semi-Pro)</option>
+            <option value="1000000">$1.000.000 (Club $1M Funded)</option>
+            <option value="1500000">$1.500.000 (Elite Desk Scaling)</option>
+            <option value="2550000">$2.550.000 (Massima Capienza 6 Prop)</option>
+          </select>
+        </div>
+        <div>
+          <label for="assetMix">Strategia di Ripartizione Asset</label>
+          <select id="assetMix" onchange="calcolaPortafoglio()">
+            <option value="balanced" selected>⚖️ Bilanciata (50% Futures CME + 50% CFD/On-Chain)</option>
+            <option value="futures">⚡ 100% Futures CME (Tradeify + Lucid + Topstep)</option>
+            <option value="cfd">🌐 100% CFD & On-Chain (Propr.xyz + Breakout + FTMO)</option>
+          </select>
+        </div>
+        <div>
+          <label for="monthlyRoi">Ritorno Mensile Atteso (%)</label>
+          <select id="monthlyRoi" onchange="calcolaPortafoglio()">
+            <option value="0.015">1.5% (Operatività Ultra-Difensiva)</option>
+            <option value="0.03" selected>3.0% (Rendimento Medio Costante)</option>
+            <option value="0.05">5.0% (Mese Altamente Performante)</option>
+            <option value="0.08">8.0% (Volatilità Favorevole)</option>
+          </select>
+        </div>
+        <div>
+          <label for="riskPerTrade">Rischio per Singolo Trade (%)</label>
+          <select id="riskPerTrade" onchange="calcolaPortafoglio()">
+            <option value="0.0025" selected>0.25% (40 Stop consecutivi di margine)</option>
+            <option value="0.0050">0.50% (20 Stop consecutivi di margine)</option>
+            <option value="0.0100">1.00% (10 Stop consecutivi - Standard)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- KPI Risultati -->
+      <div class="kpi-row">
+        <div class="kpi green">
+          <div class="kpi-lbl">Payout Netto Mensile Stimato</div>
+          <div class="kpi-val" id="kpiNetPayout">$12.750</div>
+          <span style="font-size: 0.78rem; color: #34d399;">Profit Split medio 85%-90%</span>
+        </div>
+        <div class="kpi blue">
+          <div class="kpi-lbl">Buffer Drawdown Aggregato</div>
+          <div class="kpi-val" id="kpiTotalDrawdown">$32.500</div>
+          <span style="font-size: 0.78rem; color: #38bdf8;">Cuscinetto totale di protezione</span>
+        </div>
+        <div class="kpi amber">
+          <div class="kpi-lbl">Rischio Dollari per Trade</div>
+          <div class="kpi-val" id="kpiDollarRisk">$1.250</div>
+          <span style="font-size: 0.78rem; color: #fbbf24;">Distribuito su tutti i conti</span>
+        </div>
+        <div class="kpi purple">
+          <div class="kpi-lbl">Ritorno sul Costo Challenge</div>
+          <div class="kpi-val" id="kpiChallengeRoi">7.8x</div>
+          <span style="font-size: 0.78rem; color: #c084fc;">Payout mensile vs spesa iniziale</span>
+        </div>
+      </div>
+
+      <!-- Tabella Allocazione per Prop Firm -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Prop Firm Partner</th>
+              <th>Asset & Tecnologia</th>
+              <th>Capitale Assegnato</th>
+              <th>Max Cap per Persona</th>
+              <th>Drawdown Buffer</th>
+              <th>Split</th>
+              <th>Payout Stimato / Mese</th>
+              <th>Link Ufficiale</th>
+            </tr>
+          </thead>
+          <tbody id="allocationTableBody">
+            <!-- Popolato via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Regole Trade Copier e Conformità -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 14px; color: #38bdf8;">🔌 Regole Trade Copier & Cross-Account Copier</h2>
+      <p style="color: var(--muted); margin-bottom: 16px;">
+        Gestire $500.000 o $1M+ su 4 o 5 account non significa cliccare manualmente su 5 finestre separate. Ecco come strutturare il setup esecutivo a norma:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; border-left: 3px solid #10b981;">
+          <h4 style="color: #34d399; margin-bottom: 6px;">Futures CME (Tradovate / Rithmic / NinjaTrader)</h4>
+          <p style="font-size: 0.88rem; color: var(--muted);">
+            Puoi raggruppare i conti <strong>Tradeify</strong>, <strong>Lucid</strong> e <strong>Topstep</strong> in un unico Trade Copier integrato (o tramite Replikanto). Un solo clic sul conto Master invia gli ordini istantaneamente a tutti gli account subordinati con spread standardizzati CME.
+          </p>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; border-left: 3px solid #38bdf8;">
+          <h4 style="color: #38bdf8; margin-bottom: 6px;">On-Chain Decentralizzato (Propr.xyz su Hyperliquid)</h4>
+          <p style="font-size: 0.88rem; color: var(--muted);">
+            L'infrastruttura di <strong>Propr.xyz</strong> opera direttamente sull'orderbook L1 di Hyperliquid. Puoi gestire il tuo conto da $300.000 senza rischi di slippage o freeze di server MT5, con payout approvati in USDC in pochissimi minuti.
+          </p>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; border-left: 3px solid #f59e0b;">
+          <h4 style="color: #fbbf24; margin-bottom: 6px;">CFD con Drawdown Statico sul Bilancio (Breakout Prop)</h4>
+          <p style="font-size: 0.88rem; color: var(--muted);">
+            Su <strong>Breakout Prop</strong> il drawdown è calcolato al 100% sul bilancio di partenza, non sull'equity aperta. Questo ti consente di lasciare correre le posizioni multiday senza il terrore che un ritracciamento temporaneo a mezzanotte bruci il conto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community Banner -->
+    <div class="cta-box">
+      <h3 style="font-size: 1.35rem; margin-bottom: 8px;">Unisciti alla Community di Trader Finanziati</h3>
+      <p style="color: var(--muted); max-width: 650px; margin: 0 auto;">
+        Condividi analisi, strategie di risk management e confrontati ogni giorno su Telegram e Discord con trader che operano sui conti finanziati approvati.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener" class="cta-btn cta-tg">✈️ Entra nel Canale Telegram @Hubmles</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener" class="cta-btn cta-dc">💬 Server Discord Humble Trading</a>
+      </div>
+    </div>
+
+    <!-- Sezione FAQ -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; margin-bottom: 18px; color: #38bdf8;">❓ Domande Frequenti sulla Gestione Multi-Prop</h2>
+      <div class="faq-item">
+        <h3>Posso superare il massimale di una prop firm aprendo un conto a nome di un parente?</h3>
+        <p>
+          È severamente sconsigliato e contrario ai termini d'uso delle società. Il KYC (riconoscimento documenti e prova di residenza) e il conto bancario o wallet crittografico devono corrispondere esattamente al titolare del conto. La via professionale e sicura è diversificare su società differenti.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa succede se brucio uno dei conti del portafoglio?</h3>
+        <p>
+          Questo è esattamente il motivo per cui si costruisce un portafoglio multi-prop: la perdita di un singolo account (pari al costo della challenge) viene assorbita con una frazione del primo payout generato dagli altri conti attivi, salvaguardando il 100% della tua serenità psicologica e del capitale operativo.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Qual è il capitale minimo per iniziare a costruire il portafoglio?</h3>
+        <p>
+          Non occorre acquistare subito 5 challenge. La strategia consigliata dal Metodo Humble Trading è iniziare con 1 solo conto Futures da $50k o $100k (es. Tradeify o Topstep) o On-Chain (Propr.xyz); al raggiungimento del primo payout, si riutilizza una parte del profitto per finanziare le challenge successive senza mai intaccare i risparmi personali.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PROP_DATA = [
+      {
+        id: "tradeify",
+        nome: "Tradeify",
+        asset: "Futures CME (NQ, ES, GC)",
+        tier: "Tier S+",
+        tierClass: "tier-s",
+        maxCap: 600000,
+        split: 0.90,
+        ddPct: 0.05,
+        type: "futures",
+        url: "https://tradeify.co",
+        costPer100k: 320
+      },
+      {
+        id: "propr",
+        nome: "Propr.xyz",
+        asset: "On-Chain Hyperliquid L1",
+        tier: "Tier S+",
+        tierClass: "tier-s",
+        maxCap: 300000,
+        split: 0.85,
+        ddPct: 0.08,
+        type: "cfd",
+        url: "https://www.propr.xyz",
+        costPer100k: 380
+      },
+      {
+        id: "lucid",
+        nome: "Lucid Trading",
+        asset: "Futures CME (Zero Buffer)",
+        tier: "Tier S",
+        tierClass: "tier-s",
+        maxCap: 500000,
+        split: 0.90,
+        ddPct: 0.06,
+        type: "futures",
+        url: "https://lucidtrading.com",
+        costPer100k: 340
+      },
+      {
+        id: "breakout",
+        nome: "Breakout Prop",
+        asset: "CFD Drawdown Statico Bilancio",
+        tier: "Tier S",
+        tierClass: "tier-s",
+        maxCap: 300000,
+        split: 0.85,
+        ddPct: 0.06,
+        type: "cfd",
+        url: "https://www.breakoutprop.com",
+        costPer100k: 370
+      },
+      {
+        id: "topstep",
+        nome: "Topstep",
+        asset: "Futures CME TopstepX",
+        tier: "Tier A",
+        tierClass: "tier-a",
+        maxCap: 450000,
+        split: 0.90,
+        ddPct: 0.06,
+        type: "futures",
+        url: "https://www.topstep.com",
+        costPer100k: 390
+      },
+      {
+        id: "ftmo",
+        nome: "FTMO",
+        asset: "CFD Storica Multi-Asset",
+        tier: "Tier A",
+        tierClass: "tier-a",
+        maxCap: 400000,
+        split: 0.80,
+        ddPct: 0.10,
+        type: "cfd",
+        url: "https://ftmo.com",
+        costPer100k: 540
+      }
+    ];
+
+    function calcolaPortafoglio() {
+      const target = parseFloat(document.getElementById("targetCap").value);
+      const mix = document.getElementById("assetMix").value;
+      const roi = parseFloat(document.getElementById("monthlyRoi").value);
+      const riskPct = parseFloat(document.getElementById("riskPerTrade").value);
+
+      let eligibleProps = [];
+      if (mix === "futures") {
+        eligibleProps = PROP_DATA.filter(p => p.type === "futures");
+      } else if (mix === "cfd") {
+        eligibleProps = PROP_DATA.filter(p => p.type === "cfd");
+      } else {
+        eligibleProps = [...PROP_DATA];
+      }
+
+      // Ripartizione del target tra le prop disponibili rispettando i massimali
+      let remaining = target;
+      let allocations = [];
+      let totalAssigned = 0;
+
+      // Assegna quote proporzionali fino al cap
+      let totalCap = eligibleProps.reduce((sum, p) => sum + p.maxCap, 0);
+
+      eligibleProps.forEach(p => {
+        let quota = Math.min(p.maxCap, Math.round((p.maxCap / totalCap) * target / 25000) * 25000);
+        if (target <= 300000) {
+          quota = Math.min(p.maxCap, Math.min(100000, target));
+        }
+        allocations.push({ prop: p, capital: quota });
+        totalAssigned += quota;
+      });
+
+      // Normalizzazione per centrare esattamente il target
+      let diff = target - totalAssigned;
+      if (diff !== 0) {
+        for (let item of allocations) {
+          let canAdd = item.prop.maxCap - item.capital;
+          if (diff > 0 && canAdd >= 25000) {
+            let add = Math.min(diff, canAdd);
+            item.capital += add;
+            diff -= add;
+          } else if (diff < 0 && item.capital >= 25000) {
+            let sub = Math.min(Math.abs(diff), item.capital - 25000);
+            item.capital -= sub;
+            diff += sub;
+          }
+          if (diff === 0) break;
+        }
+      }
+
+      // Calcolo KPI aggregati
+      let totalGrossPayout = 0;
+      let totalNetPayout = 0;
+      let totalDrawdownBuffer = 0;
+      let totalChallengeCost = 0;
+
+      const tbody = document.getElementById("allocationTableBody");
+      tbody.innerHTML = "";
+
+      allocations.forEach(item => {
+        if (item.capital <= 0) return;
+        const p = item.prop;
+        const gross = item.capital * roi;
+        const net = gross * p.split;
+        const ddBuffer = item.capital * p.ddPct;
+        const cost = (item.capital / 100000) * p.costPer100k;
+
+        totalGrossPayout += gross;
+        totalNetPayout += net;
+        totalDrawdownBuffer += ddBuffer;
+        totalChallengeCost += cost;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${p.nome}</strong> <span class="tag-tier ${p.tierClass}">${p.tier}</span></td>
+          <td style="color: var(--muted);">${p.asset}</td>
+          <td style="color: #38bdf8; font-weight: 800; font-family: monospace;">$${item.capital.toLocaleString("en-US")}</td>
+          <td style="color: var(--muted); font-size: 0.85rem;">Max $${p.maxCap.toLocaleString("en-US")}</td>
+          <td style="color: #fbbf24; font-family: monospace;">$${Math.round(ddBuffer).toLocaleString("en-US")}</td>
+          <td style="font-weight: 700;">${Math.round(p.split * 100)}%</td>
+          <td style="color: #34d399; font-weight: 800; font-family: monospace;">+$${Math.round(net).toLocaleString("en-US")}</td>
+          <td><a href="${p.url}" target="_blank" rel="noopener" class="btn-prop">Accedi</a></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalRiskDollars = target * riskPct;
+      const roiRatio = totalChallengeCost > 0 ? (totalNetPayout / totalChallengeCost).toFixed(1) + "x" : "—";
+
+      document.getElementById("kpiNetPayout").innerText = "$" + Math.round(totalNetPayout).toLocaleString("en-US");
+      document.getElementById("kpiTotalDrawdown").innerText = "$" + Math.round(totalDrawdownBuffer).toLocaleString("en-US");
+      document.getElementById("kpiDollarRisk").innerText = "$" + Math.round(totalRiskDollars).toLocaleString("en-US");
+      document.getElementById("kpiChallengeRoi").innerText = roiRatio;
+    }
+
+    window.addEventListener("DOMContentLoaded", calcolaPortafoglio);
+  </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metodo Turtle Traders & Calcolatore ATR (Unità N) per Prop Firm | Humble Trading</title>
+  <meta name="description" content="Scopri la storia vera dell'esperimento dei Turtle Traders di Richard Dennis (+175 Milioni $) e usa gratis il Calcolatore dell'Unità N (ATR 20) adattato alle Prop Firm 2026 su XAUUSD, Nasdaq e Futures." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/metodo-turtle-traders-calcolatore-atr.html" />
+  <meta property="og:title" content="Metodo Turtle Traders & Calcolatore Unità N (ATR) | Humble Trading" />
+  <meta property="og:description" content="Calcola la taglia esatta della posizione in base alla volatilità reale (ATR) con la formula originale di Richard Dennis adattata alle Challenge Prop Firm." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/metodo-turtle-traders-calcolatore-atr.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Unità N (ATR) Turtle Traders — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/metodo-turtle-traders-calcolatore-atr.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 70%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 920px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: var(--amber);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.55rem); font-weight: 900; line-height: 1.15; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 18px; }
+    .kpi {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.65rem; font-weight: 900; color: var(--emerald); margin-top: 4px; }
+    .kpi-lbl { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-tg { background: linear-gradient(135deg, #0284C7, #38BDF8); color: #060911; }
+    .btn-dc { background: rgba(88, 101, 242, 0.2); border: 1px solid #5865F2; color: #fff; }
+    .btn-hub { background: rgba(16, 185, 129, 0.16); border: 1px solid var(--emerald); color: var(--emerald); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">🐢 PROTOCOLLO STORICO CHICAGO 1983 · SIMULATORE #9</span>
+    <h1>Metodo Turtle Traders: Calcolatore "Unità N" (ATR) per Prop Firm</h1>
+    <p class="sub">
+      Nel 1983 <strong>Richard Dennis</strong> dimostrò che 23 sconosciuti potevano generare <strong>+$175.000.000</strong> seguendo una sola formula matematica per dimensionare i lotti in base alla volatilità giornaliera (<strong>N = ATR a 20 periodi</strong>), con Stop Loss fisso a <strong>2N</strong>.
+    </p>
+
+    <div class="card">
+      <div class="grid">
+        <div>
+          <label for="capitale">Capitale Conto Prop ($)</label>
+          <select id="capitale" onchange="calcolaTurtle()">
+            <option value="25000">$25.000</option>
+            <option value="50000">$50.000</option>
+            <option value="100000" selected>$100.000</option>
+            <option value="200000">$200.000</option>
+          </select>
+        </div>
+        <div>
+          <label for="strumento">Strumento & Valore Punto</label>
+          <select id="strumento" onchange="aggiornaDefaultATR()">
+            <option value="XAUUSD" selected>XAUUSD (Oro CFD/On-Chain · $100/lotto per 1$)</option>
+            <option value="MNQ">MNQ (Micro Nasdaq Futures · $2/punto)</option>
+            <option value="MES">MES (Micro S&P 500 Futures · $5/punto)</option>
+            <option value="EURUSD">EURUSD (Forex · $10/pip per 1 lotto)</option>
+          </select>
+        </div>
+        <div>
+          <label for="atr">Volatilità Attuale "N" (ATR 14/20 in Punti/$)</label>
+          <input type="number" id="atr" value="8.5" step="0.5" min="0.5" oninput="calcolaTurtle()" />
+        </div>
+        <div>
+          <label for="rischio">Rischio per 1 Unità Turtle (%)</label>
+          <select id="rischio" onchange="calcolaTurtle()">
+            <option value="0.25">0,25% (Ultra-Conservativo Prop)</option>
+            <option value="0.50" selected>0,50% (Standard Humble Trading)</option>
+            <option value="1.00">1,00% (Regola Originale Dennis 1983)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-lbl">Taglia 1 Unità Turtle</div>
+          <div class="kpi-val" id="outSize">0.29 Lotti</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-lbl">Distanza Stop Loss (2N)</div>
+          <div class="kpi-val" id="outStop" style="color: var(--cyan);">17.0 $ / pt</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-lbl">Rischio Monetario Max</div>
+          <div class="kpi-val" id="outRiskUsd" style="color: var(--amber);">$500</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-lbl">Trade Consecutivi Prima del 5% DD</div>
+          <div class="kpi-val" id="outBuffer">10 Stop</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-tg" href="https://t.me/Hubmles" target="_blank" rel="noopener">🚀 Entra nel Canale Telegram (@Hubmles)</a>
+        <a class="btn btn-dc" href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener">💬 Unisciti al Server Discord</a>
+        <a class="btn btn-hub" href="hub.html">🧮 Apri Tutti gli 9 Simulatori</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function aggiornaDefaultATR() {
+      const s = document.getElementById('strumento').value;
+      const atrInput = document.getElementById('atr');
+      if (s === 'XAUUSD') atrInput.value = '8.5';
+      else if (s === 'MNQ') atrInput.value = '65';
+      else if (s === 'MES') atrInput.value = '18';
+      else atrInput.value = '25';
+      calcolaTurtle();
+    }
+
+    function calcolaTurtle() {
+      const cap = parseFloat(document.getElementById('capitale').value) || 100000;
+      const s = document.getElementById('strumento').value;
+      const n = Math.max(0.1, parseFloat(document.getElementById('atr').value) || 8.5);
+      const riskPct = parseFloat(document.getElementById('rischio').value) || 0.5;
+
+      const riskUsd = cap * (riskPct / 100.0);
+      const stopDistance2N = n * 2.0;
+
+      let dollarPerPointPerUnit = 100.0;
+      let unitLabel = 'Lotti';
+      if (s === 'XAUUSD') { dollarPerPointPerUnit = 100.0; unitLabel = 'Lotti'; }
+      else if (s === 'MNQ') { dollarPerPointPerUnit = 2.0; unitLabel = 'Contratti MNQ'; }
+      else if (s === 'MES') { dollarPerPointPerUnit = 5.0; unitLabel = 'Contratti MES'; }
+      else { dollarPerPointPerUnit = 10.0; unitLabel = 'Lotti'; }
+
+      const rawSize = riskUsd / (stopDistance2N * dollarPerPointPerUnit);
+      const formattedSize = (s === 'MNQ' || s === 'MES')
+        ? Math.max(1, Math.floor(rawSize)) + ' ' + unitLabel
+        : rawSize.toFixed(2) + ' ' + unitLabel;
+
+      const bufferStops = Math.floor(5.0 / riskPct);
+
+      document.getElementById('outSize').textContent = formattedSize;
+      document.getElementById('outStop').textContent = stopDistance2N.toFixed(1) + (s === 'EURUSD' ? ' Pips' : ' Punti/$');
+      document.getElementById('outRiskUsd').textContent = '$' + Math.round(riskUsd).toLocaleString('it-IT');
+      document.getElementById('outBuffer').textContent = bufferStops + ' Stop di fila';
+    }
+    calcolaTurtle();
+  </script>
+</body>
+</html>

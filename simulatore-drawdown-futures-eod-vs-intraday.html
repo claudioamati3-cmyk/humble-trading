@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulatore Drawdown Futures: EOD (Tradeify, Lucid, Topstep) vs Intraday Trailing | Humble Trading</title>
+  <meta name="description" content="Simulatore interattivo gratuito: scopri perché il Drawdown Intraday Trailing brucia i conti Futures su Nasdaq (MNQ/NQ) e Gold (MGC) e perché il Drawdown End-of-Day (EOD) di Tradeify, Lucid Trading e Topstep ti salva il conto." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/simulatore-drawdown-futures-eod-vs-intraday.html" />
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: rgba(15, 23, 42, 0.9);
+      --border: rgba(56, 189, 248, 0.25);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --red: #EF4444;
+      --amber: #F59E0B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, #070A10 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 60px;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a {
+      color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.9rem;
+    }
+    .badge {
+      display: inline-block; background: rgba(56, 189, 248, 0.14); color: var(--cyan);
+      border: 1px solid var(--border); padding: 5px 12px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px;
+    }
+    h1 { font-size: 1.95rem; line-height: 1.22; margin-bottom: 12px; }
+    .lead { color: var(--muted); font-size: 1.02rem; margin-bottom: 24px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      padding: 24px; margin-bottom: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .grid-inputs {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;
+    }
+    label { display: block; font-size: 0.84rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    select, input {
+      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
+      background: #0B1120; color: #FFF; font-size: 0.98rem; font-weight: 700;
+    }
+    .compare-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 18px;
+    }
+    .box-bad {
+      background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 14px; padding: 18px;
+    }
+    .box-good {
+      background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 14px; padding: 18px;
+    }
+    .metric-big { font-size: 1.65rem; font-weight: 800; margin: 8px 0; }
+    .podium {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;
+    }
+    .prop-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 18px;
+    }
+    .btn {
+      display: inline-block; width: 100%; text-align: center; padding: 13px 16px;
+      border-radius: 12px; font-weight: 800; text-decoration: none; margin-top: 12px;
+    }
+    .btn-emerald { background: linear-gradient(135deg, #10B981, #059669); color: #041E13; }
+    .btn-cyan { background: linear-gradient(135deg, #38BDF8, #0284C7); color: #041322; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hub.html">⬅ Torna all'Hub 5 Simulatori</a>
+      <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Unisciti a Telegram (@Hubmles)</a>
+    </nav>
+
+    <span class="badge">⚡ SIMULATORE FUTURES CME · EOD vs INTRADAY TRAILING</span>
+    <h1>Perché il Drawdown "Intraday Trailing" Brucia i Conti Futures (e Come Salvarsi con l'EOD)</h1>
+    <p class="lead">
+      Inserisci il picco massimo di profitto flottante (Unrealized PnL) raggiunto dal tuo trade su Nasdaq (<code>MNQ/NQ</code>) o Gold (<code>MGC/GC</code>) prima di un ritracciamento: scopri subito quanto margine di sopravvivenza ti resta su una vecchia Prop Intraday rispetto a <strong>Tradeify</strong>, <strong>Lucid Trading</strong> e <strong>Topstep</strong>.
+    </p>
+
+    <div class="card">
+      <div class="grid-inputs">
+        <div>
+          <label for="f-size">Taglia Conto Futures ($)</label>
+          <select id="f-size" onchange="calcFuturesDD()">
+            <option value="50000" data-dd="2000">$50.000 (Max Drawdown $2.000)</option>
+            <option value="100000" data-dd="3000">$100.000 (Max Drawdown $3.000)</option>
+            <option value="150000" data-dd="4500">$150.000 (Max Drawdown $4.500)</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-peak">Picco Profitto Aperto Non Chiuso ($)</label>
+          <input type="number" id="f-peak" value="1600" step="100" oninput="calcFuturesDD()" />
+        </div>
+        <div>
+          <label for="f-close">Profitto Finale Chiuso a Fine Trade ($)</label>
+          <input type="number" id="f-close" value="400" step="100" oninput="calcFuturesDD()" />
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="box-bad">
+          <div style="color: var(--red); font-weight: 800; font-size: 0.9rem;">❌ VECCHIE PROP INTRADAY TRAILING</div>
+          <div class="metric-big" id="bad-buffer" style="color: var(--red);">$800 residui</div>
+          <p id="bad-desc" style="font-size: 0.88rem; color: var(--muted);"></p>
+        </div>
+        <div class="box-good">
+          <div style="color: var(--emerald); font-weight: 800; font-size: 0.9rem;">✅ PROP EOD (TRADEIFY · LUCID · TOPSTEP)</div>
+          <div class="metric-big" id="good-buffer" style="color: var(--emerald);">$2.000 residui</div>
+          <p id="good-desc" style="font-size: 0.88rem; color: var(--muted);"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-size: 1.35rem; margin-bottom: 8px;">🏆 Il Podio Futures CME Con Drawdown EOD (Zero Trappola Intraday)</h2>
+      <p style="color: var(--muted); font-size: 0.92rem;">Tutte e 3 le Prop Firm Futures selezionate da Humble Trading calcolano il drawdown esclusivamente a fine giornata (End-of-Day), lasciando respirare i tuoi trade intraday:</p>
+      <div class="podium">
+        <div class="prop-card">
+          <div style="color: var(--emerald); font-weight: 800;">🥇 1° POSTO FUTURES</div>
+          <h3 style="margin: 4px 0;">Tradeify</h3>
+          <p style="font-size: 0.86rem; color: var(--muted);">Drawdown EOD puro, conti Instant Funding (Lightning Funded) senza esame e fino al 90% di Profit Split.</p>
+          <a href="https://tradeify.co/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=futures_dd_sim" target="_blank" rel="noopener" class="btn btn-emerald">Vai a Tradeify ➔</a>
+        </div>
+        <div class="prop-card">
+          <div style="color: var(--cyan); font-weight: 800;">🥈 2° POSTO FUTURES</div>
+          <h3 style="margin: 4px 0;">Lucid Trading</h3>
+          <p style="font-size: 0.86rem; color: var(--muted);">Piani LucidFlex con Zero Buffer richiesto per il payout, Drawdown EOD e pagamenti rapidissimi.</p>
+          <a href="https://lucidtrading.com/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=futures_dd_sim" target="_blank" rel="noopener" class="btn btn-cyan">Vai a Lucid Trading ➔</a>
+        </div>
+        <div class="prop-card">
+          <div style="color: var(--amber); font-weight: 800;">🥉 3° POSTO FUTURES</div>
+          <h3 style="margin: 4px 0;">Topstep</h3>
+          <p style="font-size: 0.86rem; color: var(--muted);">La storica Prop Firm Futures di Chicago con piattaforma TopstepX integrata e Drawdown EOD.</p>
+          <a href="https://www.topstep.com/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=futures_dd_sim" target="_blank" rel="noopener" class="btn btn-cyan">Vai a Topstep ➔</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calcFuturesDD() {
+      const sel = document.getElementById('f-size');
+      const startBal = parseFloat(sel.value) || 50000;
+      const maxDD = parseFloat(sel.options[sel.selectedIndex].getAttribute('data-dd')) || 2000;
+      const peak = Math.max(0, parseFloat(document.getElementById('f-peak').value) || 0);
+      const closed = parseFloat(document.getElementById('f-close').value) || 0;
+
+      const finalBal = startBal + closed;
+      const highWaterIntraday = startBal + Math.max(peak, closed, 0);
+      const liqIntraday = Math.min(startBal, highWaterIntraday - maxDD);
+      const bufferIntraday = Math.max(0, finalBal - liqIntraday);
+
+      const highWaterEOD = startBal + Math.max(closed, 0);
+      const liqEOD = Math.min(startBal, highWaterEOD - maxDD);
+      const bufferEOD = Math.max(0, finalBal - liqEOD);
+
+      document.getElementById('bad-buffer').textContent = '$' + bufferIntraday.toLocaleString('it-IT') + ' di margine residuo';
+      document.getElementById('bad-desc').innerHTML =
+        'Soglia liquidazione salita in tempo reale a <strong>$' + liqIntraday.toLocaleString('it-IT') + '</strong>! Hai perso <strong>$' +
+        Math.max(0, bufferEOD - bufferIntraday).toLocaleString('it-IT') + '</strong> di cuscinetto solo perché il trade è andato in profitto temporaneo.';
+
+      document.getElementById('good-buffer').textContent = '$' + bufferEOD.toLocaleString('it-IT') + ' di margine residuo';
+      document.getElementById('good-desc').innerHTML =
+        'Con <strong>Tradeify, Lucid e Topstep</strong> il drawdown ignora il picco flottante intraday: mantieni il <strong>100% del tuo cuscinetto ($' +
+        bufferEOD.toLocaleString('it-IT') + ')</strong>!';
+    }
+    calcFuturesDD();
+  </script>
+</body>
+</html>

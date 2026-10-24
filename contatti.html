@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contatti — HUMBLE TRADING</title>
+  <meta name="description" content="Contatta il team di Humble Trading. Richieste di informazioni, supporto sull'accesso al server Discord e collaborazioni.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand-mark" aria-label="Humble Trading Home">
+          Humble Trading <span class="edition">/ Contatti</span>
+        </a>
+        <nav aria-label="Navigazione principale">
+          <ul class="nav-links">
+            <li><a href="metodo.html">Metodo</a></li>
+            <li><a href="servizi.html">Servizi</a></li>
+            <li><a href="chi-sono.html">Chi sono</a></li>
+            <li><a href="contatti.html" class="active">Contatti</a></li>
+          </ul>
+        </nav>
+        <div class="nav-action">
+          <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn btn-rust btn-sm">Discord</a>
+          <button class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu +</button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav-panel" id="mobile-nav">
+      <ul>
+        <li><a href="metodo.html">Metodo</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="chi-sono.html">Chi sono</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+        <li><a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn btn-rust" style="margin-top: 0.5rem; text-align: center;">Entra in Discord</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-wrap">
+          <span class="mono-label">COMUNICAZIONE DIRETTA</span>
+          <h1>Scrivici o entra nel server.</h1>
+          <p class="hero-subtitle">
+            Il modo più rapido per interagire con noi è tramite il server Discord. Per domande specifiche o richieste private, puoi utilizzare il modulo sottostante.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Layout (Asymmetric split: Channels + Form) -->
+    <section class="section">
+      <div class="container">
+        <div class="about-split">
+
+          <!-- Left: Direct Channels & Discord Info -->
+          <div>
+            <span class="mono-label">CANALI UFFICIALI</span>
+            <h2>Come raggiungerci.</h2>
+            <p class="text-muted" style="margin-top: 1rem; margin-bottom: 2rem;">
+              Non utilizziamo bot per rispondere. Ogni messaggio viene letto direttamente dai fondatori e moderatori della community.
+            </p>
+
+            <div style="border-top: 1px solid var(--line);">
+              <div style="padding: 1.5rem 0; border-bottom: 1px solid var(--line);">
+                <div class="mono-label">SERVER DISCORD</div>
+                <div style="font-family: var(--font-display); font-size: 1.5rem; margin-top: 0.25rem; margin-bottom: 0.5rem;">Humble Trading Community</div>
+                <p class="muted" style="font-size: 0.9375rem; margin-bottom: 1rem;">Per discussioni quotidiane, analisi e supporto in tempo reale.</p>
+                <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn btn-rust btn-sm">Accedi a Discord &rarr;</a>
+              </div>
+
+              <div style="padding: 1.5rem 0; border-bottom: 1px solid var(--line);">
+                <div class="mono-label">POSTA ELETTRONICA</div>
+                <div style="font-family: var(--font-display); font-size: 1.5rem; margin-top: 0.25rem; margin-bottom: 0.5rem;">info@humbletrading.it</div>
+                <p class="muted" style="font-size: 0.9375rem;">Per comunicazioni formali o chiarimenti amministrativi.</p>
+              </div>
+
+              <div style="padding: 1.5rem 0; border-bottom: 1px solid var(--line);">
+                <div class="mono-label">TEMPI DI RISPOSTA</div>
+                <p class="muted" style="font-size: 0.9375rem; margin-top: 0.5rem;">Rispondiamo solitamente entro 24 ore nei giorni lavorativi (lunedì &ndash; venerdì).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Editorial Form -->
+          <div style="background-color: var(--surface); padding: 3rem 2.5rem; border: 1px solid var(--line);">
+            <span class="mono-label" style="margin-bottom: 1.5rem;">MODULO DI CONTATTO</span>
+
+            <form class="editorial-form" novalidate>
+              <div class="form-group">
+                <label for="name">Nome o Nickname Discord</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Es. Marco o @marco_trader" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Indirizzo Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="iltuonome@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Messaggio</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Scrivi la tua richiesta o domanda sulla community..." required></textarea>
+              </div>
+
+              <div class="form-privacy">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy" style="font-size: 0.8125rem; text-transform: none; letter-spacing: normal;">
+                  Dichiaro di aver preso visione dell'informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR).
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-rust" style="width: 100%;">Invia messaggio</button>
+
+              <div class="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Ink Band -->
+    <section class="ink-band">
+      <div class="container">
+        <h2>Unisciti alla nostra community su Discord.</h2>
+        <p>
+          Il modo più diretto per imparare e confrontarsi ogni giorno sui mercati.
+        </p>
+        <div>
+          <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer" class="btn btn-rust">Entra in Discord</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>HUMBLE TRADING</h4>
+          <p class="muted">
+            Community indipendente per lo studio del trading e della gestione del rischio finanziario.
+          </p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigazione</div>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="metodo.html">Metodo</a></li>
+            <li><a href="servizi.html">Servizi</a></li>
+            <li><a href="chi-sono.html">Chi sono</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Community</div>
+          <ul>
+            <li><a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener noreferrer">Server Discord</a></li>
+            <li><a href="metodo.html#regolamento">Regolamento</a></li>
+            <li><a href="chi-sono.html#manifesto">Manifesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contatto</div>
+          <ul>
+            <li><a href="mailto:info@humbletrading.it">info@humbletrading.it</a></li>
+            <li><a href="contatti.html">Modulo diretto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        <strong>Avvertenza sul rischio:</strong> L'attività di trading sui mercati finanziari comporta un elevato livello di rischio per il capitale investito. I contenuti e le discussioni all'interno della community Humble Trading e su questo sito hanno finalità esclusivamente informativa ed educativa.
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 HUMBLE TRADING. Tutti i diritti riservati.</div>
+        <div>P.IVA / CF: In conformità &middot; Italia</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

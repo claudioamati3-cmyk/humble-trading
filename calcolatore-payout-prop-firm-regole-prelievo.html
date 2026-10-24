@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Payout Prop Firm 2026 & Guida Regole Prelievo | Humble Trading</title>
+  <meta name="description" content="Calcola il tuo Payout netto reale dalle Prop Firm (Propr.xyz, Breakout, FTMO, Tradeify, Lucid, Topstep), Profit Split 80%-90%, stima tasse Italia e scopri le regole per non farsi mai bloccare un prelievo." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-payout-prop-firm-regole-prelievo.html" />
+  <meta property="og:title" content="Calcolatore Payout Prop Firm 2026 & Guida Prelievi | Humble Trading" />
+  <meta property="og:description" content="Simulatore istantaneo di Profit Split (80%-90%), netto fiscale in tasca e guida alle clausole contrattuali per incassare senza rischi di rifiuto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-payout-prop-firm-regole-prelievo.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Payout & Profit Split Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-payout-prop-firm-regole-prelievo.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 70%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 940px; margin: 0 auto; }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: var(--emerald);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.55rem); font-weight: 900; line-height: 1.15; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 18px; }
+    .kpi {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.65rem; font-weight: 900; color: var(--emerald); margin-top: 4px; }
+    .kpi-val.prop { color: var(--amber); }
+    .kpi-val.tax { color: var(--cyan); }
+    .kpi-lbl { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+    .info-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--cyan);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    .info-box.alert {
+      background: rgba(239, 68, 68, 0.08);
+      border-left-color: var(--red);
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-tg { background: #229ED9; color: #fff; }
+    .btn-dc { background: #5865F2; color: #fff; }
+    .btn-hub { background: #1E293B; border: 1px solid var(--border); color: #fff; }
+    .btn-prop { background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%); color: #000; }
+    .table-resp { width: 100%; border-collapse: collapse; margin-top: 14px; }
+    .table-resp th, .table-resp td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      font-size: 0.92rem;
+    }
+    .table-resp th {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-pill.onchain { background: rgba(56, 189, 248, 0.15); color: var(--cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-pill.statico { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-pill.futures { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div style="margin-bottom: 18px;">
+    <a href="hub.html" style="color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.88rem;">&larr; Torna all'Hub Calcolatori & Guide</a>
+  </div>
+
+  <span class="badge">🔥 Strumento Operativo 2026</span>
+  <h1>Calcolatore Payout Prop Firm & Profit Split</h1>
+  <p class="sub">Simula il Profit Split effettivo (80%-90%), la stima fiscale in Italia (Regime Forfettario o Ordinario) e scopri le 3 regole essenziali per non farsi mai rifiutare un prelievo.</p>
+
+  <!-- CALCOLATORE INTERATTIVO -->
+  <div class="card">
+    <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 16px; color: var(--emerald);">🧮 Simula il Tuo Payout Netto Reale</h2>
+    
+    <div class="grid">
+      <div>
+        <label for="prop-select">Seleziona Prop Firm Partner</label>
+        <select id="prop-select" onchange="aggiornaCalcolo()">
+          <option value="propr" data-split="80" data-payout-time="Istantaneo On-Chain (15 min)" data-type="onchain">Propr.xyz (80% Split · Hyperliquid USDC On-Chain)</option>
+          <option value="breakout" data-split="80" data-payout-time="24-48 Ore (On-Demand)" data-type="statico">Breakout Prop (80% Split · Drawdown Statico)</option>
+          <option value="ftmo" data-split="80" data-payout-time="14 Giorni (Bi-settimanale)" data-type="cfd">FTMO (80% Split · Storica CFD)</option>
+          <option value="tradeify" data-split="90" data-payout-time="24 Ore (Lightning Funded)" data-type="futures">Tradeify (90% Split · Futures CME)</option>
+          <option value="lucid" data-split="90" data-payout-time="Stesso Giorno (Zero Buffer)" data-type="futures">Lucid Trading (90% Split · Futures CME)</option>
+          <option value="topstep" data-split="90" data-payout-time="48 Ore (TopstepX)" data-type="futures">Topstep (90% Split · Futures CME)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="account-size">Taglia Conto Funded ($)</label>
+        <select id="account-size" onchange="aggiornaCalcolo()">
+          <option value="25000">$25.000</option>
+          <option value="50000" selected>$50.000</option>
+          <option value="100000">$100.000</option>
+          <option value="150000">$150.000</option>
+          <option value="200000">$200.000</option>
+          <option value="300000">$300.000 (Max Propr)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="profit-amount">Profitto Generato nel Ciclo ($)</label>
+        <input type="number" id="profit-amount" value="4500" step="100" min="100" oninput="aggiornaCalcolo()" />
+      </div>
+
+      <div>
+        <label for="tax-regime">Regime Fiscale Italia Stimato</label>
+        <select id="tax-regime" onchange="aggiornaCalcolo()">
+          <option value="5">Partita IVA Forfettario Startup (5%)</option>
+          <option value="15">Partita IVA Forfettario Ordinario (15%)</option>
+          <option value="26">Quadro RT / Redditi Diversi (26%)</option>
+          <option value="0">Zero Tasse (Fase Studio / Non Residente)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RISULTATI KPI -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-lbl">Payout Lordo Trader ($)</div>
+        <div class="kpi-val" id="kpi-gross-trader">$3.600</div>
+        <div style="font-size: 0.76rem; color: var(--muted); margin-top: 4px;" id="kpi-split-pct">Split 80% Trader</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Quota Prop Firm ($)</div>
+        <div class="kpi-val prop" id="kpi-prop-share">$900</div>
+        <div style="font-size: 0.76rem; color: var(--muted); margin-top: 4px;">Split 20% Prop</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Stima Fisco Italia (€)</div>
+        <div class="kpi-val tax" id="kpi-tax-amount">€162</div>
+        <div style="font-size: 0.76rem; color: var(--muted); margin-top: 4px;" id="kpi-tax-lbl">Aliquota 5%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Payout Netto in Tasca (€)</div>
+        <div class="kpi-val" id="kpi-net-trader" style="color: #38BDF8;">€3.078</div>
+        <div style="font-size: 0.76rem; color: var(--muted); margin-top: 4px;">Tasso EUR/USD ~1.08</div>
+      </div>
+    </div>
+
+    <div class="info-box" id="info-payout-timing">
+      ⚡ <strong>Tempi di Accredito Stimati:</strong> Istantaneo On-Chain (15 min) in USDC su Hyperliquid / Arbitrum. Zero intermediari bancari.
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-prop" onclick="condividiSuTelegram()">✈️ Condividi Calcolo su Telegram</button>
+      <a href="go.html" id="link-prop-partner" class="btn btn-hub" target="_blank">Apri Conto con Sconto Partner &rarr;</a>
+    </div>
+  </div>
+
+  <!-- GUIDA ALLE REGOLE: COME NON FARSI ANNULLARE IL PAYOUT -->
+  <div class="card">
+    <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 14px; color: var(--amber);">🚨 Le 3 Clausole Nascoste che Fanno Rifiutare i Payout</h2>
+    <p style="color: var(--muted); margin-bottom: 16px;">Ogni mese migliaia di trader vedono il proprio payout congelato o annullato per violazioni involontarie del contratto. Ecco a cosa prestare massima attenzione:</p>
+
+    <div class="info-box alert">
+      <strong>1. Regola IP Address & Device Consistency (Account Sharing):</strong><br />
+      Se fai trading da una connessione Wi-Fi al bar o dimentichi una VPN attiva sul telefono, il sistema antifrode del bridge rileva un cambio IP improvviso e blocca il conto per sospetta gestione delegata da terzi.
+      <em>Soluzione:</em> Opera sempre da un unico dispositivo principale e disattiva qualsiasi proxy/VPN prima di collegarti.
+    </div>
+
+    <div class="info-box">
+      <strong>2. Restrizioni sulle Notizie ad Alto Impatto (News Bracket):</strong><br />
+      Su molte prop CFD tradizionali (come FTMO), è vietato aprire o chiudere posizioni nei 2 minuti prima e dopo un comunicato macroeconomico di primo piano (CPI, NFP, decisioni FOMC). Se realizzi un profitto in quella finestra, il guadagno viene stornato.<br />
+      <em>Alternativa:</em> Se ami tradare le news, scegli prop con Drawdown Statico come <strong>Breakout Prop</strong> o prop Futures CME come <strong>Tradeify</strong> e <strong>Topstep</strong>.
+    </div>
+
+    <div class="info-box">
+      <strong>3. Consistency Rule & Dimensione Massima del Trade:</strong><br />
+      Nessun singolo trade dovrebbe rappresentare più del 30%-40% del profitto totale richiesto per il payout. Le prop vogliono vedere una sequenza statistica ripetibile, non un singolo trade fortunato ad altissimo lotto aperto prima di un annuncio.
+    </div>
+  </div>
+
+  <!-- COMPARATIVA UFFICIALE PROP FIRM 2026 -->
+  <div class="card">
+    <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 14px;">🏆 Tabella Comparativa Payout Prop Firm Approvate 2026</h2>
+    <div style="overflow-x: auto;">
+      <table class="table-resp">
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Tipo Conto</th>
+            <th>Profit Split</th>
+            <th>Metodo Payout</th>
+            <th>Frequenza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Propr.xyz</strong></td>
+            <td><span class="badge-pill onchain">On-Chain Hyperliquid</span></td>
+            <td>80%</td>
+            <td>USDC On-Chain</td>
+            <td>Istantaneo (15 min)</td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong></td>
+            <td><span class="badge-pill statico">Drawdown Statico</span></td>
+            <td>80% &rarr; 90%</td>
+            <td>Crypto / Bonifico</td>
+            <td>On-Demand (24h)</td>
+          </tr>
+          <tr>
+            <td><strong>FTMO</strong></td>
+            <td><span class="badge-pill statico">CFD Storica</span></td>
+            <td>80% &rarr; 90%</td>
+            <td>Bonifico SEPA / Rise</td>
+            <td>Ogni 14 giorni</td>
+          </tr>
+          <tr>
+            <td><strong>Tradeify</strong></td>
+            <td><span class="badge-pill futures">Futures CME</span></td>
+            <td>90%</td>
+            <td>Rise / Crypto</td>
+            <td>24 Ore (Lightning)</td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong></td>
+            <td><span class="badge-pill futures">Futures CME</span></td>
+            <td>90%</td>
+            <td>Bonifico / Rise</td>
+            <td>Giornaliero (Zero Buffer)</td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong></td>
+            <td><span class="badge-pill futures">Futures CME</span></td>
+            <td>90%</td>
+            <td>ACH / Wise / Rise</td>
+            <td>48 Ore</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMMUNITY CTA -->
+  <div class="card" style="text-align: center; border-color: rgba(16, 185, 129, 0.4);">
+    <h2 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 8px;">Unisciti alla Community Gratuita di Humble Trading</h2>
+    <p style="color: var(--muted); max-width: 600px; margin: 0 auto 20px;">Analisi pre-market Londra & New York, tabelle lotti XAUUSD stampabili e stanze vocali live ogni giorno con trader finanziati.</p>
+    <div class="cta-row" style="max-width: 580px; margin: 0 auto;">
+      <a href="https://t.me/Hubmles" target="_blank" class="btn btn-tg">✈️ Canale Telegram (@Hubmles)</a>
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn btn-dc">💬 Server Discord Ufficiale</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function aggiornaCalcolo() {
+    const sel = document.getElementById("prop-select");
+    const opt = sel.options[sel.selectedIndex];
+    const split = parseFloat(opt.getAttribute("data-split")) || 80;
+    const timing = opt.getAttribute("data-payout-time") || "24-48 Ore";
+    const firmKey = sel.value;
+
+    const profit = parseFloat(document.getElementById("profit-amount").value) || 0;
+    const taxRate = parseFloat(document.getElementById("tax-regime").value) || 0;
+
+    const grossTrader = profit * (split / 100);
+    const propShare = profit * ((100 - split) / 100);
+
+    const eurRate = 1.08;
+    const grossTraderEur = grossTrader / eurRate;
+    const taxAmountEur = grossTraderEur * (taxRate / 100);
+    const netTraderEur = grossTraderEur - taxAmountEur;
+
+    document.getElementById("kpi-gross-trader").innerText = "$" + Math.round(grossTrader).toLocaleString();
+    document.getElementById("kpi-split-pct").innerText = "Split " + split + "% Trader";
+    document.getElementById("kpi-prop-share").innerText = "$" + Math.round(propShare).toLocaleString();
+    document.getElementById("kpi-tax-amount").innerText = "€" + Math.round(taxAmountEur).toLocaleString();
+    document.getElementById("kpi-tax-lbl").innerText = "Aliquota " + taxRate + "%";
+    document.getElementById("kpi-net-trader").innerText = "€" + Math.round(netTraderEur).toLocaleString();
+
+    document.getElementById("info-payout-timing").innerHTML = "⚡ <strong>Tempi di Accredito Stimati:</strong> " + timing;
+
+    const partnerLink = document.getElementById("link-prop-partner");
+    partnerLink.href = "go.html?firm=" + firmKey;
+    partnerLink.innerText = "Apri Conto con Sconto Partner (" + opt.text.split(" ")[0] + ") \u2192";
+  }
+
+  function condividiSuTelegram() {
+    const gross = document.getElementById("kpi-gross-trader").innerText;
+    const net = document.getElementById("kpi-net-trader").innerText;
+    const text = encodeURIComponent("Ho appena simulato il mio Payout Prop Firm con il calcolatore gratuito di Humble Trading!\nPayout Lordo: " + gross + " | Netto stimato: " + net + "\n\nProvalo gratis qui: " + window.location.href);
+    window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + text, "_blank");
+  }
+
+  window.addEventListener("DOMContentLoaded", aggiornaCalcolo);
+</script>
+
+</body>
+</html>

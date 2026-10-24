@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Tick Value, Margini & Contratti Futures CME 2026 | Tradeify, Lucid, Topstep | Humble Trading</title>
+  <meta name="description" content="Calcolatore interattivo tick value, controvalore e rischio contratti Futures CME (MNQ, MES, MGC, MCL, NQ, ES, GC) per Prop Firm 2026. Calcola valore per tick, stop loss in dollari, drawdown EOD e commissioni per Tradeify, Lucid Trading e Topstep." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-tick-futures-cme-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Tick Value & Contratti Futures CME Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Non rischiare di bruciare il conto Futures per un calcolo errato sui tick. Calcola in tempo reale il rischio monetario su MNQ, MES, MGC, la distanza dal Max Drawdown EOD e le commissioni di scambio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-tick-futures-cme-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Tick Value, Margini & Contratti Futures CME Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-tick-futures-cme-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto vale 1 tick su Micro Nasdaq (MNQ) rispetto al contratto pieno (NQ)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Su Micro E-mini Nasdaq (MNQ), 1 punto corrisponde a $2,00 e 1 tick (0,25 punti) equivale a $0,50. Sul contratto standard E-mini Nasdaq (NQ), 1 punto vale $20,00 e 1 tick vale $5,00. Pertanto, 1 contratto NQ equivale esattamente a 10 contratti MNQ."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto vale 1 tick su Micro Gold (MGC) rispetto a GC e al CFD XAUUSD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sul Micro Gold CME (MGC), la dimensione del contratto è di 10 once troy: 1 punto (1 dollaro di movimento dell'oro) vale $10,00 e 1 tick (0,10 dollari) vale $1,00. Sul contratto standard Gold (GC, 100 once), 1 tick vale $10,00. Nel CFD tradizionale, 0,01 lotti di XAUUSD corrispondono a 1 oncia troy ($0,10 per tick di 0,10$), quindi 1 contratto MGC equivale a 0,10 lotti CFD."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come funziona il Max Drawdown EOD (End of Day) su Tradeify e Lucid Trading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A differenza del Trailing Drawdown Intraday (che si aggiorna tick-by-tick sul massimo profitto non realizzato anche se poi il trade ritraccia), il Drawdown End of Day (EOD) viene calcolato esclusivamente alla chiusura ufficiale della sessione americana (ore 17:00 EST / 23:00 ora italiana). Se durante la giornata vai in profitto e poi il mercato ritraccia, il tuo limite di stop non viene alzato durante l'intraday, offrendo molto più respiro operativo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è il numero massimo di contratti consentito sulle Prop Firm Futures?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dipende dal piano: tipicamente un conto da $50k consente un massimo di 5 contratti Mini o 50 Micro (rapporto 10:1); un conto da $100k consente fino a 10 Mini o 100 Micro; un conto da $150k fino a 15 Mini o 150 Micro. Superare la dimensione massima contrattuale comporta il blocco temporaneo dell'ordine o la violazione della regola della prop firm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali commissioni di borsa si pagano sui Futures CME nelle Prop Firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nei Futures regolamentati CME non c'è lo spread occulto tipico dei broker CFD B-Book. Si paga però una commissione round-turn (apertura + chiusura) che include exchange fee e platform fee, mediamente compresa tra $1,00 e $1,40 per contratto Micro (es. MNQ, MES) e tra $3,80 e $4,50 per contratto Mini/Standard (es. NQ, ES)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card-bg: #0D111C;
+      --card-border: #1F2937;
+      --accent: #10B981;
+      --accent-hover: #059669;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --blue: #38BDF8;
+      --cyan: #06B6D4;
+      --purple: #A855F7;
+      --text-main: #F9FAFB;
+      --text-muted: #94A3B8;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: rgba(13, 17, 28, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .btn-tg {
+      background: #0088cc;
+      color: #fff !important;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .btn-tg:hover { opacity: 0.9; }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      max-width: 850px;
+      margin-bottom: 30px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 1fr;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.7rem; }
+    }
+
+    .calc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-hint {
+      font-size: 0.75rem;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    select, input[type="number"], input[type="text"] {
+      width: 100%;
+      background: #060911;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    select:focus, input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--blue);
+      height: 6px;
+      border-radius: 3px;
+      background: #1F2937;
+      outline: none;
+    }
+
+    .slider-val {
+      font-weight: 700;
+      color: var(--blue);
+      min-width: 65px;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+
+    .status-box {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .status-box.safe {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34D399;
+    }
+
+    .status-box.warning {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #FBBF24;
+    }
+
+    .status-box.danger {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #F87171;
+    }
+
+    .status-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .status-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .status-desc {
+      font-size: 0.85rem;
+      color: #CBD5E1;
+      line-height: 1.45;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-cell {
+      background: #060911;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .metric-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .metric-sub {
+      font-size: 0.74rem;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.85rem;
+    }
+
+    .comp-table th, .comp-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .comp-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      background: #060911;
+    }
+
+    .tag-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .tag-eod { background: rgba(56, 189, 248, 0.15); color: var(--blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-static { background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-onchain { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    .educational-section {
+      margin-top: 50px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    .educational-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--blue);
+    }
+
+    .educational-section h3 {
+      font-size: 1.2rem;
+      margin: 22px 0 10px;
+      color: var(--text-main);
+    }
+
+    .educational-section p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+
+    .educational-section ul {
+      margin-left: 20px;
+      margin-bottom: 18px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .educational-section li {
+      margin-bottom: 8px;
+    }
+
+    .faq-card {
+      background: #060911;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .faq-q {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .cta-box {
+      margin-top: 40px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .cta-box h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: transform 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: #070A10; }
+    .btn-secondary { background: #1F2937; color: var(--text-main); border: 1px solid #374151; }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="hub.html" class="brand-link">
+        ⚡ Humble Trading <span class="brand-badge">Futures CME Suite</span>
+      </a>
+      <div class="nav-links">
+        <a href="hub.html">Hub Calcolatori</a>
+        <a href="classifica-prop-firm-2026.html">Classifica Prop</a>
+        <a href="tradeify-vs-topstep-vs-lucid-futures-ita.html">Guida Futures</a>
+        <a href="https://t.me/Hubmles" target="_blank" class="btn-tg">✈️ @Hubmles</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-badge">⚡ CME Futures Risk & Contract Sizing 2026</div>
+    <h1>Calcolatore Tick Value, Margini & Contratti Futures CME per Prop Firm</h1>
+    <p class="lead">
+      Passare dai CFD ai Futures regolamentati (Tradeify, Lucid Trading, Topstep) richiede il calcolo esatto del valore del tick. Simula l'impatto economico di ogni punto su <strong>Micro Nasdaq (MNQ), Micro S&P500 (MES) e Micro Gold (MGC)</strong>, controlla il limite contrattuale consentito e proteggi il tuo <strong>Drawdown End-of-Day (EOD)</strong>.
+    </p>
+
+    <div class="calc-grid">
+      <!-- INPUT PANEL -->
+      <div class="calc-card">
+        <div class="card-title">
+          <span>⚙️</span> Parametri Trade & Prop Firm
+        </div>
+
+        <div class="form-group">
+          <label for="instrument">1. Strumento Futures CME</label>
+          <select id="instrument" onchange="updateCalc()">
+            <optgroup label="Indici Azionari (Nasdaq / S&P500 / Dow)">
+              <option value="MNQ" selected>MNQ — Micro E-mini Nasdaq 100 (1 pt = $2 | tick 0.25 = $0.50)</option>
+              <option value="NQ">NQ — E-mini Nasdaq 100 [Standard] (1 pt = $20 | tick 0.25 = $5.00)</option>
+              <option value="MES">MES — Micro E-mini S&P 500 (1 pt = $5 | tick 0.25 = $1.25)</option>
+              <option value="ES">ES — E-mini S&P 500 [Standard] (1 pt = $50 | tick 0.25 = $12.50)</option>
+              <option value="MYM">MYM — Micro E-mini Dow Jones (1 pt = $0.50 | tick 1.0 = $0.50)</option>
+            </optgroup>
+            <optgroup label="Materie Prime & Metalli (Oro / Petrolio)">
+              <option value="MGC">MGC — Micro Gold Futures (1 pt = $10 | tick 0.10 = $1.00)</option>
+              <option value="GC">GC — Gold Futures [Standard] (1 pt = $100 | tick 0.10 = $10.00)</option>
+              <option value="MCL">MCL — Micro WTI Crude Oil (1 pt = $100 | tick 0.01 = $1.00)</option>
+              <option value="CL">CL — WTI Crude Oil [Standard] (1 pt = $1,000 | tick 0.01 = $10.00)</option>
+            </optgroup>
+          </select>
+          <div class="input-hint">I contratti Micro (MNQ, MES, MGC) hanno un'esposizione pari esattamente a 1/10 dei contratti Full.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="propFirm">2. Prop Firm Selezionata</label>
+          <select id="propFirm" onchange="updateCalc()">
+            <option value="tradeify" selected>Tradeify (Drawdown EOD Fine Sessione — Max 90% Split — Instant Funding)</option>
+            <option value="lucid">Lucid Trading (LucidFlex Zero Buffer — Drawdown EOD — Payout 90%)</option>
+            <option value="topstep">Topstep (Regolamentata Chicago CME — TopstepX — 1-Step Eval)</option>
+            <option value="propr">Propr.xyz (On-Chain Hyperliquid L1 — Zero CME Fees — Scalping Libero)</option>
+            <option value="breakout">Breakout Prop (CFD con Drawdown 100% Statico sul Bilancio)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="accountSize">3. Taglia Conto Prop Firm</label>
+          <select id="accountSize" onchange="updateCalc()">
+            <option value="25000">$25.000 (Max Drawdown: $1.500 | Max 3 Mini / 30 Micro)</option>
+            <option value="50000" selected>$50.000 (Max Drawdown: $2.000 - $2.500 | Max 5 Mini / 50 Micro)</option>
+            <option value="100000">$100.000 (Max Drawdown: $3.000 - $3.500 | Max 10 Mini / 100 Micro)</option>
+            <option value="150000">$150.000 (Max Drawdown: $4.500 - $5.000 | Max 15 Mini / 150 Micro)</option>
+            <option value="300000">$300.000 (Max Drawdown: $7.500 | Max 25 Mini / 250 Micro)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>4. Numero Contratti in Posizione</label>
+          <div class="slider-row">
+            <input type="range" id="contractsRange" min="1" max="50" value="3" oninput="syncContracts(this.value)" />
+            <span class="slider-val" id="contractsVal">3 ctr</span>
+          </div>
+          <div class="input-hint" id="contractLimitHint">Limite massimo per questo conto: 50 contratti Micro.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="slPoints">5. Stop Loss Pianificato (in Punti Indice / Prezzo)</label>
+          <input type="number" id="slPoints" value="25" step="0.25" min="0.25" oninput="updateCalc()" />
+          <div class="input-hint" id="slTicksHint">Corrisponde a 100 tick di escursione sfavorevole.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="tpPoints">6. Take Profit Pianificato (in Punti Indice / Prezzo)</label>
+          <input type="number" id="tpPoints" value="50" step="0.25" min="0.25" oninput="updateCalc()" />
+          <div class="input-hint" id="tpTicksHint">Corrisponde a 200 tick di target.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="commission">7. Commissione Round-Turn per Contratto ($)</label>
+          <input type="number" id="commission" value="1.24" step="0.05" min="0" oninput="updateCalc()" />
+          <div class="input-hint">Media di mercato: $1.20 - $1.40 su Micro; $3.80 - $4.50 su Mini/Standard.</div>
+        </div>
+      </div>
+
+      <!-- RESULTS PANEL -->
+      <div class="calc-card">
+        <div class="card-title">
+          <span>📊</span> Risultati Quantitativi & Semaforo Rischio
+        </div>
+
+        <div id="statusBox" class="status-box safe">
+          <div class="status-icon" id="statusIcon">🟢</div>
+          <div>
+            <div class="status-title" id="statusTitle">Trade Conforme & Rischio Ben Calibrato</div>
+            <div class="status-desc" id="statusDesc">Il rischio monetario consuma una frazione sostenibile del tuo Max Drawdown.</div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-cell">
+            <div class="metric-label">Rischio Monetario Stop Loss</div>
+            <div class="metric-value" id="resRiskMonetary" style="color: #F87171;">-$150.00</div>
+            <div class="metric-sub" id="resRiskPct">6.0% del Drawdown Totale</div>
+          </div>
+
+          <div class="metric-cell">
+            <div class="metric-label">Profitto Netto Take Profit</div>
+            <div class="metric-value" id="resProfitNet" style="color: #34D399;">+$296.28</div>
+            <div class="metric-sub" id="resProfitGross">Lordo: $300.00 | Netto Comm.</div>
+          </div>
+
+          <div class="metric-cell">
+            <div class="metric-label">Valore Singolo Tick (Totale)</div>
+            <div class="metric-value" id="resTickValue" style="color: var(--blue);">$1.50</div>
+            <div class="metric-sub" id="resTickPerCtr">$0.50/tick per singolo contratto</div>
+          </div>
+
+          <div class="metric-cell">
+            <div class="metric-label">Rapporto Rischio / Rendimento (R:R)</div>
+            <div class="metric-value" id="resRR" style="color: #FBBF24;">1 : 2.00</div>
+            <div class="metric-sub">R:R Netto calcolato dopo commissioni</div>
+          </div>
+
+          <div class="metric-cell">
+            <div class="metric-label">Costo Commissioni Round-Turn</div>
+            <div class="metric-value" id="resCommissionTotal" style="color: #94A3B8;">$3.72</div>
+            <div class="metric-sub" id="resCommissionDrag">Incidenza sul profitto: 1.2%</div>
+          </div>
+
+          <div class="metric-cell">
+            <div class="metric-label">Equivalente Lotti CFD</div>
+            <div class="metric-value" id="resCfdEquiv" style="color: var(--purple);">0.30 Lotti</div>
+            <div class="metric-sub" id="resCfdNote">Paragonabile a 0.30 su US100</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Distanza di Sicurezza dal Max Drawdown (Stop Out)</label>
+          <div style="background: #060911; border: 1px solid var(--card-border); border-radius: 10px; padding: 12px; font-size: 0.88rem;">
+            <div>Avversione massima consentita prima di bruciare il conto: <strong id="resMaxAdversePoints" style="color: var(--blue);">416.6 punti</strong> (<span id="resMaxAdverseTicks">1.666 tick</span>).</div>
+            <div style="font-size: 0.76rem; color: #64748B; margin-top: 4px;">Con questa size, servono oltre 16 Stop Loss consecutivi senza alcun trade in utile per violare il limite.</div>
+          </div>
+        </div>
+
+        <!-- SPECIFICATION TABLE -->
+        <div style="margin-top: 15px;">
+          <label>Specifiche Ufficiali CME per lo Strumento</label>
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Parametro</th>
+                <th>Valore CME</th>
+                <th>Dettaglio Operativo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dimensione Tick</td>
+                <td id="tableTickSize">0.25 pt</td>
+                <td>Minima variazione di prezzo sul book</td>
+              </tr>
+              <tr>
+                <td>Valore 1 Punto Indice</td>
+                <td id="tablePointVal">$2.00</td>
+                <td>Guadagno/perdita per ogni punto intero</td>
+              </tr>
+              <tr>
+                <td>Rapporto vs Contratto Full</td>
+                <td id="tableRatio">1 : 10</td>
+                <td>1 NQ = 10 MNQ (Micro)</td>
+              </tr>
+              <tr>
+                <td>Tipo Drawdown Prop Firm</td>
+                <td id="tableDDType"><span class="tag-badge tag-eod">EOD (End of Day)</span></td>
+                <td>Nessun trailing intraday su Tradeify/Lucid</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE PROP FIRMS -->
+    <div class="educational-section">
+      <h2>🏆 Confronto Regole Futures & Drawdown tra le Migliori Prop Firm 2026</h2>
+      <p>
+        Nel trading sui Futures regolamentati (CME), la regola del drawdown è il fattore #1 che determina la tua sopravvivenza. Ecco come si confrontano le Prop Firm consigliate dalla nostra community:
+      </p>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Tipo Mercato</th>
+            <th>Regola Drawdown</th>
+            <th>Profit Split</th>
+            <th>Punti di Forza Esclusivi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tradeify</strong></td>
+            <td>Futures CME (Tradovate / Ninja)</td>
+            <td><span class="tag-badge tag-eod">End of Day (EOD)</span></td>
+            <td><strong>Fino al 90%</strong></td>
+            <td>Opzione Instant Funding (Lightning), nessun trailing intraday, fino a 10 conti contemporanei.</td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong></td>
+            <td>Futures CME (Rithmic / Ninja)</td>
+            <td><span class="tag-badge tag-eod">LucidFlex EOD</span></td>
+            <td><strong>90% Fisso</strong></td>
+            <td>Zero buffer sui prelievi, payout veloci in 24h, regole di consistenza flessibili.</td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong></td>
+            <td>Futures CME (TopstepX)</td>
+            <td>Trailing EOD su TopstepX</td>
+            <td><strong>100% primi $10k, poi 90%</strong></td>
+            <td>La Prop Firm Futures più storica di Chicago, piattaforma proprietaria senza bridge esterni.</td>
+          </tr>
+          <tr>
+            <td><strong>Propr.xyz</strong></td>
+            <td>On-Chain (Hyperliquid L1)</td>
+            <td>Drawdown Bilancio / Equity</td>
+            <td><strong>80% in USDC</strong></td>
+            <td>Esecuzione decentralizzata trasparente, zero commissioni CME, conti fino a $300k.</td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong></td>
+            <td>CFD Multi-Asset</td>
+            <td><span class="tag-badge tag-static">100% Statico sul Bilancio</span></td>
+            <td><strong>80% - 90%</strong></td>
+            <td>Il drawdown non sale mai con i profitti; massima libertà per chi preferisce MetaTrader.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>💡 3 Regole d'Oro per la Gestione del Rischio sui Micro Futures (MNQ / MES / MGC)</h3>
+      <ul>
+        <li><strong>Regola del 10:1:</strong> Non fare mai l'errore di tradare 1 contratto NQ pieno pensando che sia come 1 lotto CFD. Un movimento di 50 punti su NQ sono $1.000 (metà del Max Drawdown di un conto da $50k). Usa sempre i contratti Micro (MNQ) per modulare la posizione in frazioni precise di rischio.</li>
+        <li><strong>Filtro Commissioni:</strong> Sui contratti Micro le commissioni incidono percentualmente di più rispetto ai Mini. Non aprire trade con target inferiori a 8-10 tick su MNQ, altrimenti il "commission drag" eroderà oltre il 15% del tuo utile lordo.</li>
+        <li><strong>Drawdown EOD vs Intraday:</strong> Su piattaforme con Trailing Drawdown Intraday, se il prezzo sale a +$800 e poi ritraccia a +$200, il tuo livello di stop out sale con l'equity massima intraday. Su Tradeify e Lucid (Drawdown EOD), il ricalcolo avviene solo a mercati chiusi alle 23:00 CET.</li>
+      </ul>
+
+      <!-- FAQ SECTION -->
+      <h2 style="margin-top: 40px;">❓ Domande Frequenti sul Calcolo dei Tick Futures e Prop Firm</h2>
+
+      <div class="faq-card">
+        <div class="faq-q">1. Qual è la differenza tra Punto (Point) e Tick nei Futures?</div>
+        <div class="faq-a">
+          Il <strong>punto</strong> è l'unità intera di variazione del prezzo dell'indice o della materia prima (es. il Nasdaq che passa da 20.000 a 20.001). Il <strong>tick</strong> è la frazione minima negoziabile stabilita dal CME. Per esempio, su MNQ e NQ il tick minimo è 0,25 punti: in ogni punto ci sono esattamente 4 tick.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-q">2. Perché conviene iniziare con i Micro Futures (MNQ) invece dei CFD?</div>
+        <div class="faq-a">
+          Nei CFD il broker agisce spesso da controparte (B-Book) e può allargare gli spread durante le news o a ridosso della chiusura. Nei Futures CME, ogni singolo ordine passa dall'Orderbook centrale standardizzato di Chicago: il prezzo è identico per te, per le banche d'affari e per gli hedge fund, garantendo zero manipolazioni e perfetta trasparenza.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-q">3. Quanti contratti Micro equivalgono a 1 lotto standard CFD?</div>
+        <div class="faq-a">
+          Nei CFD sugli indici (US100), 1 lotto standard muove $1 per punto. Su Micro Nasdaq (MNQ), 1 contratto muove $2 per punto: di conseguenza, 1 contratto MNQ equivale a 2 lotti CFD su indici a $1/pt, oppure a 0,10 contratti del Mini NQ standard.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-q">4. Cosa succede se supero il numero massimo di contratti durante una challenge?</div>
+        <div class="faq-a">
+          La maggior parte dei software (Rithmic, Tradovate, TopstepX) blocca a livello di server l'ordine in eccesso (ordine respinto con messaggio <em>Max Contract Size Exceeded</em>). Tuttavia, alcune prop firm considerano l'apertura manuale eccedente come una violazione immediata della regola di consistenza. Usa sempre il nostro calcolatore prima di impostare ordini bracket.
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-q">5. Qual è la percentuale massima di drawdown consigliata per singolo trade?</div>
+        <div class="faq-a">
+          La regola aurea di Humble Trading è non rischiare mai più del <strong>5% - 8% del tuo Max Drawdown residuo</strong> per trade. Su un conto con $2.500 di Drawdown consentito, il tuo Stop Loss monetario non dovrebbe mai eccedere $125 - $200 (equivalenti a circa 20-30 punti con 2 o 3 contratti MNQ).
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>🚀 Unisciti alla Community di Humble Trading</h3>
+        <p>
+          Ricevi analisi quantitative quotidiane sui livelli di liquidità CME, tabelle di dimensionamento lotti PDF e supporto live con trader finanziati su Futures e CFD.
+        </p>
+        <div class="btn-group">
+          <a href="https://t.me/Hubmles" target="_blank" class="btn btn-primary">✈️ Entra nel Canale Telegram @Hubmles</a>
+          <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn btn-secondary">💬 Server Discord Ufficiale</a>
+          <a href="hub.html" class="btn btn-secondary">🧮 Tutti i Calcolatori Gratuiti</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Humble Trading — Piattaforma open-source di educazione finanziaria, gestione matematica del rischio e prop trading quantitativo.</p>
+    <p style="margin-top: 6px;">Nessuna informazione presente costituisce sollecitazione al pubblico risparmio o consulenza finanziaria. Il trading comporta elevati rischi di perdita.</p>
+  </footer>
+
+  <script>
+    // Database specifiche strumenti CME
+    const SPECS = {
+      MNQ: { name: "Micro E-mini Nasdaq 100", tickSize: 0.25, pointValue: 2.0, tickValue: 0.50, isMicro: true, cfdMult: 0.10, ratio: "1 : 10" },
+      NQ:  { name: "E-mini Nasdaq 100", tickSize: 0.25, pointValue: 20.0, tickValue: 5.00, isMicro: false, cfdMult: 1.00, ratio: "1 : 1 (Full)" },
+      MES: { name: "Micro E-mini S&P 500", tickSize: 0.25, pointValue: 5.0, tickValue: 1.25, isMicro: true, cfdMult: 0.10, ratio: "1 : 10" },
+      ES:  { name: "E-mini S&P 500", tickSize: 0.25, pointValue: 50.0, tickValue: 12.50, isMicro: false, cfdMult: 1.00, ratio: "1 : 1 (Full)" },
+      MYM: { name: "Micro E-mini Dow Jones", tickSize: 1.00, pointValue: 0.50, tickValue: 0.50, isMicro: true, cfdMult: 0.10, ratio: "1 : 10" },
+      MGC: { name: "Micro Gold Futures", tickSize: 0.10, pointValue: 10.0, tickValue: 1.00, isMicro: true, cfdMult: 0.10, ratio: "1 : 10" },
+      GC:  { name: "Gold Futures", tickSize: 0.10, pointValue: 100.0, tickValue: 10.00, isMicro: false, cfdMult: 1.00, ratio: "1 : 1 (Full)" },
+      MCL: { name: "Micro WTI Crude Oil", tickSize: 0.01, pointValue: 100.0, tickValue: 1.00, isMicro: true, cfdMult: 0.10, ratio: "1 : 10" },
+      CL:  { name: "WTI Crude Oil", tickSize: 0.01, pointValue: 1000.0, tickValue: 10.00, isMicro: false, cfdMult: 1.00, ratio: "1 : 1 (Full)" }
+    };
+
+    // Database massimali per dimensione conto
+    const ACCOUNTS = {
+      25000:  { dd: 1500, maxMicro: 30, maxMini: 3 },
+      50000:  { dd: 2500, maxMicro: 50, maxMini: 5 },
+      100000: { dd: 3500, maxMicro: 100, maxMini: 10 },
+      150000: { dd: 5000, maxMicro: 150, maxMini: 15 },
+      300000: { dd: 7500, maxMicro: 250, maxMini: 25 }
+    };
+
+    function syncContracts(val) {
+      document.getElementById('contractsVal').textContent = val + ' ctr';
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const instKey = document.getElementById('instrument').value;
+      const spec = SPECS[instKey];
+      const accSize = parseInt(document.getElementById('accountSize').value, 10);
+      const accInfo = ACCOUNTS[accSize];
+      const propFirm = document.getElementById('propFirm').value;
+
+      const contracts = parseInt(document.getElementById('contractsRange').value, 10);
+      const slPoints = parseFloat(document.getElementById('slPoints').value) || 0;
+      const tpPoints = parseFloat(document.getElementById('tpPoints').value) || 0;
+      const commPerCtr = parseFloat(document.getElementById('commission').value) || 0;
+
+      // Aggiorna limiti slider in base a Mini vs Micro
+      const maxAllowed = spec.isMicro ? accInfo.maxMicro : accInfo.maxMini;
+      document.getElementById('contractsRange').max = maxAllowed;
+      document.getElementById('contractLimitHint').textContent = 
+        `Limite massimo consentito sul conto da $${(accSize/1000)}k: ${maxAllowed} contratti ${spec.isMicro ? 'Micro' : 'Mini/Standard'}.`;
+
+      // Calcolo tick
+      const slTicks = Math.round(slPoints / spec.tickSize);
+      const tpTicks = Math.round(tpPoints / spec.tickSize);
+      document.getElementById('slTicksHint').textContent = `Corrisponde a ${slTicks} tick di escursione sfavorevole.`;
+      document.getElementById('tpTicksHint').textContent = `Corrisponde a ${tpTicks} tick di target.`;
+
+      // Valore del tick totale
+      const totalTickVal = spec.tickValue * contracts;
+      const totalPointVal = spec.pointValue * contracts;
+
+      // Rischio lordo e netto
+      const riskGross = slPoints * totalPointVal;
+      const totalComm = commPerCtr * contracts;
+      const riskTotal = riskGross + totalComm;
+      const riskPct = (riskTotal / accInfo.dd) * 100;
+
+      // Profitto lordo e netto
+      const profitGross = tpPoints * totalPointVal;
+      const profitNet = Math.max(0, profitGross - totalComm);
+
+      // R:R Netto
+      const rrNet = riskTotal > 0 ? (profitNet / riskTotal) : 0;
+
+      // Aggiorna UI metriche
+      document.getElementById('resRiskMonetary').textContent = `-$${riskTotal.toFixed(2)}`;
+      document.getElementById('resRiskPct').textContent = `${riskPct.toFixed(1)}% del Max Drawdown ($${accInfo.dd})`;
+      
+      document.getElementById('resProfitNet').textContent = `+$${profitNet.toFixed(2)}`;
+      document.getElementById('resProfitGross').textContent = `Lordo: $${profitGross.toFixed(2)} | Netto Comm.`;
+
+      document.getElementById('resTickValue').textContent = `$${totalTickVal.toFixed(2)}`;
+      document.getElementById('resTickPerCtr').textContent = `$${spec.tickValue.toFixed(2)}/tick per singolo contratto`;
+
+      document.getElementById('resRR').textContent = `1 : ${rrNet.toFixed(2)}`;
+      document.getElementById('resCommissionTotal').textContent = `$${totalComm.toFixed(2)}`;
+      const commDrag = profitGross > 0 ? ((totalComm / profitGross) * 100).toFixed(1) : "0.0";
+      document.getElementById('resCommissionDrag').textContent = `Incidenza sul profitto: ${commDrag}%`;
+
+      // CFD Equivalent
+      const cfdLots = (contracts * spec.cfdMult).toFixed(2);
+      document.getElementById('resCfdEquiv').textContent = `${cfdLots} Lotti`;
+      document.getElementById('resCfdNote').textContent = `Paragonabile a ${cfdLots} lotti su CFD equivalente`;
+
+      // Max Adverse
+      const maxAdvPoints = (accInfo.dd / totalPointVal).toFixed(1);
+      const maxAdvTicks = Math.round(accInfo.dd / totalTickVal);
+      document.getElementById('resMaxAdversePoints').textContent = `${maxAdvPoints} punti`;
+      document.getElementById('resMaxAdverseTicks').textContent = `${maxAdvTicks.toLocaleString()} tick`;
+
+      // Tabella specifiche
+      document.getElementById('tableTickSize').textContent = `${spec.tickSize} pt`;
+      document.getElementById('tablePointVal').textContent = `$${spec.pointValue.toFixed(2)}`;
+      document.getElementById('tableRatio').textContent = spec.ratio;
+
+      // Aggiorna tipo drawdown in tabella
+      const ddTag = document.getElementById('tableDDType');
+      if (propFirm === 'tradeify' || propFirm === 'lucid') {
+        ddTag.innerHTML = '<span class="tag-badge tag-eod">EOD (End of Day)</span>';
+      } else if (propFirm === 'propr') {
+        ddTag.innerHTML = '<span class="tag-badge tag-onchain">On-Chain Hyperliquid</span>';
+      } else if (propFirm === 'breakout') {
+        ddTag.innerHTML = '<span class="tag-badge tag-static">100% Statico Bilancio</span>';
+      } else {
+        ddTag.innerHTML = '<span class="tag-badge tag-eod">Trailing EOD</span>';
+      }
+
+      // Status Box (Semaforo)
+      const sBox = document.getElementById('statusBox');
+      const sIcon = document.getElementById('statusIcon');
+      const sTitle = document.getElementById('statusTitle');
+      const sDesc = document.getElementById('statusDesc');
+
+      sBox.className = 'status-box';
+      if (contracts > maxAllowed) {
+        sBox.classList.add('danger');
+        sIcon.textContent = '⛔';
+        sTitle.textContent = 'Violazione Regola Contratti Massimi!';
+        sDesc.textContent = `Hai impostato ${contracts} contratti, ma il limite massimo consentito su questo conto da $${accSize/1000}k è ${maxAllowed}. Riduci la size!`;
+      } else if (riskPct > 50) {
+        sBox.classList.add('danger');
+        sIcon.textContent = '🚨';
+        sTitle.textContent = 'Pericolo Estremo: Rischio > 50% del Max Drawdown';
+        sDesc.textContent = `Un singolo Stop Loss brucerebbe il ${riskPct.toFixed(1)}% dell'intero buffer di perdita consentito dalla Prop Firm! Riduci i contratti o stringi lo stop.`;
+      } else if (riskPct > 25) {
+        sBox.classList.add('warning');
+        sIcon.textContent = '⚠️';
+        sTitle.textContent = 'Attenzione: Rischio Elevato (25% - 50% del Drawdown)';
+        sDesc.textContent = `Stai rischiando il ${riskPct.toFixed(1)}% del tuo drawdown. Due stop consecutivi metterebbero il conto in grave pericolo di violazione.`;
+      } else {
+        sBox.classList.add('safe');
+        sIcon.textContent = '🟢';
+        sTitle.textContent = 'Rischio Ottimale & Conforme alle Regole';
+        sDesc.textContent = `Il trade rischia solo il ${riskPct.toFixed(1)}% del Max Drawdown. Parametro pienamente allineato alla metodologia di tutela del capitale di Humble Trading.`;
+      }
+    }
+
+    // Inizializzazione
+    window.addEventListener('DOMContentLoaded', updateCalc);
+  </script>
+</body>
+</html>

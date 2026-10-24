@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prop Firm vs Broker Tradizionale in Italia (2026): Guida, Tassazione & Simulatore di Capitale — HUMBLE TRADING</title>
+  <meta name="description" content="Guida comparativa 2026: Meglio aprire un conto Broker personale o superare una Prop Firm in Italia? Scopri il Sistema dei 2 Conti, le differenze fiscali (26% vs Forfettario 5%) e prova il simulatore interattivo.">
+  <meta name="keywords" content="prop firm vs broker, broker trading italia, prop firm cosa sono, tasse prop firm italia, trading prop firm conviene, regime amministrato vs forfettario trading, propr.xyz, ftmo, tradeify, humble trading">
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/prop-firm-vs-broker-tradizionale-italia.html">
+  <meta property="og:title" content="Prop Firm vs Broker Tradizionale in Italia (2026): Guida & Simulatore">
+  <meta property="og:description" content="Confronto matematico: Capitale esposto, leva ESMA 1:30 vs Prop Firm, tassazione e il Sistema dei 2 Conti di Humble Trading.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/prop-firm-vs-broker-tradizionale-italia.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Prop Firm vs Broker Tradizionale in Italia: Quale Scegliere nel 2026 e Come Strutturare il Capitale",
+    "description": "Analisi approfondita tra trading con broker CFD/Futures personale e modello Prop Firm proprietario. Simulatore interattivo di capitale a rischio.",
+    "author": {
+      "@type": "Organization",
+      "name": "Humble Trading",
+      "url": "https://claudioamati3-cmyk.github.io/humble-trading/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Humble Trading"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #060608;
+      --card: #0e0f14;
+      --card-hover: #14161f;
+      --border: rgba(255, 255, 255, 0.09);
+      --gold: #f59e0b;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --sky: #0284c7;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.65;
+      padding-bottom: 5rem;
+    }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem;
+    }
+    .nav {
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .nav a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.15s ease;
+    }
+    .nav a:hover {
+      color: var(--gold);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+      line-height: 1.25;
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 2rem 0 0.8rem;
+    }
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 1.25rem 0 0.5rem;
+    }
+    p, li {
+      color: #cbd5e1;
+      margin-bottom: 0.95rem;
+      font-size: 0.98rem;
+    }
+    ul, ol {
+      padding-left: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      margin-bottom: 1.75rem;
+    }
+    .table-container {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .simulator-box {
+      background: linear-gradient(145deg, #0f1118, #07090e);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin: 2rem 0;
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.06);
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .input-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .input-group input, .input-group select {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: var(--gold);
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .result-card {
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .res-broker {
+      background: rgba(239, 68, 68, 0.05);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .res-prop {
+      background: rgba(16, 185, 129, 0.07);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    .res-val {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin: 0.4rem 0;
+    }
+    .res-val-red { color: var(--crimson); }
+    .res-val-green { color: var(--emerald); }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.35rem;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.88rem;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+    }
+    .btn-gold:hover {
+      background: #d97706;
+    }
+    .btn-tg {
+      background: #0284c7;
+      color: #fff;
+      margin-right: 0.6rem;
+    }
+    .btn-dc {
+      background: #5865f2;
+      color: #fff;
+    }
+    .highlight {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.25rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="hub.html">&larr; Web App & Calcolatori</a>
+      <a href="classifica-prop-firm-2026.html">Classifica Prop Firm 2026</a>
+      <a href="tasse-prop-firm-italia-partita-iva.html">Guida Fiscale Tasse Prop</a>
+      <a href="propr-xyz-recensione-guida-hyperliquid-ita.html">Propr.xyz & Hyperliquid</a>
+    </div>
+
+    <span class="badge">Analisi Strategica & Fiscale 2026</span>
+    <h1>Prop Firm vs Broker Tradizionale in Italia: Quale Scegliere nel 2026?</h1>
+    <p>È il dilemma che divide ogni trader in Italia: <strong>conviene ancora depositare i propri risparmi su un broker CFD o Futures, oppure è matematicamente superiore operare tramite una Prop Firm?</strong></p>
+    <p>In questa guida analizziamo i numeri reali: <strong>capitale a rischio, effetto leva, vincoli operativi, regimi di tassazione italiana (26% Capital Gain vs 5% Regime Forfettario)</strong> e la strategia proprietaria adottata dalla community di Humble Trading: <strong>il Sistema dei 2 Conti</strong>.</p>
+
+    <!-- SIMULATORE INTERATTIVO -->
+    <div class="simulator-box" id="simulatore-capitale">
+      <h2 style="margin-top:0; color: #fff;">🧮 Simulatore: Broker Personale vs Prop Firm</h2>
+      <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1.25rem;">
+        Inserisci i tuoi parametri per calcolare all'istante il capitale a rischio e il rendimento mensile netto nei due scenari.
+      </p>
+
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Target Guadagno Mensile (€)</label>
+          <input type="number" id="targetGain" value="3000" step="500" min="500">
+        </div>
+        <div class="input-group">
+          <label>Rendimento Mensile Stimato (%)</label>
+          <input type="number" id="monthlyReturn" value="5" step="0.5" min="1" max="30">
+        </div>
+        <div class="input-group">
+          <label>Rischio Max per Trade</label>
+          <select id="riskPerTrade">
+            <option value="0.005">0.50% (Conservativo Humble)</option>
+            <option value="0.01" selected>1.00% (Standard)</option>
+            <option value="0.02">2.00% (Aggressivo)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <!-- Scenario Broker -->
+        <div class="result-card res-broker">
+          <h3 style="color: var(--crimson);">📉 Scenario A: Broker Personale (CFD/Futures)</h3>
+          <p style="font-size: 0.85rem; color: var(--muted);">Tassazione Capital Gain 26% (Regime Amministrato/Dichiarativo)</p>
+          <div style="margin-top: 0.8rem;">
+            <div style="font-size: 0.8rem; color: var(--muted);">Capitale Personale da Depositare:</div>
+            <div class="res-val res-val-red" id="brokerCapital">81.081 €</div>
+          </div>
+          <div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Capitale Proprio 100% a Rischio di Perdita:</div>
+            <div class="res-val res-val-red" id="brokerRisk">81.081 €</div>
+          </div>
+          <p style="font-size: 0.82rem; color: #fca5a5; margin-top: 0.6rem;">
+            ⚠️ In caso di black swan, slippage o drawdown prolungato, perdi soldi tuoi dal conto corrente.
+          </p>
+        </div>
+
+        <!-- Scenario Prop Firm -->
+        <div class="result-card res-prop">
+          <h3 style="color: var(--emerald);">⚡ Scenario B: Prop Firm Approvata (Tier S/A)</h3>
+          <p style="font-size: 0.85rem; color: var(--muted);">Profit Split 80%-90% | Forfettario 5% (Prestazione di Servizi)</p>
+          <div style="margin-top: 0.8rem;">
+            <div style="font-size: 0.8rem; color: var(--muted);">Capitale Finanziato Necessario:</div>
+            <div class="res-val res-val-green" id="propAccountSize">$100.000</div>
+          </div>
+          <div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Capitale a Rischio (Costo Fee Challenge):</div>
+            <div class="res-val res-val-green" id="propRiskFee">350 € - 490 €</div>
+          </div>
+          <p style="font-size: 0.82rem; color: #86efac; margin-top: 0.6rem;">
+            🛡️ <strong>Rischio asimmetrico:</strong> se fallisci la challenge, perdi solo la fee una tantum. Nessun debito, nessun rischio sul tuo patrimonio personale.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IL CONFRONTO TECNICO -->
+    <div class="card">
+      <h2>Confronto Diretto: Broker vs Prop Firm</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Parametro</th>
+              <th>Broker Tradizionale (CFD / Futures)</th>
+              <th>Prop Firm Approvate (Propr.xyz, Breakout, Tradeify)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Capitale a Rischio</strong></td>
+              <td>100% del deposito (patrimonio personale)</td>
+              <td>Solo la fee d'iscrizione (es. 200€ - 500€)</td>
+            </tr>
+            <tr>
+              <td><strong>Leva Disponibile in Italia</strong></td>
+              <td>Max 1:30 (normativa ESMA retail)</td>
+              <td>Da 1:30 a 1:100 (inclusi Futures centralizzati CME)</td>
+            </tr>
+            <tr>
+              <td><strong>Regole di Drawdown</strong></td>
+              <td>Nessuna regola formale (Stop-out broker a margine zero)</td>
+              <td>Regole ferree (Daily Drawdown 3%-5%, Max Drawdown 6%-10%)</td>
+            </tr>
+            <tr>
+              <td><strong>Pressione Psicologica</strong></td>
+              <td>Altissima (paura di intaccare i risparmi di vita)</td>
+              <td>Bassa/Controllata (rischio monetario fisso e predeterminato)</td>
+            </tr>
+            <tr>
+              <td><strong>Tassazione in Italia</strong></td>
+              <td>26% Capital Gain (Quadro RT / Regime Amministrato)</td>
+              <td>Prestazione Servizi: Occasionale (<5k€) o Forfettario 5%</td>
+            </tr>
+            <tr>
+              <td><strong>Possesso dell'Asset</strong></td>
+              <td>Il conto e i titoli sono nominalmente tuoi</td>
+              <td>Sei un fornitore di segnali / contractor indipendente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IL SISTEMA DEI 2 CONTI -->
+    <div class="card">
+      <h2>La Soluzione Professionale: Il "Sistema dei 2 Conti"</h2>
+      <p>L'errore madornale del 95% dei trader principianti è polarizzarsi: o operano solo con il broker (bruciando depositi da 1.000€-2.000€ per overtrading) o dipendono al 100% dalle Prop Firm senza mai capitalizzare un conto proprio.</p>
+      
+      <div class="highlight">
+        <h3 style="color: var(--gold); margin-top:0;">Come funziona il protocollo Humble Trading:</h3>
+        <ol style="margin-bottom:0;">
+          <li><strong>CONTO A — Prop Firm (Motore di Liquidità):</strong> utilizzi 1 o 2 conti finanziati da $50k-$100k (su Propr.xyz, Breakout Prop o Tradeify) rischiando appena lo 0.25% - 0.50% per trade con il nostro <a href="hub.html" style="color:var(--cyan);">Calcolatore Lotti XAUUSD</a>. L'obiettivo è generare payout costanti da $2.000 - $5.000 al mese.</li>
+          <li><strong>CONTO B — Broker Regolamentato (Cassaforte di Proprietà):</strong> ad ogni payout incassato, versi il 50% sul tuo conto broker personale. Su questo conto operi con leva 1:5 o 1:10, senza alcuna regola di trailing drawdown o vincoli orari sulle news, costruendo un patrimonio reale a lungo termine.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- PROP FIRM APPROVATE -->
+    <div class="card">
+      <h2>Le Uniche 6 Prop Firm Verificate & Approvate da Humble Trading (2026)</h2>
+      <p>Per attuare questa strategia, è fondamentale scegliere solo aziende con comprovata solvibilità e regole matematiche trasparenti:</p>
+      
+      <h3>Top Prop Firm Multi-Asset, On-Chain & CFD:</h3>
+      <ul>
+        <li>🥇 <strong><a href="propr-xyz-recensione-guida-hyperliquid-ita.html" style="color:var(--gold);">Propr.xyz</a></strong> — Tier S+ On-Chain su <strong>Hyperliquid</strong>, supportata da SwissBorg, conti fino a $300k, payout istantanei in USDC.</li>
+        <li>🥈 <strong><a href="breakout-prop-vs-ftmo-drawdown-statico.html" style="color:var(--emerald);">Breakout Prop</a></strong> — Drawdown 100% Statico sul Bilancio chiuso (zero trappole di rollover a mezzanotte), payout On-Demand 24/7.</li>
+        <li>🥉 <strong>FTMO</strong> — La veterana dal 2015 per lo Swing Trading su CFD forex tradizionali.</li>
+      </ul>
+
+      <h3>Top Prop Firm Futures CME (Nasdaq, S&P500, Oro):</h3>
+      <ul>
+        <li>🥇 <strong><a href="tradeify-vs-topstep-vs-lucid-futures-ita.html" style="color:var(--gold);">Tradeify</a></strong> — Drawdown End-of-Day (EOD), piani Lightning Instant Funding senza esame e payout 90%.</li>
+        <li>🥈 <strong>Lucid Trading</strong> — Piani LucidFlex senza buffer, zero video-interviste KYC e approvazione prelievi in poche ore.</li>
+        <li>🥉 <strong>Topstep</strong> — Storica su Chicago CME, 1 step di valutazione e piattaforma proprietaria TopstepX.</li>
+      </ul>
+
+      <div style="margin-top: 1.25rem;">
+        <a href="classifica-prop-firm-2026.html" class="btn btn-gold">🏆 Leggi la Classifica Completa con Codici Sconto &rarr;</a>
+      </div>
+    </div>
+
+    <!-- COMMUNITY CTA -->
+    <div class="card" style="text-align: center; background: radial-gradient(circle at center, #131722, #07090e);">
+      <h2 style="color: #fff; margin-top: 0;">Unisciti Gratis a Humble Trading</h2>
+      <p style="color: var(--muted); max-width: 600px; margin: 0 auto 1.25rem;">
+        Accedi ogni giorno alle analisi live di sessione Londra e New York, scarica l'indicatore PineScript v5 e confrontati con oltre 200 trader italiani finanziati.
+      </p>
+      <div>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener" class="btn btn-tg">✈️ Canale Telegram (@Hubmles)</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener" class="btn btn-dc">💬 Server Discord Ufficiale</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateSimulator() {
+      const targetGain = parseFloat(document.getElementById('targetGain').value) || 3000;
+      const monthlyReturn = (parseFloat(document.getElementById('monthlyReturn').value) || 5) / 100;
+      
+      // Scenario Broker (Tassazione 26% capital gain)
+      // Netto = Lordo * (1 - 0.26) = Lordo * 0.74 => Lordo Necessario = Netto / 0.74
+      const grossNeededBroker = targetGain / 0.74;
+      const capitalBroker = Math.round(grossNeededBroker / monthlyReturn);
+
+      // Scenario Prop Firm (Profit split 85%, Forfettario 5% su 78% imponibile = 3.9% imposta effettiva)
+      // Netto = Lordo * 0.85 * (1 - 0.039) = Lordo * 0.8168
+      const grossNeededProp = targetGain / 0.8168;
+      const fundedNeeded = Math.round(grossNeededProp / monthlyReturn);
+
+      // Formatta per Prop Firm size realistica (50k, 100k, 150k, 200k, 300k)
+      let propSizeText = "$50.000";
+      let propFeeText = "220 € - 290 €";
+      if (fundedNeeded > 200000) {
+        propSizeText = "$300.000 (es. Propr.xyz)";
+        propFeeText = "950 € - 1.200 €";
+      } else if (fundedNeeded > 100000) {
+        propSizeText = "$150.000 - $200.000";
+        propFeeText = "550 € - 750 €";
+      } else if (fundedNeeded > 50000) {
+        propSizeText = "$100.000 (es. Tradeify / Breakout)";
+        propFeeText = "350 € - 490 €";
+      }
+
+      document.getElementById('brokerCapital').innerText = capitalBroker.toLocaleString('it-IT') + ' €';
+      document.getElementById('brokerRisk').innerText = capitalBroker.toLocaleString('it-IT') + ' €';
+      document.getElementById('propAccountSize').innerText = propSizeText;
+      document.getElementById('propRiskFee').innerText = propFeeText;
+    }
+
+    document.getElementById('targetGain').addEventListener('input', updateSimulator);
+    document.getElementById('monthlyReturn').addEventListener('input', updateSimulator);
+    document.getElementById('riskPerTrade').addEventListener('change', updateSimulator);
+    updateSimulator();
+  </script>
+</body>
+</html>

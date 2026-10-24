@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Prop Firm Più Economiche 2026 & Costo Reale Drawdown | Humble Trading</title>
+  <meta name="description" content="Calcolatore interattivo gratuito per scoprire quali sono le vere Prop Firm più economiche nel 2026. Calcola il costo effettivo per $1.000 di Drawdown reale (Buffer di Rischio) tra Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid e Topstep." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-economiche-costo-drawdown.html" />
+  <meta property="og:title" content="Calcolatore Prop Firm Più Economiche 2026 & Costo Reale Drawdown | Humble Trading" />
+  <meta property="og:description" content="Non farti ingannare dal prezzo nominale: calcola quanto paghi davvero ogni singolo dollaro di perdita concessa prima del blocco del conto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-economiche-costo-drawdown.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Prop Firm Economiche & Costo per $1.000 Drawdown 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-economiche-costo-drawdown.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Perché il prezzo nominale di una challenge prop firm è un'illusione ottica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Molte prop firm pubblicizzano challenge a basso costo (es. 29€ o 39€) per attirare trader principianti, ma concedono un drawdown piccolissimo (es. 300€). In questo caso il costo reale è di oltre 100€ per ogni 1.000€ di margine di manovra concesso. Al contrario, challenge apparentemente più care ma con drawdown statico o EOD costano appena 30€-45€ per ogni 1.000€ di buffer reale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cos'è la metrica Costo per $1.000 di Drawdown?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "È il rapporto matematico tra il prezzo di acquisto della challenge e il massimo drawdown assoluto in dollari concesso dal regolamento: (Prezzo Challenge / Max Drawdown $) * 1.000. Rappresenta il vero prezzo unitario del rischio acquistato dal trader."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono le prop firm più economiche sul mercato nel 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nel settore Futures CME, Tradeify e Topstep offrono i costi per dollaro di drawdown più bassi in assoluto (grazie al modello combine mensile e drawdown EOD). Nel settore CFD e On-Chain, Propr.xyz (esecuzione on-chain Hyperliquid) e Breakout Prop (drawdown 100% statico basato sul bilancio) offrono il miglior rapporto tra costo e probabilità statistica di superamento."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .presets-bar {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+    .btn-preset {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-preset:hover, .btn-preset.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .res-box {
+      background: rgba(7, 10, 16, 0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .res-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 6px 0;
+    }
+    .res-lbl {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .res-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .verdict-box {
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    th {
+      background: rgba(255,255,255,0.04);
+      color: var(--cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    .partner-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+    .partner-pill:hover {
+      background: var(--cyan);
+      color: #070A10;
+    }
+    .code-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--amber);
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 0;
+    }
+    .faq-q { font-weight: 800; font-size: 1.02rem; margin-bottom: 6px; color: var(--cyan); }
+    .faq-a { color: var(--muted); font-size: 0.92rem; }
+    .share-btns {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;
+    }
+    .share-btn {
+      padding: 10px 18px; border-radius: 10px; font-weight: 800; font-size: 0.86rem; text-decoration: none; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-tg { background: #229ED9; color: #fff; }
+    .btn-wa { background: #25D366; color: #070A10; }
+    .btn-copy { background: rgba(255,255,255,0.12); color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="hub.html">← Hub Calcolatori & Guide</a>
+      <div>
+        <a href="https://t.me/Hubmles" target="_blank" style="margin-right: 14px; color: #229ED9;">Telegram @Hubmles</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" style="color: #8B5CF6;">Discord</a>
+      </div>
+    </div>
+
+    <span class="badge">Analisi Matematica del Rischio 2026</span>
+    <h1>Calcolatore Prop Firm Più Economiche 2026</h1>
+    <p class="sub">Non farti ingannare dal prezzo di vetrina: scopri quanto paghi realmente ogni $1.000 di Drawdown effettivo prima dell'eliminazione.</p>
+
+    <!-- CALCOLATORE INTERATTIVO -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 14px;">🧮 Calcola il Costo per $1.000 di Drawdown Reale</h2>
+
+      <div class="presets-bar">
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--muted); align-self: center;">Preset Rapidi:</span>
+        <button class="btn-preset active" onclick="loadPreset('propr')">Propr.xyz $50k (On-Chain)</button>
+        <button class="btn-preset" onclick="loadPreset('breakout')">Breakout $50k (Statico)</button>
+        <button class="btn-preset" onclick="loadPreset('tradeify')">Tradeify $50k (Futures EOD)</button>
+        <button class="btn-preset" onclick="loadPreset('lucid')">Lucid $50k (Futures Flex)</button>
+        <button class="btn-preset" onclick="loadPreset('topstep')">Topstep $50k (Combine)</button>
+        <button class="btn-preset" onclick="loadPreset('ftmo')">FTMO $50k (CFD)</button>
+        <button class="btn-preset" onclick="loadPreset('fake_cheap')">⚠️ "Trappola Low Cost $30"</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <label for="price">Prezzo Challenge (€ o $)</label>
+          <input type="number" id="price" value="280" min="1" step="1" oninput="calculate()" />
+        </div>
+        <div>
+          <label for="accountSize">Taglia Conto Nominale ($)</label>
+          <input type="number" id="accountSize" value="50000" min="1000" step="1000" oninput="calculate()" />
+        </div>
+        <div>
+          <label for="maxDdPct">Max Drawdown Ammesso (%)</label>
+          <input type="number" id="maxDdPct" value="8" min="1" max="50" step="0.5" oninput="calculate()" />
+        </div>
+        <div>
+          <label for="ddType">Tipologia di Drawdown</label>
+          <select id="ddType" onchange="calculate()">
+            <option value="static">Drawdown Statico (Bilancio Iniziale)</option>
+            <option value="eod">Drawdown End-of-Day (EOD CME)</option>
+            <option value="trailing_intraday">Trailing Intraday (High-Water Mark)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-lbl">Buffer Reale di Perdita</div>
+          <div class="res-val" id="resBuffer" style="color: var(--cyan);">$4.000</div>
+          <div class="res-sub" id="resBufferSub">Massima perdita reale concessa</div>
+        </div>
+        <div class="res-box">
+          <div class="res-lbl">Costo Reale / $1.000 DD</div>
+          <div class="res-val" id="resCost1k" style="color: var(--emerald);">$70.00</div>
+          <div class="res-sub">Prezzo per $1.000 di rischio effettivo</div>
+        </div>
+        <div class="res-box">
+          <div class="res-lbl">Rapporto Efficienza (Score)</div>
+          <div class="res-val" id="resScore" style="color: var(--purple);">92 / 100</div>
+          <div class="res-sub" id="resScoreSub">Eccellente convenienza</div>
+        </div>
+      </div>
+
+      <div class="verdict-box" id="verdictBox" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3);">
+        <strong>💡 Verdetto Matematico:</strong> Ottimo rapporto costo/rischio. Con $4.000 di buffer e drawdown statico/on-chain non hai trappole legate all'equity aperta a fine giornata.
+      </div>
+
+      <div class="share-btns">
+        <button class="share-btn btn-wa" onclick="shareWhatsApp()">💬 Condividi su WhatsApp</button>
+        <button class="share-btn btn-tg" onclick="shareTelegram()">✈️ Condividi su Telegram</button>
+        <button class="share-btn btn-copy" onclick="copyLink()">🔗 Copia Link</button>
+      </div>
+    </div>
+
+    <!-- TABELLA COMPARATIVA 2026 -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">🏆 Tabella Ufficiale: Costo per $1.000 Drawdown delle Top Prop Firm 2026</h2>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 16px;">Confronto calcolato sui conti standard da $50.000 e $100.000 approvati da Humble Trading.</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Prop Firm</th>
+              <th>Asset & Mercato</th>
+              <th>Prezzo Challenge</th>
+              <th>Drawdown Max</th>
+              <th>Costo per $1k DD</th>
+              <th>Tipo Drawdown</th>
+              <th>Azione & Sconto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Propr.xyz</strong></td>
+              <td>On-Chain (Hyperliquid)</td>
+              <td>~$280</td>
+              <td>$4.000 (8%)</td>
+              <td><strong style="color: var(--emerald);">$70 / 1k</strong></td>
+              <td>On-Chain Static</td>
+              <td><a href="https://www.propr.xyz/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri Propr.xyz</a> <span class="code-badge">Codice HUMBLE</span></td>
+            </tr>
+            <tr>
+              <td><strong>Breakout Prop</strong></td>
+              <td>CFD & Crypto</td>
+              <td>~$290</td>
+              <td>$3.000 (6%)</td>
+              <td><strong style="color: var(--emerald);">$96 / 1k</strong></td>
+              <td>100% Statico Bilancio</td>
+              <td><a href="https://www.breakoutprop.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri Breakout</a> <span class="code-badge">Codice HUMBLE</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tradeify</strong></td>
+              <td>Futures CME (NQ, ES)</td>
+              <td>~$110</td>
+              <td>$2.500</td>
+              <td><strong style="color: var(--emerald);">$44 / 1k</strong></td>
+              <td>End-of-Day (EOD)</td>
+              <td><a href="https://tradeify.co/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri Tradeify</a> <span class="code-badge">Codice HUMBLE</span></td>
+            </tr>
+            <tr>
+              <td><strong>Lucid Trading</strong></td>
+              <td>Futures CME</td>
+              <td>~$125</td>
+              <td>$2.500</td>
+              <td><strong style="color: var(--emerald);">$50 / 1k</strong></td>
+              <td>LucidFlex (EOD)</td>
+              <td><a href="https://lucidtrading.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri Lucid</a> <span class="code-badge">Codice HUMBLE</span></td>
+            </tr>
+            <tr>
+              <td><strong>Topstep</strong></td>
+              <td>Futures CME</td>
+              <td>~$49 / mese</td>
+              <td>$2.000</td>
+              <td><strong style="color: var(--cyan);">$24.5 / 1k*</strong></td>
+              <td>EOD (TopstepX)</td>
+              <td><a href="https://www.topstep.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri Topstep</a></td>
+            </tr>
+            <tr>
+              <td><strong>FTMO</strong></td>
+              <td>CFD Tradizionali</td>
+              <td>~$345</td>
+              <td>$5.000 (10%)</td>
+              <td><strong style="color: var(--amber);">$69 / 1k</strong></td>
+              <td>Equity Daily + Max DD</td>
+              <td><a href="https://ftmo.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" class="partner-pill">Apri FTMO</a></td>
+            </tr>
+            <tr style="background: rgba(239, 68, 68, 0.06);">
+              <td><em>Finta Prop Low-Cost</em></td>
+              <td>CFD B-Book Aggressivo</td>
+              <td>$35</td>
+              <td>$350</td>
+              <td><strong style="color: var(--red);">$100 / 1k</strong></td>
+              <td>Trailing Intraday Tick-by-Tick</td>
+              <td><span style="color: var(--red); font-size: 0.8rem; font-weight: 700;">⛔ SCONSIGLIATA</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--muted); margin-top: 8px;">*Il costo di Topstep si riferisce alla quota mensile standard della combine da $50k. Se superata al primo mese, rappresenta il costo unitario più basso del settore.</p>
+    </div>
+
+    <!-- SPIEGAZIONE DETTAGLIATA -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 14px;">📖 Perché il Prezzo Nominale è una Trappola Psicologica</h2>
+      <p style="color: var(--muted); margin-bottom: 14px;">
+        Nel marketing del prop trading, l'esca più efficace è il prezzo basso: vedere un conto pubblicizzato a <strong>29€ o 39€</strong> fa scattare l'impulso d'acquisto nel trader principiante.
+      </p>
+      <p style="color: var(--muted); margin-bottom: 14px;">
+        Quello che la pubblicità omette è la <strong>profondità del buffer reale di perdita</strong>. Un conto nominale da $5.000 con un Max Drawdown del 6% ti concede esattamente <strong>$300</strong> di perdita prima dell'eliminazione.
+      </p>
+      <ul style="color: var(--muted); margin-left: 20px; margin-bottom: 16px; line-height: 1.7;">
+        <li>Se paghi <strong>35€</strong> per avere <strong>$350</strong> di buffer, stai pagando <strong>100€ per ogni $1.000 di rischio</strong>.</li>
+        <li>Se acquisti una challenge Futures su Tradeify a <strong>$110</strong> con <strong>$2.500</strong> di drawdown EOD, stai pagando appena <strong>$44 per ogni $1.000 di rischio</strong> (meno della metà!).</li>
+        <li>Inoltre, le finte prop economiche utilizzano quasi sempre il <strong>Trailing Drawdown Intraday (Tick-by-Tick)</strong>, che insegue i massimi galleggianti in tempo reale ed elimina statisticamente oltre il 96% degli iscritti.</li>
+      </ul>
+      <p style="color: var(--cyan); font-weight: 700;">
+        La regola d'oro di Humble Trading: non comprare mai una challenge in base a quanto costa, ma in base a quanti dollari di errore reale ti concede e alle condizioni di liquidazione (Statico o EOD).
+      </p>
+    </div>
+
+    <!-- FAQ TECNICHE -->
+    <div class="card">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 14px;">❓ Domande Frequenti (FAQ)</h2>
+      <div class="faq-item">
+        <div class="faq-q">Qual è la differenza tra Drawdown Statico ed End-of-Day (EOD)?</div>
+        <div class="faq-a">Il Drawdown Statico (come quello di Breakout Prop o Propr.xyz) è calcolato esclusivamente sul bilancio iniziale e non sale mai, lasciandoti il 100% dello spazio per far correre i profitti. Il Drawdown End-of-Day (come su Tradeify o Lucid Trading) si aggiorna solo alla chiusura della sessione di mercato (ore 23:00 italiane) e non tiene conto delle oscillazioni aperte durante la seduta.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Posso usare i codici sconto per abbassare il costo per dollaro di Drawdown?</div>
+        <div class="faq-a">Sì! Inserendo il codice partner <strong>HUMBLE</strong> al checkout su Propr.xyz, Breakout Prop, Tradeify o Lucid Trading ottieni uno sconto immediato tra il 10% e il 20%, riducendo ulteriormente il costo unitario per ogni $1.000 di rischio.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Cosa succede ai proventi delle affiliazioni di Humble Trading?</div>
+        <div class="faq-a">Il 50% delle commissioni generate dai link partner viene riversato direttamente nel Community Pool per finanziare Giveaway periodici di challenge gratuite da $50.000 riservate agli iscritti del Canale Telegram @Hubmles e del Discord.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const presets = {
+      propr: { price: 280, size: 50000, ddPct: 8, type: 'static' },
+      breakout: { price: 290, size: 50000, ddPct: 6, type: 'static' },
+      tradeify: { price: 110, size: 50000, ddPct: 5, type: 'eod' },
+      lucid: { price: 125, size: 50000, ddPct: 5, type: 'eod' },
+      topstep: { price: 49, size: 50000, ddPct: 4, type: 'eod' },
+      ftmo: { price: 345, size: 50000, ddPct: 10, type: 'static' },
+      fake_cheap: { price: 35, size: 5000, ddPct: 7, type: 'trailing_intraday' }
+    };
+
+    function loadPreset(key) {
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      const p = presets[key];
+      if (!p) return;
+      document.getElementById('price').value = p.price;
+      document.getElementById('accountSize').value = p.size;
+      document.getElementById('maxDdPct').value = p.ddPct;
+      document.getElementById('ddType').value = p.type;
+      calculate();
+    }
+
+    function calculate() {
+      const price = parseFloat(document.getElementById('price').value) || 0;
+      const size = parseFloat(document.getElementById('accountSize').value) || 0;
+      const ddPct = parseFloat(document.getElementById('maxDdPct').value) || 0;
+      const ddType = document.getElementById('ddType').value;
+
+      const bufferUsd = size * (ddPct / 100);
+      const costPer1k = bufferUsd > 0 ? (price / bufferUsd) * 1000 : 0;
+
+      document.getElementById('resBuffer').innerText = '$' + Math.round(bufferUsd).toLocaleString('it-IT');
+      document.getElementById('resCost1k').innerText = '$' + costPer1k.toFixed(2);
+
+      let penalty = 0;
+      if (ddType === 'trailing_intraday') penalty = 35;
+      else if (ddType === 'eod') penalty = 5;
+
+      let score = Math.max(10, Math.min(99, Math.round(110 - (costPer1k * 0.7) - penalty)));
+      document.getElementById('resScore').innerText = score + ' / 100';
+
+      const verdictEl = document.getElementById('verdictBox');
+      if (ddType === 'trailing_intraday') {
+        verdictEl.style.background = 'rgba(239, 68, 68, 0.1)';
+        verdictEl.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        verdictEl.innerHTML = '<strong>⚠️ ALLERTA TRAPPOLA:</strong> Il Drawdown Trailing Intraday insegue i tuoi profitti aperti in tempo reale. Anche se la challenge costa poco ($' + costPer1k.toFixed(2) + '/1k), la probabilità statistica di superamento è drasticamente ridotta dalla volatilità.';
+      } else if (costPer1k < 65) {
+        verdictEl.style.background = 'rgba(16, 185, 129, 0.1)';
+        verdictEl.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        verdictEl.innerHTML = '<strong>🔥 ECCELLENTE VALORE MATEMATICO:</strong> Stai pagando appena $' + costPer1k.toFixed(2) + ' per ogni $1.000 di buffer reale con gestione drawdown permissiva (' + (ddType === 'static' ? 'Statico' : 'EOD') + ').';
+      } else if (costPer1k < 95) {
+        verdictEl.style.background = 'rgba(56, 189, 248, 0.1)';
+        verdictEl.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        verdictEl.innerHTML = '<strong>✓ BUONA CONVENIENZA:</strong> Rapporto nella media dei broker tier-1 ($' + costPer1k.toFixed(2) + '/1k). Ideale se abbinato a regole trasparenti e payout rapidi.';
+      } else {
+        verdictEl.style.background = 'rgba(245, 158, 11, 0.1)';
+        verdictEl.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+        verdictEl.innerHTML = '<strong>⚠️ COSTO UNITARIO ELEVATO:</strong> Paghi oltre $' + costPer1k.toFixed(2) + ' per ogni $1.000 di perdita reale concessa. Valuta se passare a una taglia conto superiore per abbassare il costo unitario.';
+      }
+    }
+
+    function shareWhatsApp() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Scopri quanto paghi davvero ogni $1.000 di Drawdown nelle Prop Firm con il Calcolatore Gratuito di Humble Trading: ");
+      window.open('https://api.whatsapp.com/send?text=' + text + url, '_blank');
+    }
+
+    function shareTelegram() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Calcolatore Prop Firm Più Economiche 2026 — Misura il costo reale per $1.000 di Drawdown effettivo:");
+      window.open('https://t.me/share/url?url=' + url + '&text=' + text, '_blank');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert("Link copiato negli appunti!");
+      });
+    }
+
+    calculate();
+  </script>
+</body>
+</html>

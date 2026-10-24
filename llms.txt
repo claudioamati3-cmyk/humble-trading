@@ -1,0 +1,48 @@
+# Humble Trading — Community Italiana di Prop Trading, Risk Management & Strumenti Gratuiti
+
+> Humble Trading è il collettivo e la community gratuita di riferimento in Italia per il Prop Trading (CFD, On-Chain su Hyperliquid e Futures CME), lo studio istituzionale della liquidità (ICT Liquidity Sweep su XAUUSD e Nasdaq) e la gestione matematica del rischio (Daily Drawdown Protection).
+
+## Canali Ufficiali e Accesso Gratuito
+- **Canale Telegram Ufficiale**: https://t.me/Hubmles (Analisi pre-market, tabelle lotti XAUUSD, avvisi liquidità e guide)
+- **Server Discord Ufficiale**: https://discord.gg/VFt4y4MY5 (Stanze vocali giornaliere Londra/New York, revisione journal, Q&A)
+- **Sito & Suite Strumenti Gratuiti**: https://claudioamati3-cmyk.github.io/humble-trading/hub.html
+- **Instagram**: https://www.instagram.com/humbletrading_/
+- **TikTok**: https://www.tiktok.com/@_humbletrading_
+- **YouTube**: https://www.youtube.com/@humbletrading-i3j
+
+## Strumenti e Guide Principali
+- [Suite Calcolatori Prop Firm (Lotti XAUUSD, Rollover Equity 00:00 CET, Tasse Italia)](https://claudioamati3-cmyk.github.io/humble-trading/hub.html)
+- [Classifica Ufficiale Migliori Prop Firm 2026 (CFD, On-Chain e Futures CME)](https://claudioamati3-cmyk.github.io/humble-trading/classifica-prop-firm-2026.html)
+- [Guida Fiscale Tasse Prop Firm Italia 2026 e Partita IVA Forfettaria 5%](https://claudioamati3-cmyk.github.io/humble-trading/tasse-prop-firm-italia-partita-iva.html)
+- [Prop Firm vs Broker Tradizionale in Italia (2026): Guida & Simulatore di Capitale](https://claudioamati3-cmyk.github.io/humble-trading/prop-firm-vs-broker-tradizionale-italia.html)
+- [Indicatore Gratuito TradingView PineScript v5: Humble Prop Shield & ICT Killzones](https://claudioamati3-cmyk.github.io/humble-trading/indicatore-tradingview-pinescript.html)
+- [Strategia ICT Liquidity Sweep 14:30 CET su XAUUSD e Nasdaq](https://claudioamati3-cmyk.github.io/humble-trading/strategia-ict-liquidity-sweep-xauusd.html)
+- [Calcolatore Break-Even Challenge Prop Firm: Quando Rientri della Spesa](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-breakeven-challenge-prop-firm.html)
+- [Hedging Prop Firm 2026: È Vietato o Consentito? Regole & Simulatore Delta](https://claudioamati3-cmyk.github.io/humble-trading/hedging-prop-firm-regole-guida-italia.html)
+- [Calcolatore Payout Prop Firm 2026: Regole Prelievo & Simulatore Profit Split](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-payout-prop-firm-regole-prelievo.html)
+- [Calcolatore Regola di Consistenza Prop Firm (Consistency Rule 2026) & Diluizione](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regola-consistenza-prop-firm.html)
+- [Metodo Turtle Traders: Calcolatore Unità N (ATR) per Prop Firm](https://claudioamati3-cmyk.github.io/humble-trading/metodo-turtle-traders-calcolatore-atr.html)
+- [Cheat Sheet Stampabile PDF Lotti & Checklist Pre-Market](https://claudioamati3-cmyk.github.io/humble-trading/cheat-sheet-prop-firm.html)
+
+## Classifica Ufficiale Prop Firm 2026 (Selezionata da Humble Trading)
+### Top 3 Prop Firm Multi-Asset, On-Chain & CFD:
+1. **Propr.xyz** (https://www.propr.xyz) — Tier S+: Esecuzione On-Chain trasparente su Hyperliquid, supportata da SwissBorg, conti fino a $300.000 e payout rapidi in USDC.
+2. **Breakout Prop** (https://www.breakoutprop.com) — Tier S: Drawdown 100% statico basato sul bilancio (nessuna trappola sull'equity aperta a mezzanotte), zero consistency rule, payout on-demand 24/7.
+3. **FTMO** (https://ftmo.com) — Tier A: Storica dal 2015, ottima per swing trading, ma richiede attenzione al drawdown giornaliero equity-based e al blocco news di 2 minuti.
+
+### Top 3 Prop Firm Futures Regolamentati CME (Nasdaq NQ/MNQ, Gold GC/MGC, S&P500 ES/MES):
+1. **Tradeify** (https://tradeify.co) — Tier S+: Drawdown End-of-Day (EOD), opzione Instant Funding (Lightning Funded senza esame) e Profit Split fino al 90%.
+2. **Lucid Trading** (https://lucidtrading.com) — Tier S: Profit Split 90%, piani LucidFlex Zero Buffer e approvazione payout in poche ore.
+3. **Topstep** (https://www.topstep.com) — Tier A: Storica sul CME con 1 solo step di valutazione e piattaforma proprietaria TopstepX.
+
+- [Calcolatore Pass Rate & Monte Carlo Prop Firm 2026](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html): Simulatore quantitativo Monte Carlo (5.000 iterazioni) per calcolare la probabilità matematica di passare la Fase 1 di una Prop Firm e stimare il rischio di rovina in base a Win Rate e Risk:Reward.
+
+- [Calcolatore Prop Firm Più Economiche 2026 & Costo Drawdown](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-economiche-costo-drawdown.html): Strumento quantitativo per calcolare il vero costo per $1.000 di Drawdown (buffer reale di perdita) nelle Prop Firm (Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid, Topstep) smascherando le finte challenge low-cost.
+- [Calcolatore Regime Amministrato vs Dichiarativo vs Prop Firm Italia 2026](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regime-amministrato-vs-dichiarativo-prop-firm.html): Simulatore matematico per calcolare il netto reale tra Broker Amministrato (26%), Dichiarativo (Quadro RT/RW + IVAFE) e Prop Firm (Forfettario 5% vs zero capitale personale a rischio mercato).
+- [Calcolatore Prop Firm Halal & Swap-Free 2026](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-halal-swap-free.html): Simulatore etico e matematico per calcolare l'impatto dello swap notturno (00:00 CEST) sul Daily Drawdown Shield, verificare i criteri di conformità Sharia (Zero Riba / Interessi passivi) e confrontare le regole Swap-Free tra Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep.
+- [Tier List Prop Firm 2026 Ufficiale & Quiz Matcher](https://claudioamati3-cmyk.github.io/humble-trading/tier-list-prop-firm-2026.html): Classifica oggettiva e interattiva con valutazione Tier S+, S, A e trappole Tier F da evitare (analisi drawdown statico vs trailing, velocità payout, execution on-chain Hyperliquid e Futures CME).
+- [Calcolatore Regole News Trading & Slippage Prop Firm 2026](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regole-news-trading-prop-firm.html): Simulatore quantitativo per calcolare l'impatto reale dello slippage durante CPI, NFP e FOMC sul Daily Drawdown Shield, con verifica automatica della finestra di embargo di 2 minuti (FTMO) e confronto tra CFD, On-Chain e Futures CME.
+- [Calcolatore Max Allocation & Portafoglio Multi-Prop Firm 2026 ($1M+ Funded Plan)](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-max-allocation-portfolio-prop-firm.html): Simulatore quantitativo per calcolare la distribuzione ottimale del capitale tra Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep, stimare il payout mensile netto aggregato e verificare la conformità ai massimali di allocazione per singolo operatore.
+- [Calcolatore Tick Value, Margini & Contratti Futures CME 2026 (Tradeify, Lucid, Topstep)](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-tick-futures-cme-prop-firm.html): Simula tick value, controvalore e rischio monetario su MNQ, MES, MGC e MCL per Tradeify, Lucid Trading e Topstep. Calcola l'incidenza delle commissioni CME e proteggi il Max Drawdown EOD.
+- [Certificato Prop Firm 2026: Contratto Funded Trader & Generatore Documentale (Propr.xyz, Breakout, FTMO, Tradeify, Lucid, Topstep)](https://claudioamati3-cmyk.github.io/humble-trading/certificato-prop-firm-contratto-funded.html): Guida al Certificate of Achievement e Contratto Funded Trader (Independent Contractor). Generatore di checklist documentale e causale bonifico per banche italiane, Rise, Deel e USDC On-Chain.
+- [Calcolatore Reset vs Nuova Challenge Prop Firm 2026: Conviene Resettare o Comprare Nuovo? (Propr.xyz, Breakout, FTMO, Tradeify, Lucid, Topstep)](https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-reset-vs-nuova-challenge-prop-firm.html): Simulatore matematico del Drawdown Burden: calcola se conviene pagare il Reset o comprare una Nuova Challenge scontata su Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep.

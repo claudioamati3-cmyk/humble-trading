@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Break-Even Challenge Prop Firm 2026 (Quando Rientri della Spesa) | Humble Trading</title>
+  <meta name="description" content="Calcola in 3 secondi quanto profitto percentuale (e quanti trade con Rischio 0.5%) ti servono sul conto finanziato per ripagare al 100% il costo della Challenge su Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid e Topstep." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-breakeven-challenge-prop-firm.html" />
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: rgba(15, 23, 42, 0.9);
+      --border: rgba(56, 189, 248, 0.28);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, #070A10 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 60px;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    .badge {
+      display: inline-block; background: rgba(16, 185, 129, 0.14); color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35); padding: 5px 12px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px;
+    }
+    h1 { font-size: 1.9rem; line-height: 1.22; margin-bottom: 12px; }
+    .lead { color: var(--muted); font-size: 1rem; margin-bottom: 24px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      padding: 24px; margin-bottom: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .grid-inputs {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;
+    }
+    label { display: block; font-size: 0.84rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    select, input {
+      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
+      background: #0B1120; color: #FFF; font-size: 0.98rem; font-weight: 700;
+    }
+    .result-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px;
+    }
+    .res-box {
+      background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px; padding: 16px; text-align: center;
+    }
+    .res-val { font-size: 1.65rem; font-weight: 800; color: var(--emerald); margin: 6px 0; }
+    .btn {
+      display: inline-block; padding: 13px 18px; border-radius: 12px; font-weight: 800;
+      text-decoration: none; margin-top: 12px; text-align: center;
+    }
+    .btn-emerald { background: linear-gradient(135deg, #10B981, #059669); color: #041E13; }
+    .btn-cyan { background: linear-gradient(135deg, #38BDF8, #0284C7); color: #041322; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hub.html">⬅ Torna all'Hub 7 Simulatori</a>
+      <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Unisciti a Telegram (@Hubmles)</a>
+    </nav>
+
+    <span class="badge">🧮 SIMULATORE #7 · MATEMATICA DEL RIENTRO INVESTIMENTO (ROI CHALLENGE)</span>
+    <h1>Calcolatore Break-Even Challenge Prop Firm: Quanto Basta per Ripagarti il Conto?</h1>
+    <p class="lead">
+      Molti trader pensano che servano mesi per recuperare il costo di una Challenge da <code>$50.000</code> o <code>$100.000</code>. Calcola esattamente quale micro-percentuale di profitto sul conto Funded basta per ripagare al 100% la fee iniziale e andare in profitto netto.
+    </p>
+
+    <div class="card">
+      <div class="grid-inputs">
+        <div>
+          <label for="be-capital">Capitale Conto Prop ($)</label>
+          <select id="be-capital" onchange="calcBreakEven()">
+            <option value="25000" data-fee="159">$25.000 (Fee media ~$159)</option>
+            <option value="50000" data-fee="289">$50.000 (Fee media ~$289)</option>
+            <option value="100000" data-fee="489" selected>$100.000 (Fee media ~$489)</option>
+            <option value="200000" data-fee="899">$200.000 (Fee media ~$899)</option>
+          </select>
+        </div>
+        <div>
+          <label for="be-fee">Costo Pagato per la Challenge ($)</label>
+          <input type="number" id="be-fee" value="489" step="10" oninput="calcBreakEven(true)" />
+        </div>
+        <div>
+          <label for="be-split">Profit Split Prop Firm (%)</label>
+          <select id="be-split" onchange="calcBreakEven(true)">
+            <option value="80">80% (Standard Propr.xyz / FTMO)</option>
+            <option value="90" selected>90% (Breakout Prop / Tradeify / Lucid)</option>
+          </select>
+        </div>
+        <div>
+          <label for="be-risk">Tuo Rischio per Singolo Trade (%)</label>
+          <select id="be-risk" onchange="calcBreakEven(true)">
+            <option value="0.25">0.25% (Ultra-Conservativo)</option>
+            <option value="0.50" selected>0.50% (Standard Istituzionale)</option>
+            <option value="1.00">1.00% (Aggressivo)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="res-box">
+          <div style="font-size: 0.82rem; color: var(--muted); font-weight: 700;">PROFITTO SUL CONTO PER BREAK-EVEN</div>
+          <div class="res-val" id="be-pct">+0.54%</div>
+          <div style="font-size: 0.84rem; color: var(--muted);" id="be-usd">($543 lordi sul conto da $100k)</div>
+        </div>
+        <div class="res-box">
+          <div style="font-size: 0.82rem; color: var(--muted); font-weight: 700;">NUMERO DI TRADE VINTI (R:R 1:2)</div>
+          <div class="res-val" id="be-trades" style="color: var(--cyan);">1 solo trade!</div>
+          <div style="font-size: 0.84rem; color: var(--muted);" id="be-trades-sub">Con rischio 0.5% e Take Profit 1:2 (+1.0%)</div>
+        </div>
+        <div class="res-box">
+          <div style="font-size: 0.82rem; color: var(--muted); font-weight: 700;">ROI SU 1 SINGOLO MESE AL +4%</div>
+          <div class="res-val" id="be-roi" style="color: var(--amber);">+636% ROI</div>
+          <div style="font-size: 0.84rem; color: var(--muted);" id="be-roi-sub">Payout netto: $3.600 su $489 spesi</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+        <a href="https://www.propr.xyz/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=breakeven_calc" target="_blank" rel="noopener" class="btn btn-emerald">🥇 1° CFD/On-Chain: Propr.xyz (Hyperliquid) ➔</a>
+        <a href="https://www.breakoutprop.com/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=breakeven_calc" target="_blank" rel="noopener" class="btn btn-cyan">🥈 2° CFD Statico: Breakout Prop ➔</a>
+        <a href="https://tradeify.co/?utm_source=humbletrading&utm_medium=webapp&utm_campaign=breakeven_calc" target="_blank" rel="noopener" class="btn btn-emerald">🥇 1° Futures CME: Tradeify ➔</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calcBreakEven(keepFee) {
+      const capSel = document.getElementById('be-capital');
+      const cap = parseFloat(capSel.value) || 100000;
+      if (!keepFee) {
+        document.getElementById('be-fee').value = capSel.options[capSel.selectedIndex].getAttribute('data-fee');
+      }
+      const fee = Math.max(1, parseFloat(document.getElementById('be-fee').value) || 489);
+      const split = (parseFloat(document.getElementById('be-split').value) || 90) / 100.0;
+      const riskPct = parseFloat(document.getElementById('be-risk').value) || 0.5;
+
+      const grossNeeded = fee / split;
+      const pctNeeded = (grossNeeded / cap) * 100.0;
+      const gainPerTradePct = riskPct * 2.0; // R:R 1:2
+      const tradesNeeded = Math.max(1, Math.ceil(pctNeeded / gainPerTradePct));
+
+      const monthNet4Pct = cap * 0.04 * split;
+      const roiPct = ((monthNet4Pct - fee) / fee) * 100.0;
+
+      document.getElementById('be-pct').textContent = '+' + pctNeeded.toFixed(2) + '%';
+      document.getElementById('be-usd').textContent = '($' + Math.round(grossNeeded).toLocaleString('it-IT') + ' lordi sul conto da $' + cap.toLocaleString('it-IT') + ')';
+      document.getElementById('be-trades').textContent = tradesNeeded === 1 ? '1 solo trade!' : tradesNeeded + ' trade';
+      document.getElementById('be-trades-sub').textContent = 'Con rischio ' + riskPct.toFixed(2) + '% e R:R 1:2 (+' + gainPerTradePct.toFixed(2) + '% a trade)';
+      document.getElementById('be-roi').textContent = '+' + Math.round(roiPct).toLocaleString('it-IT') + '% ROI';
+      document.getElementById('be-roi-sub').textContent = 'Payout netto al +4%: $' + Math.round(monthNet4Pct).toLocaleString('it-IT') + ' su $' + Math.round(fee) + ' di fee';
+    }
+    calcBreakEven(true);
+  </script>
+</body>
+</html>

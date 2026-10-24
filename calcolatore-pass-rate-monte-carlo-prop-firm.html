@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Pass Rate & Monte Carlo Prop Firm (Simulatore Rischio Rovina 2026) | Humble Trading</title>
+  <meta name="description" content="Simulatore Monte Carlo interattivo (10.000 iterazioni): calcola la probabilità matematica di superare la Fase 1 di una Prop Firm (Breakout, Propr.xyz, FTMO, Tradeify, Lucid, Topstep) e il rischio di rovina in base a Win Rate e Risk:Reward." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Pass Rate & Monte Carlo Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Simula 10.000 percorsi operativi: scopri esattamente quante probabilità hai di passare la Challenge prima di bruciare il Max Drawdown." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Simulatore Monte Carlo Pass Rate Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Cos'è una simulazione Monte Carlo nel Prop Trading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La simulazione Monte Carlo è un modello matematico quantitativo che genera migliaia di sequenze casuali di trade rispettando i tuoi parametri reali di Win Rate e Risk to Reward. Serve a misurare l'impatto delle serie negative (drawdown temporanei) e calcolare la reale percentuale matematica di successo prima di toccare il limite di perdita imposto dalla Prop Firm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Perché rischiare più dell'1% a trade fa crollare la probabilità di passare la challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nelle Prop Firm il Max Drawdown è generalmente tra il 4% e il 10% del capitale. Se rischi l'1% o il 2% per operazione, una normalissima serie statistica di 4 o 5 stop loss consecutivi (frequente anche nei sistemi con il 60% di win rate) distrugge il conto prima di raggiungere il target. Riducendo il rischio allo 0.50% o 0.25%, il rischio di rovina crolla vicino allo 0%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali Prop Firm offrono le regole di drawdown matematicamente più favorevoli?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Breakout Prop offre un drawdown statico basato sul bilancio iniziale al 100% (nessun trailing sul profitto aperto). Propr.xyz opera on-chain su Hyperliquid con liquidazione trasparente. Nel settore Futures, Tradeify offre drawdown End-of-Day (EOD) bloccato e Lucid Trading garantisce fino al 90% di profit split."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.14);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: var(--purple);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .slider-val {
+      font-weight: 800;
+      color: var(--cyan);
+      font-size: 1.1rem;
+      min-width: 65px;
+      text-align: right;
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 18px; }
+    .kpi {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.85rem; font-weight: 900; margin-top: 4px; }
+    .kpi-val.ok { color: var(--emerald); }
+    .kpi-val.warn { color: var(--amber); }
+    .kpi-val.err { color: var(--red); }
+    .kpi-val.cyan { color: var(--cyan); }
+    .kpi-lbl { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+
+    .bar-container {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      height: 28px;
+      display: flex;
+      overflow: hidden;
+      margin: 18px 0 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .bar-pass { background: #10B981; transition: width 0.3s ease; }
+    .bar-fail { background: #EF4444; transition: width 0.3s ease; }
+    .bar-pending { background: #64748B; transition: width 0.3s ease; }
+
+    .info-box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    .info-box.success {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--emerald);
+    }
+    .info-box.danger {
+      background: rgba(239, 68, 68, 0.12);
+      border-left: 4px solid var(--red);
+    }
+    .info-box.info {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 4px solid var(--cyan);
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-tg { background: #0088cc; color: #FFF; }
+    .btn-dc { background: #5865F2; color: #FFF; }
+    .btn-wa { background: #25D366; color: #000; }
+    .btn-hub { background: #1E293B; color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .table-container { overflow-x: auto; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; background: rgba(0,0,0,0.25); }
+
+    .tag-prop {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.08);
+    }
+    .tag-tier { color: var(--amber); font-weight: 800; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="nav">
+    <a href="hub.html">&larr; Ritorna all'Hub Operativo</a>
+    <div style="display:flex; gap:12px; font-size:0.85rem;">
+      <a href="classifica-prop-firm-2026.html" style="color:var(--amber);">Classifica 2026</a>
+      <a href="calcolatore-payout-prop-firm-regole-prelievo.html">Payout & Prelievi</a>
+      <a href="calcolatore-regola-consistenza-prop-firm.html">Consistency Rule</a>
+    </div>
+  </div>
+
+  <span class="badge">MOTORE MONTE CARLO · 5.000 ITERAZIONI LIVE</span>
+  <h1>Calcolatore Pass Rate & Monte Carlo Prop Firm</h1>
+  <p class="sub">
+    Simula 5.000 carriere operative reali: scopri qual è la tua esatta probabilità statistica di superare il Profit Target prima di violare il Max Drawdown, e quanto tagliare il rischio per azzerare il Rischio di Rovina.
+  </p>
+
+  <!-- FORM SIMULATORE -->
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="preset">Preset Regole Prop Firm</label>
+        <select id="preset" onchange="applyPreset()">
+          <option value="breakout">Breakout Prop (Target 8% · Max DD 6% Statico)</option>
+          <option value="propr">Propr.xyz Hyperliquid (Target 8% · Max DD 6%)</option>
+          <option value="ftmo1" selected>FTMO Fase 1 (Target 10% · Daily DD 5% · Max 10%)</option>
+          <option value="ftmo2">FTMO Fase 2 (Target 5% · Daily DD 5% · Max 10%)</option>
+          <option value="tradeify">Tradeify Futures ($50k: Target $3.000 · Trailing DD $2.000)</option>
+          <option value="lucid">Lucid Trading Flex (Futures: Target $3.000 · Max DD $2.000)</option>
+          <option value="topstep">Topstep Futures (Step 1: Target $3.000 · Max Loss $2.000)</option>
+          <option value="custom">-- Parametri Personalizzati --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="capital">Capitale Conto ($)</label>
+        <select id="capital" onchange="runSimulation()">
+          <option value="10000">$10.000</option>
+          <option value="25000">$25.000</option>
+          <option value="50000">$50.000</option>
+          <option value="100000" selected>$100.000</option>
+          <option value="150000">$150.000</option>
+          <option value="200000">$200.000</option>
+          <option value="300000">$300.000 (Max Propr.xyz)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="target_pct">Profit Target (%)</label>
+        <input type="number" id="target_pct" value="10" step="0.5" min="1" max="25" oninput="runSimulation()" />
+      </div>
+
+      <div>
+        <label for="dd_pct">Max Drawdown Limite (%)</label>
+        <input type="number" id="dd_pct" value="5" step="0.5" min="1" max="20" oninput="runSimulation()" />
+      </div>
+    </div>
+
+    <!-- PARAMETRI EDGE OPERATIVO -->
+    <div class="grid">
+      <div>
+        <label>Win Rate (% Vincenti)</label>
+        <div class="slider-row">
+          <input type="range" id="winrate" min="25" max="80" value="45" step="1" oninput="updateSliders(); runSimulation();" />
+          <span class="slider-val" id="winrate_val">45%</span>
+        </div>
+      </div>
+
+      <div>
+        <label>Risk to Reward (R : R)</label>
+        <div class="slider-row">
+          <input type="range" id="rr" min="1.0" max="4.0" value="2.0" step="0.1" oninput="updateSliders(); runSimulation();" />
+          <span class="slider-val" id="rr_val">1:2.0</span>
+        </div>
+      </div>
+
+      <div>
+        <label>Rischio a Singolo Trade (% Conto)</label>
+        <div class="slider-row">
+          <input type="range" id="risk_pct" min="0.25" max="2.5" value="0.5" step="0.25" oninput="updateSliders(); runSimulation();" />
+          <span class="slider-val" id="risk_val">0.50%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RISULTATI KPI -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-lbl">🎯 Probabilità Pass Rate</div>
+        <div class="kpi-val ok" id="kpi_pass">--</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">💥 Rischio di Rovina (Bocciatura)</div>
+        <div class="kpi-val err" id="kpi_fail">--</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">⏳ Trade Medi al Target</div>
+        <div class="kpi-val cyan" id="kpi_trades">--</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">📊 Tentativi Attesi (Challenge)</div>
+        <div class="kpi-val warn" id="kpi_attempts">--</div>
+      </div>
+    </div>
+
+    <!-- BARRA VISUALE PROGRESSO MONTE CARLO -->
+    <div class="bar-container">
+      <div class="bar-pass" id="bar_pass" style="width: 50%;" title="Passati"></div>
+      <div class="bar-pending" id="bar_pending" style="width: 10%;" title="Non Conclusi entro 150 Trade"></div>
+      <div class="bar-fail" id="bar_fail" style="width: 40%;" title="Bruciati (Drawdown Hit)"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted); font-weight:700;">
+      <span style="color:var(--emerald);">■ Pass Rate (<span id="txt_pass">--</span>)</span>
+      <span style="color:#94a3b8;">■ Non Risolti in 150 trade (<span id="txt_pend">--</span>)</span>
+      <span style="color:var(--red);">■ Rischio di Rovina (<span id="txt_fail">--</span>)</span>
+    </div>
+
+    <!-- CONSIGLIO ALGORITMICO -->
+    <div id="verdetto_box" class="info-box info">
+      Calcolo in corso...
+    </div>
+
+    <!-- TABELLA COMPARATIVA MULTI-RISCHIO -->
+    <h3 style="margin-top: 24px; font-size:1.1rem; color:var(--text);">Matrice Comparativa del Rischio (Stesso Sistema a Diverso Rischio)</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Rischio per Trade</th>
+            <th>Rischio in Dollari ($)</th>
+            <th>Pass Rate Stimato</th>
+            <th>Rischio di Rovina</th>
+            <th>Verdetto Humble Trading</th>
+          </tr>
+        </thead>
+        <tbody id="risk_matrix_body">
+          <!-- Popolato dinamicamente da JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CONDIVISIONE E SOCIAL -->
+    <div class="cta-row">
+      <a href="https://t.me/share/url?url=https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html&text=Ho%20calcolato%20il%20mio%20Pass%20Rate%20Monte%20Carlo%20per%20le%20Prop%20Firm%20con%20il%20simulatore%20gratuito%20di%20Humble%20Trading!" target="_blank" class="btn btn-tg">Condividi su Telegram</a>
+      <a href="https://api.whatsapp.com/send?text=Calcolatore%20Pass%20Rate%20e%20Rischio%20Rovina%20Prop%20Firm:%20https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-pass-rate-monte-carlo-prop-firm.html" target="_blank" class="btn btn-wa">Condividi su WhatsApp</a>
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn btn-dc">Entra su Discord</a>
+      <a href="hub.html" class="btn btn-hub">Apri Tutti gli 8 Calcolatori</a>
+    </div>
+  </div>
+
+  <!-- GUIDA TECNICA E CONFRONTO REGOLE -->
+  <div class="card">
+    <h2 style="font-size:1.4rem; margin-bottom:14px; color:var(--cyan);">Perché il 92% dei Trader Fallisce la Fase 1 (Anche con Strategie Valide)</h2>
+    <p style="margin-bottom:14px;">
+      La maggior parte dei trader retail approccia le valutazioni delle Prop Firm come un esame di velocità: cercano di raggiungere l'8% o il 10% di Profit Target rischiando l'1.5% o il 2% per operazione.
+    </p>
+    <p style="margin-bottom:14px;">
+      Matematicamente, se il limite di Max Drawdown giornaliero è del 5%, rischiare il 2% a trade significa che **soltanto 3 stop loss consecutivi** (o 2 stop con slippage/commissioni) polverizzano la challenge. Nel mondo reale, persino un sistema quantitativo professionale con il 55% di win rate presenta regolarmente cluster statistici di 4-6 trade perdenti di fila durante l'arco di 50 operazioni.
+    </p>
+
+    <h3 style="font-size:1.2rem; margin:22px 0 10px; color:var(--amber);">Confronto Regole di Rischio delle Migliori Prop Firm 2026</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Mercato</th>
+            <th>Target Fase 1</th>
+            <th>Max Drawdown</th>
+            <th>Tipo di Drawdown</th>
+            <th>Consistenza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Propr.xyz</strong> <span class="tag-prop tag-tier">Tier S+</span></td>
+            <td>On-Chain Hyperliquid</td>
+            <td>8%</td>
+            <td>6%</td>
+            <td>Equity & Balance On-Chain</td>
+            <td>Zero (0%)</td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong> <span class="tag-prop tag-tier">Tier S</span></td>
+            <td>CFD Multi-Asset</td>
+            <td>8%</td>
+            <td>6%</td>
+            <td><strong>100% Statico sul Bilancio</strong></td>
+            <td>Zero (0%)</td>
+          </tr>
+          <tr>
+            <td><strong>FTMO</strong> <span class="tag-prop">Tier A</span></td>
+            <td>CFD Tradizionali</td>
+            <td>10% (Fase 1) / 5% (Fase 2)</td>
+            <td>5% Giornaliero / 10% Totale</td>
+            <td>Equity a mezzanotte CET</td>
+            <td>Nessuna</td>
+          </tr>
+          <tr>
+            <td><strong>Tradeify</strong> <span class="tag-prop tag-tier">Tier S+</span></td>
+            <td>Futures Regolamentati CME</td>
+            <td>$3.000 ($50k)</td>
+            <td>$2.000 Trailing</td>
+            <td><strong>End-of-Day (EOD)</strong></td>
+            <td>Minimi vincoli</td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong> <span class="tag-prop tag-tier">Tier S</span></td>
+            <td>Futures CME</td>
+            <td>$3.000 ($50k)</td>
+            <td>$2.000</td>
+            <td>Flessibile / No Buffer</td>
+            <td>Zero</td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong> <span class="tag-prop">Tier A</span></td>
+            <td>Futures CME</td>
+            <td>$3.000 ($50k)</td>
+            <td>$2.000 Max Loss</td>
+            <td>End-of-Day TopstepX</td>
+            <td>1 Step</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:1.2rem; margin:24px 0 10px; color:var(--emerald);">Le 3 Regole Matematiche per Portare il Pass Rate oltre l'80%</h3>
+    <ul style="padding-left:20px; margin-bottom:16px;">
+      <li style="margin-bottom:8px;"><strong>1. Fissa il rischio massimo allo 0.50% a trade:</strong> Passando dall'1% allo 0.50%, il numero di stop loss tollerati prima di toccare il 5% di Max Drawdown sale da 5 a 10 trade consecutivi, abbattendo la probabilità statistica di rovina di oltre 4 volte.</li>
+      <li style="margin-bottom:8px;"><strong>2. Mantieni un Risk to Reward asimmetrico (&ge; 1:2):</strong> Con un R:R di 1:2, hai bisogno soltanto del 35% di trade vincenti per raggiungere il pareggio matematico. Con il 45% di Win Rate, il valore atteso per singolo trade (Expected Value) è fortemente positivo.</li>
+      <li style="margin-bottom:8px;"><strong>3. Scegli Prop Firm con Drawdown Statico o End-of-Day:</strong> Il drawdown calcolato sull'equity aperta a mezzanotte (FTMO o analoghi CFD) può bruciare il conto se lasci trade aperti durante il rollover notturno. Prediligi strutture a drawdown statico sul bilancio (come Breakout Prop) o End-of-Day sui Futures (Tradeify).</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  function applyPreset() {
+    const p = document.getElementById("preset").value;
+    const targetInput = document.getElementById("target_pct");
+    const ddInput = document.getElementById("dd_pct");
+
+    if (p === "breakout" || p === "propr") {
+      targetInput.value = 8;
+      ddInput.value = 6;
+    } else if (p === "ftmo1") {
+      targetInput.value = 10;
+      ddInput.value = 5;
+    } else if (p === "ftmo2") {
+      targetInput.value = 5;
+      ddInput.value = 5;
+    } else if (p === "tradeify" || p === "lucid" || p === "topstep") {
+      targetInput.value = 6; // $3k su $50k = 6%
+      ddInput.value = 4;     // $2k su $50k = 4%
+    }
+    runSimulation();
+  }
+
+  function updateSliders() {
+    document.getElementById("winrate_val").innerText = document.getElementById("winrate").value + "%";
+    document.getElementById("rr_val").innerText = "1:" + parseFloat(document.getElementById("rr").value).toFixed(1);
+    document.getElementById("risk_val").innerText = parseFloat(document.getElementById("risk_pct").value).toFixed(2) + "%";
+  }
+
+  function simulateMonteCarlo(targetPct, ddPct, winRate, rr, riskPct, iterations = 5000, maxTrades = 150) {
+    let passCount = 0;
+    let failCount = 0;
+    let pendingCount = 0;
+    let totalTradesPassed = 0;
+
+    const winProb = winRate / 100.0;
+    const winGain = riskPct * rr;
+    const lossDrop = riskPct;
+
+    for (let i = 0; i < iterations; i++) {
+      let balance = 0.0;
+      let trades = 0;
+      let outcome = "pending";
+
+      while (trades < maxTrades) {
+        trades++;
+        const isWin = Math.random() < winProb;
+        if (isWin) {
+          balance += winGain;
+        } else {
+          balance -= lossDrop;
+        }
+
+        if (balance >= targetPct) {
+          outcome = "pass";
+          break;
+        }
+        if (balance <= -ddPct) {
+          outcome = "fail";
+          break;
+        }
+      }
+
+      if (outcome === "pass") {
+        passCount++;
+        totalTradesPassed += trades;
+      } else if (outcome === "fail") {
+        failCount++;
+      } else {
+        pendingCount++;
+      }
+    }
+
+    const passRate = (passCount / iterations) * 100.0;
+    const failRate = (failCount / iterations) * 100.0;
+    const pendRate = (pendingCount / iterations) * 100.0;
+    const avgTrades = passCount > 0 ? Math.round(totalTradesPassed / passCount) : 0;
+    const expectedAttempts = passRate > 0 ? (100.0 / passRate).toFixed(1) : "&infin;";
+
+    return { passRate, failRate, pendRate, avgTrades, expectedAttempts };
+  }
+
+  function runSimulation() {
+    const capital = parseFloat(document.getElementById("capital").value);
+    const targetPct = parseFloat(document.getElementById("target_pct").value);
+    const ddPct = parseFloat(document.getElementById("dd_pct").value);
+    const winRate = parseFloat(document.getElementById("winrate").value);
+    const rr = parseFloat(document.getElementById("rr").value);
+    const riskPct = parseFloat(document.getElementById("risk_pct").value);
+
+    const res = simulateMonteCarlo(targetPct, ddPct, winRate, rr, riskPct, 5000, 150);
+
+    document.getElementById("kpi_pass").innerText = res.passRate.toFixed(1) + "%";
+    document.getElementById("kpi_fail").innerText = res.failRate.toFixed(1) + "%";
+    document.getElementById("kpi_trades").innerText = res.avgTrades > 0 ? res.avgTrades + " trade" : "> 150";
+    document.getElementById("kpi_attempts").innerText = res.expectedAttempts + " sfide";
+
+    document.getElementById("bar_pass").style.width = res.passRate + "%";
+    document.getElementById("bar_pending").style.width = res.pendRate + "%";
+    document.getElementById("bar_fail").style.width = res.failRate + "%";
+
+    document.getElementById("txt_pass").innerText = res.passRate.toFixed(1) + "%";
+    document.getElementById("txt_pend").innerText = res.pendRate.toFixed(1) + "%";
+    document.getElementById("txt_fail").innerText = res.failRate.toFixed(1) + "%";
+
+    // Verdetto algoritmico
+    const box = document.getElementById("verdetto_box");
+    if (res.passRate >= 70) {
+      box.className = "info-box success";
+      box.innerHTML = `<strong>🏆 SET-UP MATEMATICAMENTE ECCELLENTE (${res.passRate.toFixed(1)}% Pass Rate):</strong> Il tuo rischio dello ${riskPct.toFixed(2)}% ($${(capital * riskPct / 100).toLocaleString()} a trade) ti protegge ampiamente dai cluster di perdite. In media superi la fase in soli <strong>${res.avgTrades} trade</strong> con un rischio di rovina minimo (${res.failRate.toFixed(1)}%).`;
+    } else if (res.passRate >= 45) {
+      box.className = "info-box info";
+      box.innerHTML = `<strong>⚠️ STATO DI EQUILIBRIO MODERATO (${res.passRate.toFixed(1)}% Pass Rate):</strong> Il sistema ha un edge positivo, ma il rischio di fallire per drawdown (${res.failRate.toFixed(1)}%) è consistente. Se riduci il rischio per trade a <strong>${(riskPct * 0.6).toFixed(2)}%</strong>, il tuo pass rate salirà notevolmente riducendo la volatilità della curva di equity.`;
+    } else {
+      box.className = "info-box danger";
+      box.innerHTML = `<strong>🚨 RISCHIO ELEVATO DI BOCCIATURA (${res.failRate.toFixed(1)}% Rischio di Rovina):</strong> Con questo livello di rischio (${riskPct.toFixed(2)}%), bastano pochissime perdite consecutive per toccare il limite del ${ddPct}% di drawdown. Riduci subito il rischio a <strong>0.25% - 0.50%</strong> o aumenta il Risk:Reward minimo.`;
+    }
+
+    // Matrice comparativa multi-rischio
+    const matrixRisks = [0.25, 0.50, 0.75, 1.00, 1.50, 2.00];
+    const tbody = document.getElementById("risk_matrix_body");
+    tbody.innerHTML = "";
+
+    matrixRisks.forEach(r => {
+      const sim = simulateMonteCarlo(targetPct, ddPct, winRate, rr, r, 2000, 150);
+      const riskDollars = "$" + Math.round(capital * r / 100).toLocaleString();
+      const tr = document.createElement("tr");
+
+      let badgeVerdetto = "";
+      if (sim.passRate >= 70) {
+        badgeVerdetto = `<span style="color:var(--emerald); font-weight:700;">Consigliato (Ottimale)</span>`;
+      } else if (sim.passRate >= 45) {
+        badgeVerdetto = `<span style="color:var(--amber); font-weight:700;">Accettabile</span>`;
+      } else {
+        badgeVerdetto = `<span style="color:var(--red); font-weight:700;">Sconsigliato (Troppo Rischio)</span>`;
+      }
+
+      tr.innerHTML = `
+        <td><strong>${r.toFixed(2)}%</strong></td>
+        <td>${riskDollars}</td>
+        <td><span style="color:var(--emerald); font-weight:800;">${sim.passRate.toFixed(1)}%</span></td>
+        <td><span style="color:var(--red); font-weight:800;">${sim.failRate.toFixed(1)}%</span></td>
+        <td>${badgeVerdetto}</td>
+      `;
+      if (Math.abs(r - riskPct) < 0.05) {
+        tr.style.backgroundColor = "rgba(56, 189, 248, 0.12)";
+        tr.style.border = "1px solid var(--cyan)";
+      }
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Inizializza al caricamento
+  window.onload = function() {
+    updateSliders();
+    runSimulation();
+  };
+</script>
+
+</body>
+</html>

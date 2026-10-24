@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Regime Amministrato vs Dichiarativo vs Prop Firm Italia 2026 | Humble Trading</title>
+  <meta name="description" content="Confronto fiscale e matematico definitivo per trader italiani: calcola il netto reale tra Regime Amministrato (26%), Regime Dichiarativo (Quadro RT/RW + IVAFE) e Prop Firm (Forfettario 5% vs Capitale a Rischio). Con simulatore interattivo." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regime-amministrato-vs-dichiarativo-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Regime Amministrato vs Dichiarativo vs Prop Firm Italia 2026 | Humble Trading" />
+  <meta property="og:description" content="Non guardare solo il 26%: scopri quanto ti resta in tasca e quanto capitale personale metti a rischio tra Broker Italiano, Broker Estero e Prop Firm approvate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regime-amministrato-vs-dichiarativo-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Regime Amministrato vs Dichiarativo vs Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regime-amministrato-vs-dichiarativo-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è la differenza fiscale principale tra Broker in Regime Amministrato e Prop Firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nei broker in Regime Amministrato (es. Fineco, Directa), l'intermediario opera come sostituto d'imposta applicando la ritenuta secca del 26% sulle plusvalenze finanziarie (capital gain), ma richiede che il trader rischi il 100% del proprio capitale personale a mercato. Nelle Prop Firm, il guadagno non è plusvalenza finanziaria ma corrispettivo per servizi o compenso contrattuale, inquadrabile in prestazione occasionale o Partita IVA Forfettaria con imposta sostitutiva al 5% (start-up) sul 78% dell'imponibile, con zero capitale personale esposto sul mercato eccetto la quota d'iscrizione."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come si dichiarano i guadagni (payout) delle Prop Firm in Italia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sotto i 5.000€ annui netti possono essere gestiti come lavoro autonomo occasionale nel Quadro RL del modello Redditi. Per attività continuativa o importi superiori, la soluzione fiscale più efficiente in Italia è la Partita IVA in Regime Forfettario (Codice ATECO consulenza/servizi 74.90.99): imposta sostitutiva del 5% per i primi 5 anni con coefficiente di redditività del 78% e contributi previdenziali INPS Gestione Separata."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Perché il ROI sul capitale proprio è molto più alto con le Prop Firm rispetto a un broker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per ottenere 10.000€ di profitto annuo con un rischio ragionevole del 10% di drawdown su un broker personale, è necessario depositare almeno 30.000€ - 50.000€ di risparmi propri. Con una Prop Firm regolamentata (CFD/On-Chain come Propr.xyz, Breakout Prop, FTMO o Futures CME come Tradeify, Lucid, Topstep), si rischia esclusivamente la fee d'acquisto della challenge (150€ - 350€) per gestire un conto da $50.000 o $100.000, eliminando il rischio di rovina sul patrimonio personale."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .comp-box {
+      background: #070A10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .comp-box.highlight {
+      border-color: rgba(16, 185, 129, 0.5);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, #070A10 100%);
+    }
+    .comp-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .comp-title { font-size: 1.25rem; font-weight: 900; margin-bottom: 12px; }
+    .comp-netto {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      font-feature-settings: "tnum";
+    }
+    .comp-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+    .comp-row:last-child { border-bottom: none; }
+    .comp-label { color: var(--muted); }
+    .comp-val { font-weight: 700; }
+    .roi-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+    .prop-partners {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .prop-card {
+      background: #070A10;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .prop-card:hover { border-color: var(--cyan); transform: translateY(-2px); transition: all 0.2s; }
+    .prop-name { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+    .prop-cat { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+    .prop-perks { font-size: 0.84rem; color: #cbd5e1; margin-bottom: 14px; line-height: 1.45; }
+    .btn-prop {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
+      color: #070A10;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .btn-prop:hover { filter: brightness(1.15); }
+    .share-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .share-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .share-tg { background: #0088cc; }
+    .share-wa { background: #25d366; }
+    .share-x { background: #000; border: 1px solid #333; }
+    .share-copy { background: #334155; cursor: pointer; border: none; }
+    .faq-item {
+      background: #070A10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .faq-q { font-weight: 800; color: var(--cyan); margin-bottom: 6px; }
+    .faq-a { font-size: 0.9rem; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div style="font-weight: 900; letter-spacing: 0.05em;">
+        ⚡ <span style="color: var(--cyan);">HUMBLE</span> TRADING
+      </div>
+      <div>
+        <a href="hub.html">← Tutti i Calcolatori Hub</a>
+      </div>
+    </div>
+
+    <div class="badge">⚖️ SIMULATORE FISCALE & CAPITALE A RISCHIO 2026</div>
+    <h1>Calcolatore Regime Amministrato vs Dichiarativo vs Prop Firm</h1>
+    <p class="sub">
+      Non confrontare solo l'aliquota nominale: scopri il <strong>netto reale in tasca</strong> dopo tasse, commercialista e IVAFE, confrontato con il <strong>capitale proprio effettivamente esposto al rischio di mercato</strong>.
+    </p>
+
+    <!-- FORM INPUTS -->
+    <div class="card">
+      <div class="grid">
+        <div>
+          <label for="profittoLordo">Profitto Lordo Annuo (€)</label>
+          <input type="number" id="profittoLordo" value="12000" min="500" step="500" />
+        </div>
+        <div>
+          <label for="capitalePersonale">Capitale Personale Impegnato (€)</label>
+          <input type="number" id="capitalePersonale" value="25000" min="1000" step="1000" />
+        </div>
+        <div>
+          <label for="costoCommercialista">Costo Commercialista / Fiscale (€/anno)</label>
+          <input type="number" id="costoCommercialista" value="450" min="0" step="50" />
+        </div>
+        <div>
+          <label for="regimeProp">Inquadramento Fiscale Prop Firm</label>
+          <select id="regimeProp">
+            <option value="forfettario_startup" selected>Partita IVA Forfettario Start-up (5% imposta + INPS)</option>
+            <option value="forfettario_ordinario">Partita IVA Forfettario Ordinario (15% imposta + INPS)</option>
+            <option value="occasionale">Prestazione Occasionale (fino a 5.000€)</option>
+          </select>
+        </div>
+        <div>
+          <label for="costoChallenge">Costo Totale Challenge / Combine Prop (€)</label>
+          <input type="number" id="costoChallenge" value="280" min="50" step="10" />
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON RESULTS -->
+    <div class="comparison-grid">
+      <!-- 1. REGIME AMMINISTRATO -->
+      <div class="comp-box">
+        <span class="comp-tag" style="color: var(--amber);">🏦 Broker Italiano (Fineco, Directa)</span>
+        <div class="comp-title">Regime Amministrato</div>
+        <div class="comp-netto" style="color: var(--amber);" id="nettoAmm">€8.880</div>
+        <div class="comp-row">
+          <span class="comp-label">Imposta Capital Gain (26%)</span>
+          <span class="comp-val" id="tassaAmm">-€3.120</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Commercialista & Dichiarazione</span>
+          <span class="comp-val" style="color: var(--emerald);">€0 (Sostituto d'Imposta)</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Monitoraggio Fiscale (Quadro RW)</span>
+          <span class="comp-val" style="color: var(--emerald);">Nessuno</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Capitale Personale a Rischio</span>
+          <span class="comp-val" id="capRischioAmm" style="color: var(--red);">€25.000 (100%)</span>
+        </div>
+        <div class="roi-badge" style="background: rgba(245, 158, 11, 0.12); color: var(--amber);" id="roiAmm">
+          ROI su Capitale a Rischio: +35.5%
+        </div>
+      </div>
+
+      <!-- 2. REGIME DICHIARATIVO -->
+      <div class="comp-box">
+        <span class="comp-tag" style="color: var(--purple);">🌍 Broker Estero (IBKR, Degiro)</span>
+        <div class="comp-title">Regime Dichiarativo</div>
+        <div class="comp-netto" style="color: var(--purple);" id="nettoDich">€8.380</div>
+        <div class="comp-row">
+          <span class="comp-label">Imposta Capital Gain (26%)</span>
+          <span class="comp-val" id="tassaDich">-€3.120</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Commercialista & Quadro RT/RW</span>
+          <span class="comp-val" id="costoCommDich">-€450</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">IVAFE Estera (0.2%)</span>
+          <span class="comp-val" id="ivafeDich">-€50</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Capitale Personale a Rischio</span>
+          <span class="comp-val" id="capRischioDich" style="color: var(--red);">€25.000 (100%)</span>
+        </div>
+        <div class="roi-badge" style="background: rgba(168, 85, 247, 0.12); color: var(--purple);" id="roiDich">
+          ROI su Capitale a Rischio: +33.5%
+        </div>
+      </div>
+
+      <!-- 3. PROP FIRM -->
+      <div class="comp-box highlight">
+        <span class="comp-tag" style="color: var(--emerald);">🚀 Prop Firm Funding (6 Partner Approvati)</span>
+        <div class="comp-title">Prop Firm Funded Account</div>
+        <div class="comp-netto" style="color: var(--emerald);" id="nettoProp">€9.096</div>
+        <div class="comp-row">
+          <span class="comp-label">Imposta Fiscale Sostitutiva</span>
+          <span class="comp-val" id="tassaProp">-€468 (5% su 78%)</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Previdenza INPS Gest. Separata</span>
+          <span class="comp-val" id="inpsProp">-€2.436</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Capitale Rischiato a Mercato</span>
+          <span class="comp-val" style="color: var(--emerald);">€0 (Conto Demo/Simulato)</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-label">Massima Perdita Personale Reale</span>
+          <span class="comp-val" id="capRischioProp" style="color: var(--emerald);">€280 (Costo Challenge)</span>
+        </div>
+        <div class="roi-badge" style="background: rgba(16, 185, 129, 0.18); color: var(--emerald);" id="roiProp">
+          ROI su Capitale a Rischio: +3.248%
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICHE CHIAVE A CONFRONTO -->
+    <div class="card" style="margin-top: 24px;">
+      <h3 style="margin-bottom: 16px; font-size: 1.15rem; color: var(--cyan);">📊 Sintesi Numerica & Vantaggio Competitivo</h3>
+      <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 16px;">
+        Nel trading tradizionale sui broker (amministrato o dichiarativo), ogni drawdown negativo viene prelevato dai tuoi risparmi personali accumulati. Nel modello Prop Firm, l'asimmetria matematica è massima: rischi <strong>solo ed esclusivamente il ticket d'ingresso della challenge</strong> per ottenere un potere d'acquisto e payout a 4-5 cifre.
+      </p>
+
+      <div class="share-btns">
+        <a class="share-btn share-tg" id="shareTg" href="#" target="_blank">✈️ Telegram</a>
+        <a class="share-btn share-wa" id="shareWa" href="#" target="_blank">💬 WhatsApp</a>
+        <a class="share-btn share-x" id="shareX" href="#" target="_blank">✖️ Condividi su X</a>
+        <button class="share-btn share-copy" id="shareCopy" onclick="copiaLink()">📋 Copia Link Calcolatore</button>
+      </div>
+    </div>
+
+    <!-- SEZIONE PROP FIRM APPROVATE -->
+    <div class="card">
+      <div class="badge" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: var(--amber);">
+        🏆 LE 6 PROP FIRM APPROVATE HUMBLE TRADING
+      </div>
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;">Dove Operare in Sicurezza nel 2026</h2>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 18px;">
+        Solo piattaforme con payout documentati, regole trasparenti e zero trappole sul drawdown. Codice sconto esclusivo community: <strong>HUMBLE</strong>.
+      </p>
+
+      <div class="prop-partners">
+        <!-- 1. PROPR.XYZ -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥇 Propr.xyz</div>
+            <div class="prop-cat">CFD & On-Chain su Hyperliquid (Tier S+)</div>
+            <div class="prop-perks">
+              • Esecuzione 100% on-chain decentralizzata<br />
+              • Conti fino a $300.000 con payout USDC istantanei<br />
+              • Nessun broker B-Book intermedio, partnership SwissBorg
+            </div>
+          </div>
+          <a class="btn-prop" href="https://www.propr.xyz/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su Propr.xyz (Codice: HUMBLE) →
+          </a>
+        </div>
+
+        <!-- 2. BREAKOUT PROP -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥈 Breakout Prop</div>
+            <div class="prop-cat">CFD & Crypto Drawdown Statico (Tier S)</div>
+            <div class="prop-perks">
+              • <strong>Drawdown 100% statico basato sul bilancio</strong><br />
+              • Nessuna perdita di conto sul rollover equity di mezzanotte<br />
+              • Payout On-Demand 24/7 e zero consistency rule
+            </div>
+          </div>
+          <a class="btn-prop" href="https://www.breakoutprop.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su Breakout Prop (Codice: HUMBLE) →
+          </a>
+        </div>
+
+        <!-- 3. FTMO -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥉 FTMO</div>
+            <div class="prop-cat">CFD Storica Leader di Mercato (Tier A)</div>
+            <div class="prop-perks">
+              • Dal 2015 la prop firm più solida al mondo<br />
+              • Piattaforme MT4, MT5, cTrader e DXtrade<br />
+              • Profit split fino al 90% con scaling plan fino a $2M
+            </div>
+          </div>
+          <a class="btn-prop" href="https://ftmo.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su FTMO (Link Diretto) →
+          </a>
+        </div>
+
+        <!-- 4. TRADEIFY -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥇 Tradeify</div>
+            <div class="prop-cat">Futures Regolamentati CME (Tier S+)</div>
+            <div class="prop-perks">
+              • Drawdown End-of-Day (EOD) non intraday<br />
+              • Opzione <strong>Instant Funding (Lightning)</strong> senza valutazione<br />
+              • Profit split fino al 90% e piattaforme NinjaTrader/Tradovate
+            </div>
+          </div>
+          <a class="btn-prop" href="https://tradeify.co/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su Tradeify (Codice: HUMBLE) →
+          </a>
+        </div>
+
+        <!-- 5. LUCID TRADING -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥈 Lucid Trading</div>
+            <div class="prop-cat">Futures CME Flessibili (Tier S)</div>
+            <div class="prop-perks">
+              • Piani LucidFlex con Zero Buffer di mantenimento<br />
+              • Profit split del 90% fin dal primo prelievo<br />
+              • Approvazione payout in poche ore lavorative
+            </div>
+          </div>
+          <a class="btn-prop" href="https://lucidtrading.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su Lucid Trading (Codice: HUMBLE) →
+          </a>
+        </div>
+
+        <!-- 6. TOPSTEP -->
+        <div class="prop-card">
+          <div>
+            <div class="prop-name">🥉 Topstep</div>
+            <div class="prop-cat">Futures Chicago CME Storica (Tier A)</div>
+            <div class="prop-perks">
+              • Oltre 10 anni di storia sul trading floor di Chicago<br />
+              • Solo 1 step di valutazione nella Trading Combine<br />
+              • Nuova piattaforma proprietaria TopstepX
+            </div>
+          </div>
+          <a class="btn-prop" href="https://www.topstep.com/?utm_source=humbletrading&utm_medium=hub&utm_campaign=classifica2026" target="_blank" rel="noopener">
+            Apri su Topstep (Link Tracciato) →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="card">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 16px; color: var(--cyan);">❓ Domande Frequenti (FAQ Fiscale & Operativa)</h3>
+      <div class="faq-item">
+        <div class="faq-q">1. Perché nei broker tradizionali il 26% non è l'unico costo nascosto?</div>
+        <div class="faq-a">Nei broker esteri in regime dichiarativo (es. Interactive Brokers) devi considerare il costo annuo del commercialista esperto in fiscalità finanziaria (350€-700€ per elaborare il report dei conti multicurrency) e l'IVAFE sul capitale depositato all'estero. Ma soprattutto, per ottenere un profitto di 10.000€-20.000€ all'anno con un money management prudente devi rischiare direttamente il tuo capitale: se incappi in una serie di stop loss, la perdita intacca i tuoi risparmi personali.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">2. Qual è il reale vantaggio del Regime Forfettario per chi fa Prop Trading?</div>
+        <div class="faq-a">I payout delle Prop Firm non sono proventi di capitale (Capital Gain) perché il trader opera su conti demo/simulati o con fondi proprietari della società estera senza possedere un conto titoli segregato. Vengono inquadrati come proventi per prestazioni di servizi (codice ATECO 74.90.99). In Regime Forfettario Start-up l'imposta è del 5% applicata al 78% del fatturato (tassa effettiva 3.9%), con la contribuzione previdenziale calcolata sempre sul 78%.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">3. Come posso azzerare il rischio di rovina finanziaria?</div>
+        <div class="faq-a">Separando completamente il capitale di risparmio dal capitale operativo. Non depositare mai cifre a 4 o 5 cifre su broker esteri ad alta leva: utilizza le challenge delle Prop Firm approvate (Propr.xyz, Breakout, Tradeify) dove il tuo rischio massimo assoluto è matematicamente limitato alla fee d'iscrizione, mentre i profitti scalano in percentuale a 4-5 cifre.</div>
+      </div>
+    </div>
+
+    <!-- COMMUNITY CTA -->
+    <div class="card" style="text-align: center; border-color: rgba(56, 189, 248, 0.4); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 0%, #0F1623 100%);">
+      <h3 style="font-size: 1.35rem; font-weight: 900; margin-bottom: 10px;">Entra nella Community Gratuita di Humble Trading</h3>
+      <p style="color: var(--muted); font-size: 0.95rem; max-width: 650px; margin: 0 auto 18px;">
+        Unisciti a oltre 200 trader su Telegram e Discord: alert di liquidità su XAUUSD e Nasdaq, tabelle sul rischio, template di journal e partecipazione automatica al Giveaway da $50.000.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://t.me/Hubmles" target="_blank" style="background: #0088cc; color: #fff; font-weight: 800; padding: 12px 24px; border-radius: 10px; text-decoration: none;">
+          ✈️ Canale Telegram @Hubmles
+        </a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" style="background: #5865F2; color: #fff; font-weight: 800; padding: 12px 24px; border-radius: 10px; text-decoration: none;">
+          💬 Server Discord Humble Trading
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function fmtEur(val) {
+      return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(val);
+    }
+
+    function calcola() {
+      const lordo = Math.max(0, parseFloat(document.getElementById('profittoLordo').value) || 0);
+      const capPersonale = Math.max(1, parseFloat(document.getElementById('capitalePersonale').value) || 1);
+      const commDich = Math.max(0, parseFloat(document.getElementById('costoCommercialista').value) || 0);
+      const regimeProp = document.getElementById('regimeProp').value;
+      const costoChallenge = Math.max(1, parseFloat(document.getElementById('costoChallenge').value) || 1);
+
+      // 1. Regime Amministrato (26% secco alla fonte, zero commercialista)
+      const tassaAmm = lordo * 0.26;
+      const nettoAmm = lordo - tassaAmm;
+      const roiAmm = (nettoAmm / capPersonale) * 100;
+
+      document.getElementById('tassaAmm').textContent = `-${fmtEur(tassaAmm)}`;
+      document.getElementById('nettoAmm').textContent = fmtEur(nettoAmm);
+      document.getElementById('capRischioAmm').textContent = `${fmtEur(capPersonale)} (100%)`;
+      document.getElementById('roiAmm').textContent = `ROI su Capitale a Rischio: +${roiAmm.toFixed(1)}%`;
+
+      // 2. Regime Dichiarativo (26% + commercialista + IVAFE 0.2% sul capitale estero)
+      const tassaDich = lordo * 0.26;
+      const ivafeDich = capPersonale * 0.002;
+      const nettoDich = Math.max(0, lordo - tassaDich - commDich - ivafeDich);
+      const roiDich = (nettoDich / capPersonale) * 100;
+
+      document.getElementById('tassaDich').textContent = `-${fmtEur(tassaDich)}`;
+      document.getElementById('costoCommDich').textContent = `-${fmtEur(commDich)}`;
+      document.getElementById('ivafeDich').textContent = `-${fmtEur(ivafeDich)}`;
+      document.getElementById('nettoDich').textContent = fmtEur(nettoDich);
+      document.getElementById('capRischioDich').textContent = `${fmtEur(capPersonale)} (100%)`;
+      document.getElementById('roiDich').textContent = `ROI su Capitale a Rischio: +${roiDich.toFixed(1)}%`;
+
+      // 3. Prop Firm
+      let tassaProp = 0;
+      let inpsProp = 0;
+      let etichettaTassa = "";
+
+      if (regimeProp === "forfettario_startup") {
+        // Base imponibile 78%, imposta 5% -> 3.9% effettivo
+        const base = lordo * 0.78;
+        tassaProp = base * 0.05;
+        inpsProp = base * 0.2607; // INPS Gestione Separata
+        etichettaTassa = `-${fmtEur(tassaProp)} (5% su 78%)`;
+      } else if (regimeProp === "forfettario_ordinario") {
+        const base = lordo * 0.78;
+        tassaProp = base * 0.15;
+        inpsProp = base * 0.2607;
+        etichettaTassa = `-${fmtEur(tassaProp)} (15% su 78%)`;
+      } else {
+        // Occasionale
+        tassaProp = lordo * 0.20; // Ritenuta d'acconto 20%
+        inpsProp = lordo > 5000 ? (lordo - 5000) * 0.2607 : 0;
+        etichettaTassa = `-${fmtEur(tassaProp)} (Ritenuta 20%)`;
+      }
+
+      const nettoProp = Math.max(0, lordo - tassaProp - inpsProp);
+      const roiProp = (nettoProp / costoChallenge) * 100;
+
+      document.getElementById('tassaProp').textContent = etichettaTassa;
+      document.getElementById('inpsProp').textContent = `-${fmtEur(inpsProp)}`;
+      document.getElementById('nettoProp').textContent = fmtEur(nettoProp);
+      document.getElementById('capRischioProp').textContent = `${fmtEur(costoChallenge)} (Costo Challenge)`;
+      document.getElementById('roiProp').textContent = `ROI su Capitale a Rischio: +${roiProp.toFixed(0)}%`;
+
+      // Aggiorna link di condivisione
+      aggiornaSocial(nettoAmm, nettoDich, nettoProp, lordo);
+    }
+
+    function aggiornaSocial(nettoAmm, nettoDich, nettoProp, lordo) {
+      const pageUrl = window.location.href;
+      const testo = encodeURIComponent(`📊 Confronto Tasse & Rischio Trading Italia 2026: Su ${fmtEur(lordo)} di profitto, Broker Amministrato = ${fmtEur(nettoAmm)} netto (rischiando capitale personale), mentre con Prop Firm Funded = ${fmtEur(nettoProp)} netto rischiando solo la fee della challenge! Calcola subito: ${pageUrl}`);
+      
+      document.getElementById('shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${testo}`;
+      document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${testo}`;
+      document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${testo}`;
+    }
+
+    function copiaLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const btn = document.getElementById('shareCopy');
+        btn.textContent = "✓ Link Copiato!";
+        setTimeout(() => { btn.textContent = "📋 Copia Link Calcolatore"; }, 2500);
+      });
+    }
+
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('input', calcola);
+    });
+
+    calcola();
+  </script>
+</body>
+</html>

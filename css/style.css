@@ -1,0 +1,686 @@
+/* --------------------------------------------------------------------------
+   HUMBLE TRADING — "Dall'Abisso alla Luce"
+   Seamless Fixed Photo Deck & Pure Spatial Typography (Inferno Edition)
+   -------------------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-inferno: #FF4500;
+  --color-amber: #F59E0B;
+  --color-cyan: #38BDF8;
+  --color-emerald: #00F5A0;
+  --color-discord: #5865F2;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: #020306;
+  color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #020306;
+  color: #FFFFFF;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: none;
+  user-select: none;
+}
+
+/* Custom Fluid Glowing Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 69, 0, 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(1px);
+}
+
+body.cursor-hover .custom-cursor {
+  width: 16px;
+  height: 16px;
+  background: var(--color-emerald);
+  box-shadow: 0 0 25px var(--color-emerald);
+}
+
+body.cursor-hover .cursor-follower {
+  width: 65px;
+  height: 65px;
+  border-color: var(--color-cyan);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   SEAMLESS FIXED PHOTO DECK (Smooth Sliding Transitions, Zero Seams)
+   -------------------------------------------------------------------------- */
+.bg-deck-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-deck-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05) translateY(25px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.bg-deck-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2, 3, 6, 0.35) 0%, rgba(3, 7, 15, 0.5) 100%);
+}
+
+#bg-slide-5::after {
+  background: linear-gradient(180deg, rgba(20, 35, 60, 0.25) 0%, rgba(255, 255, 255, 0.85) 60%, #FFFFFF 100%);
+}
+
+.bg-deck-slide.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Post-FX Overlays */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 4;
+}
+
+.cinematic-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(2, 3, 6, 0.65) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Spatial Persistent HUD Interface */
+.spatial-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 3.5rem;
+}
+
+.hud-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.hud-brand-logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(56, 189, 248, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hud-brand:hover .hud-brand-logo-img {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 35px rgba(245, 158, 11, 0.6);
+}
+
+.hud-brand-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.hud-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #FFFFFF;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.hud-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--color-amber);
+  letter-spacing: 0.2em;
+}
+
+.hud-telemetry-pill {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.telemetry-node {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.live-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-inferno);
+  box-shadow: 0 0 10px var(--color-inferno);
+  animation: pulse-hud 2s infinite;
+}
+
+@keyframes pulse-hud {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.6); opacity: 0.4; }
+}
+
+.hud-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(88, 101, 242, 0.35);
+  border: 1px solid rgba(88, 101, 242, 0.7);
+  color: #FFFFFF;
+  padding: 0.65rem 1.5rem;
+  border-radius: 30px;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  pointer-events: auto;
+}
+
+.hud-cta-link:hover {
+  background: rgba(88, 101, 242, 0.6);
+  box-shadow: 0 0 35px rgba(88, 101, 242, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Vertical Depth Meter HUD (Right Edge) */
+.hud-depth-tracker {
+  position: fixed;
+  right: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.depth-legend {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.depth-readout {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-amber);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+}
+
+.depth-rail {
+  width: 2px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  border-radius: 2px;
+}
+
+.depth-rail-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--color-inferno), var(--color-amber), var(--color-cyan), #FFFFFF);
+  box-shadow: 0 0 15px var(--color-inferno);
+  transition: height 0.1s linear;
+}
+
+.depth-stage-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: right;
+  max-width: 120px;
+}
+
+/* --------------------------------------------------------------------------
+   SPATIAL SECTIONS
+   -------------------------------------------------------------------------- */
+.immersive-experience-wrap {
+  position: relative;
+  z-index: 10;
+}
+
+.chapter-section {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 4rem;
+  background: transparent;
+}
+
+.chapter-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   PURE SPATIAL TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+/* CHAPTER 1: L'ABISSO (Hero - Inferno Origin) */
+.hero-centered-layout {
+  max-width: 920px;
+}
+
+.chapter-badge-mono {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-amber);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+}
+
+.hero-massive-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(3.75rem, 8vw, 7rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.4), 0 4px 20px rgba(0, 0, 0, 0.9);
+  margin-bottom: 2rem;
+}
+
+.hero-massive-headline span.ethereal-italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-amber);
+  text-shadow: 0 0 50px rgba(245, 158, 11, 0.8);
+}
+
+.hero-manifesto-sub {
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 3.5rem;
+  max-width: 720px;
+  font-weight: 300;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+}
+
+.btn-spatial-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.45), rgba(245, 158, 11, 0.35));
+  border: 1px solid rgba(245, 158, 11, 0.7);
+  color: #FFFFFF;
+  padding: 1.25rem 3rem;
+  border-radius: 40px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  box-shadow: 0 0 40px rgba(255, 69, 0, 0.4);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: none;
+}
+
+.btn-spatial-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 70px rgba(245, 158, 11, 0.7);
+  border-color: #FFFFFF;
+}
+
+/* CHAPTER 2: LA RISALITA */
+.chapter-heading-center {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 5rem auto;
+}
+
+.chapter-title-cinematic {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  color: #FFFFFF;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+}
+
+.spatial-floating-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.5rem;
+}
+
+.floating-column-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.85);
+}
+
+.column-num-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-emerald);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 0 12px var(--color-emerald);
+}
+
+.floating-column-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  margin-bottom: 1.25rem;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.floating-column-block p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* CHAPTER 3: LA CHIAREZZA */
+.governance-floating-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.5rem;
+}
+
+.governance-block {
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.85);
+}
+
+.governance-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-cyan);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 0 12px var(--color-cyan);
+}
+
+.governance-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  margin-bottom: 1.25rem;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.governance-block p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* CHAPTER 4: LA VERITÀ */
+.about-floating-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.85);
+}
+
+.about-quote-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+
+.about-text-narrative p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.about-values-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  padding-left: 2rem;
+}
+
+.about-value-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-emerald);
+  margin-bottom: 0.4rem;
+}
+
+.about-value-item p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* CHAPTER 5: LA LUCE */
+.zenith-floating-content {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  color: #050B17;
+}
+
+.zenith-logo-wrap {
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.zenith-logo-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 50px rgba(255, 255, 255, 0.9);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.zenith-logo-img:hover {
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 15px 50px rgba(88, 101, 242, 0.3), 0 0 70px rgba(255, 255, 255, 1);
+}
+
+.zenith-floating-content h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5.25rem);
+  line-height: 1.02;
+  color: #050B17;
+  margin-bottom: 1.75rem;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.9);
+}
+
+.zenith-floating-content p {
+  color: #1E293B;
+  font-size: 1.35rem;
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+  font-weight: 400;
+}
+
+.btn-zenith-discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #5865F2;
+  color: #FFFFFF;
+  padding: 1.35rem 3.75rem;
+  border-radius: 40px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  box-shadow: 0 15px 50px rgba(88, 101, 242, 0.6), 0 0 70px rgba(88, 101, 242, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: none;
+}
+
+.btn-zenith-discord:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 20px 60px rgba(88, 101, 242, 0.8);
+  background: #6A76FF;
+}
+
+/* Spatial Minimal Footer in Pure Light */
+.spatial-footer {
+  background: #FFFFFF;
+  color: #475569;
+  border-top: 1px solid #E2E8F0;
+  padding: 4.5rem 4rem 3rem 4rem;
+  position: relative;
+  z-index: 20;
+}
+
+.footer-spatial-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-floating-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .spatial-floating-columns,
+  .governance-floating-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hud-depth-tracker {
+    display: none;
+  }
+
+  .spatial-hud {
+    padding: 1.5rem 2rem;
+  }
+
+  .chapter-section {
+    padding: 6rem 2rem;
+  }
+}

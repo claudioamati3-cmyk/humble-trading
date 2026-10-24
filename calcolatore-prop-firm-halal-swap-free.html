@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Prop Firm Halal & Swap-Free 2026 | Costi Rollover, Riba e Regole | Humble Trading</title>
+  <meta name="description" content="Simulatore matematico ed etico per Prop Firm: calcola l'impatto dello swap notturno sul Daily Drawdown, verifica i requisiti Swap-Free (senza Riba) e confronta CFD vs On-Chain vs Futures CME." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-halal-swap-free.html" />
+  <meta property="og:title" content="Calcolatore Prop Firm Halal & Swap-Free 2026 | Costi Rollover e Regole | Humble Trading" />
+  <meta property="og:description" content="Evita che lo swap a mezzanotte bruci il tuo Daily Drawdown. Calcola i costi di mantenimento overnight e scopri le regole per conti Swap-Free tra Propr.xyz, Breakout, FTMO, Tradeify, Lucid e Topstep." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-halal-swap-free.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Prop Firm Halal & Swap-Free 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-prop-firm-halal-swap-free.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Cosa rende un conto di trading Prop Firm 'Halal' o conforme alla finanza islamica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un conto è considerato conforme ai principi della finanza islamica se elimina totalmente il 'Riba' (interessi passivi di prestito o swap overnight addebitati/accreditati per il mantenimento a leva oltre le 00:00 CEST), riduce il 'Gharar' (ambiguità contrattuale o manipolazione delle quotazioni dei broker B-Book) ed evita strumenti speculativi privi di sottostante o utilità economica reale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come incide lo swap a mezzanotte sul Daily Drawdown di una Prop Firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nelle Prop Firm CFD tradizionali con calcolo equity-based a mezzanotte (come FTMO), lo swap addebitato per posizioni aperte overnight viene decurtato all'istante dall'equity del conto. Se un trader ha già accumulato un drawdown parziale nella sessione, l'addebito dello swap alle 00:00 può causare una violazione istantanea del Max Daily Drawdown Shield con squalifica immediata del conto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è la differenza tra CFD Swap-Free, On-Chain su Hyperliquid e Futures CME?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nei CFD Swap-Free (es. FTMO o Breakout), il broker disattiva il rollover a tasso variabile, talvolta sostituendolo con una commissione amministrativa fissa dopo X giorni. Sulle Prop On-Chain (come Propr.xyz su Hyperliquid), non esiste debito bancario né Riba: il funding rate è uno scambio peer-to-peer tra posizioni long e short per ancorare il perpetual al prezzo spot. Sui Futures CME regolamentati (Tradeify, Lucid, Topstep), l'operatività intraday si chiude prima del settlement serale senza alcun interesse di prestito notturno."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .nav-links { display: flex; gap: 16px; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      background: rgba(16, 185, 129, 0.12); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin: 16px 0 12px;
+      background: linear-gradient(135deg, #FFF 20%, var(--emerald) 70%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 28px; max-width: 780px; }
+    
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .card-title {
+      font-size: 1.25rem; font-weight: 700; margin-bottom: 18px;
+      display: flex; align-items: center; gap: 8px; color: var(--text);
+    }
+    
+    .form-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;
+      margin-bottom: 24px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+    select, input {
+      background: #0B111C; border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 12px 14px; color: #FFF; font-size: 0.95rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    select:focus, input:focus { border-color: var(--emerald); }
+    
+    .results-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px;
+      margin-top: 20px;
+    }
+    .result-box {
+      background: #070B12; border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 18px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .result-box.highlight { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.04); }
+    .result-box.warning { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.04); }
+    .result-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+    .result-value { font-size: 1.55rem; font-weight: 800; color: #FFF; }
+    .result-sub { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
+    
+    .status-banner {
+      margin-top: 20px; padding: 16px; border-radius: 10px; font-size: 0.9rem;
+      display: flex; align-items: center; gap: 12px; font-weight: 500;
+    }
+    .status-halal { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399; }
+    .status-riba { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; }
+    .status-warning { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24; }
+
+    .comparison-table {
+      width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .comparison-table th { background: #0A101A; color: var(--muted); font-weight: 600; }
+    .comparison-table tr:hover { background: rgba(255,255,255,0.02); }
+    .tag-tier {
+      display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;
+    }
+    .tier-s { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .tier-a { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+
+    .dossier { margin-top: 40px; }
+    .dossier h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #FFF; }
+    .dossier h3 { font-size: 1.15rem; font-weight: 600; margin: 20px 0 10px; color: var(--cyan); }
+    .dossier p { color: #CBD5E1; margin-bottom: 14px; font-size: 0.95rem; }
+    .dossier ul { padding-left: 20px; color: #CBD5E1; margin-bottom: 16px; font-size: 0.92rem; }
+    .dossier li { margin-bottom: 6px; }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(56, 189, 248, 0.15));
+      border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 16px; padding: 28px;
+      text-align: center; margin-top: 48px;
+    }
+    .cta-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; color: #FFF; }
+    .cta-desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none;
+      font-size: 0.92rem; transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-tg { background: #229ED9; color: #FFF; margin-right: 12px; }
+    .btn-dc { background: #5865F2; color: #FFF; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="nav">
+    <a href="index.html">← Torna alla Home Humble Trading</a>
+    <div class="nav-links">
+      <a href="hub.html">🧮 Hub Simulatori</a>
+      <a href="classifica-prop-firm-2026.html">🏆 Classifica Prop 2026</a>
+      <a href="indicatore-tradingview-pinescript.html">📈 Indicatore PineScript</a>
+    </div>
+  </div>
+
+  <span class="badge">🕌 Finanza Etica & Risk Management 2026</span>
+  <h1>Calcolatore Prop Firm Halal & Swap-Free</h1>
+  <p class="subtitle">
+    Simula l'impatto economico ed etico del mantenimento posizioni oltre le ore 00:00 CEST. Calcola il costo dello swap notturno, verifica l'assenza di <strong>Riba (interessi passivi)</strong> e proteggi il tuo <strong>Daily Drawdown Shield</strong> dall'erosione del rollover.
+  </p>
+
+  <!-- SIMULATORE INTERATTIVO -->
+  <div class="card">
+    <div class="card-title">🧮 Simulatore Costi Rollover & Verifica Sharia / Swap-Free</div>
+    
+    <div class="form-grid">
+      <div class="field">
+        <label for="accSize">Dimensione Conto Prop</label>
+        <select id="accSize" onchange="calcola()">
+          <option value="25000">$25.000 (Daily Max DD: $1.250)</option>
+          <option value="50000" selected>$50.000 (Daily Max DD: $2.500)</option>
+          <option value="100000">$100.000 (Daily Max DD: $5.000)</option>
+          <option value="150000">$150.000 (Daily Max DD: $7.500)</option>
+          <option value="300000">$300.000 (Daily Max DD: $15.000)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="asset">Asset Negoziato</label>
+        <select id="asset" onchange="calcola()">
+          <option value="XAUUSD" selected>XAUUSD (Oro Spot) - Swap medio CFD: -$18/lotto</option>
+          <option value="EURUSD">Forex Majors (EURUSD) - Swap medio CFD: -$4/lotto</option>
+          <option value="NQ_CFD">Nasdaq 100 (CFD Indici) - Swap medio CFD: -$12/contratto</option>
+          <option value="CRYPTO_CFD">Crypto (BTC/ETH CFD) - Swap medio CFD: -$25/notte</option>
+          <option value="FUTURES_CME">Futures CME (NQ/MNQ, GC) - No Swap Intraday (Tradeify/Topstep)</option>
+          <option value="ONCHAIN_HL">On-Chain Hyperliquid (Propr.xyz) - P2P Funding Rate</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="lotti">Lotti / Contratti aperti</label>
+        <input type="number" id="lotti" value="1.0" min="0.01" max="100" step="0.1" oninput="calcola()" />
+      </div>
+
+      <div class="field">
+        <label for="notti">Notti di Mantenimento (Overnight)</label>
+        <input type="number" id="notti" value="3" min="1" max="60" step="1" oninput="calcola()" />
+      </div>
+
+      <div class="field">
+        <label for="tipoConto">Tipologia Conto Esecutivo</label>
+        <select id="tipoConto" onchange="calcola()">
+          <option value="cfd_standard">CFD Standard (Swap Interessi Attivo a Mezzanotte)</option>
+          <option value="cfd_islamic" selected>CFD Swap-Free / Islamico (Zero Swap / Flat Admin Fee)</option>
+          <option value="futures_cme">Futures CME Regolamentati (Zero Swap - Chiusura Intraday)</option>
+          <option value="onchain_hl">On-Chain Hyperliquid (Propr.xyz - Zero Riba, Funding P2P)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RISULTATI -->
+    <div class="results-grid">
+      <div class="result-box" id="boxCosto">
+        <div class="result-label">Costo Rollover Totale</div>
+        <div class="result-value" id="resCosto">$0.00</div>
+        <div class="result-sub" id="resCostoSub">Addebitato alle 00:00 CEST</div>
+      </div>
+
+      <div class="result-box" id="boxErosione">
+        <div class="result-label">Erosione Daily Drawdown</div>
+        <div class="result-value" id="resErosione">0.0%</div>
+        <div class="result-sub" id="resErosioneSub">Del buffer giornaliero massimo</div>
+      </div>
+
+      <div class="result-box highlight" id="boxStatus">
+        <div class="result-label">Conformità Etica / Sharia</div>
+        <div class="result-value" id="resStatus" style="font-size: 1.15rem;">CONFORME (HALAL)</div>
+        <div class="result-sub" id="resStatusSub">Zero Riba / Interessi passivi</div>
+      </div>
+    </div>
+
+    <div class="status-banner status-halal" id="bannerSpiegazione">
+      <span>✅</span>
+      <div id="bannerText">Questo conto elimina completamente lo swap a tasso d'interesse (Riba). Nessun addebito notturno eroderà il tuo Daily Drawdown Shield.</div>
+    </div>
+  </div>
+
+  <!-- TABELLA COMPARATIVA PROP FIRM APPROVATE -->
+  <div class="card">
+    <div class="card-title">🏆 Politica Swap-Free & Conti Islamici nelle Prop Firm Approvate 2026</div>
+    <div style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Categoria</th>
+            <th>Conto Swap-Free</th>
+            <th>Regole Weekend / Overnight</th>
+            <th>Conformità Riba</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Propr.xyz</strong></td>
+            <td><span class="tag-tier tier-s">Tier S+ On-Chain</span></td>
+            <td>Zero Swap (Nativo)</td>
+            <td>Mantenimento 24/7 permesso senza addebiti bancari</td>
+            <td><span style="color:#34d399;">100% Halal (Funding Rate P2P)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong></td>
+            <td><span class="tag-tier tier-s">Tier S CFD Statico</span></td>
+            <td>Disponibile su richiesta</td>
+            <td>Drawdown 100% statico sul bilancio (nessun trap mezzanotte)</td>
+            <td><span style="color:#34d399;">Conforme (Swap-Free Option)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tradeify</strong></td>
+            <td><span class="tag-tier tier-s">Tier S+ Futures CME</span></td>
+            <td>Zero Swap (Nativo CME)</td>
+            <td>Chiusura prima del settlement (Intraday puro)</td>
+            <td><span style="color:#34d399;">100% Halal (Zero Debito / No Riba)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong></td>
+            <td><span class="tag-tier tier-s">Tier S Futures CME</span></td>
+            <td>Zero Swap (Nativo CME)</td>
+            <td>Operatività intraday regolamentata Chicago</td>
+            <td><span style="color:#34d399;">100% Halal (Zero Riba)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong></td>
+            <td><span class="tag-tier tier-a">Tier A Futures CME</span></td>
+            <td>Zero Swap (Nativo CME)</td>
+            <td>Piattaforma TopstepX con chiusura pre-settlement</td>
+            <td><span style="color:#34d399;">100% Halal (Zero Riba)</span></td>
+          </tr>
+          <tr>
+            <td><strong>FTMO</strong></td>
+            <td><span class="tag-tier tier-a">Tier A CFD</span></td>
+            <td>Opzione Swap-Free</td>
+            <td>Richiede conto specifico; admin fee dopo 14 giorni</td>
+            <td><span style="color:#fbbf24;">Parziale (Verificare Admin Fee)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DOSSIER TECNICO & GUIDA ALLA FINANZA ETICA -->
+  <div class="dossier">
+    <h2>Guida Approfondita: La Trappola dello Swap a Mezzanotte e la Finanza Etica nel Prop Trading</h2>
+
+    <h3>1. Perché lo Swap Notturno Viola la Finanza Islamica (Riba)</h3>
+    <p>
+      Nel trading CFD con leva finanziaria tradizionale, quando mantieni una posizione aperta oltre le ore 00:00 del server (solitamente fuso orario di Cipro o Londra, ore 23:00/00:00 CEST), il broker applica un <strong>tasso di interesse di rollover</strong> (Swap). Questo importo è il costo del denaro preso a prestito overnight per finanziare la leva.
+    </p>
+    <p>
+      Nella giurisprudenza islamica (Sharia), qualsiasi interesse garantito o addebito passivo generato dal semplice trascorrere del tempo su un prestito di liquidità è classificato come <strong>Riba</strong>, ed è severamente proibito. Un conto di trading conforme deve operare su basi commerciali lecite, scambi di beni reali o compartecipazione a costi di gestione effettivi e trasparenti (senza tassi percentuali usurari o legati ai tassi interbancari Euribor/Libor/SOFR).
+    </p>
+
+    <h3>2. La Trappola Nascosta del Daily Drawdown a Mezzanotte</h3>
+    <p>
+      Migliaia di trader italiani che operano su Prop Firm CFD (come FTMO standard) vengono squalificati senza nemmeno aver subito un movimento avverso del prezzo. Come avviene?
+    </p>
+    <ul>
+      <li>Un trader entra long con 3 lotti su <strong>XAUUSD</strong> alle 21:00 su un conto da $50.000.</li>
+      <li>Il trade è in floating negativo controllato di -$1.900 (il Daily Drawdown Shield massimo consentito è -$2.500).</li>
+      <li>Scattano le ore 00:00: il broker addebita lo swap notturno di -$54 ($18 x 3 lotti).</li>
+      <li>Il mercoledì notte, lo swap è addirittura <strong>triplo</strong> (per coprire il weekend), portando l'addebito a -$162.</li>
+      <li>Il nuovo drawdown calcolato sull'equity tocca improvvisamente -$2.512: l'algoritmo della prop firma un'infrazione automatica e <strong>cancella il conto</strong> all'istante!</li>
+    </ul>
+
+    <h3>3. La Soluzione: Come Eliminare lo Swap e Operare in Modo Halal</h3>
+    <p>
+      Humble Trading approva esclusivamente 6 Prop Firm nel proprio protocollo 2026, suddivise in tre modelli strutturali ideali per chi cerca trasparenza e zero Riba:
+    </p>
+    <ul>
+      <li><strong>Prop Firm Futures Regolamentate CME (Tradeify, Lucid Trading, Topstep):</strong> Sui Futures quotati al CME di Chicago, i contratti intraday vengono chiusi automaticamente prima della campana di settlement serale. Non esiste alcun prestito a leva bancario né addebito di swap. L'esecuzione è 100% Halal e non espone mai al rischio rollover.</li>
+      <li><strong>Prop Firm On-Chain Decentralizzate (Propr.xyz su Hyperliquid):</strong> Nessun server B-Book proprietario, nessun interesse passivo. Le posizioni perpetual su Hyperliquid si basano sul <em>Funding Rate</em> peer-to-peer tra trader (chi è long paga chi è short o viceversa), garantendo un allineamento matematico trasparente e zero debiti con istituti bancari centralizzati.</li>
+      <li><strong>Prop Firm CFD con Drawdown Statico (Breakout Prop):</strong> Oltre a fornire l'opzione Swap-Free, Breakout calcola il drawdown 100% sul bilancio consolidato, eliminando alla radice il rischio di vedersi chiudere il conto a mezzanotte a causa delle oscillazioni dell'equity.</li>
+    </ul>
+  </div>
+
+  <!-- CTA COMMUNITY -->
+  <div class="cta-banner">
+    <div class="cta-title">Entra nella Community Gratuita di Humble Trading</div>
+    <div class="cta-desc">
+      Ricevi ogni mattina le analisi pre-market su XAUUSD e Nasdaq, impara la gestione matematica del rischio e scarica l'indicatore TradingView PineScript v5 senza spendere un centesimo.
+    </div>
+    <div>
+      <a href="https://t.me/Hubmles" target="_blank" class="btn btn-tg">✈️ Unisciti su Telegram (@Hubmles)</a>
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn btn-dc">💬 Server Discord Ufficiale</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function calcola() {
+    const accSize = parseFloat(document.getElementById('accSize').value);
+    const asset = document.getElementById('asset').value;
+    const lotti = Math.max(0.01, parseFloat(document.getElementById('lotti').value) || 0.1);
+    const notti = Math.max(1, parseInt(document.getElementById('notti').value) || 1);
+    const tipoConto = document.getElementById('tipoConto').value;
+
+    const dailyMaxDD = accSize * 0.05; // 5% standard
+
+    let swapPerLottoNotte = 0;
+    if (asset === 'XAUUSD') swapPerLottoNotte = 18.0;
+    else if (asset === 'EURUSD') swapPerLottoNotte = 4.0;
+    else if (asset === 'NQ_CFD') swapPerLottoNotte = 12.0;
+    else if (asset === 'CRYPTO_CFD') swapPerLottoNotte = 25.0;
+    else if (asset === 'FUTURES_CME') swapPerLottoNotte = 0.0;
+    else if (asset === 'ONCHAIN_HL') swapPerLottoNotte = 2.0; // Stima media funding rate p2p
+
+    let costoTotale = 0;
+    let isHalal = true;
+    let isWarning = false;
+    let statusText = "CONFORME (HALAL)";
+    let spiegazione = "";
+
+    if (tipoConto === 'cfd_standard') {
+      costoTotale = swapPerLottoNotte * lotti * notti;
+      isHalal = false;
+      statusText = "NON CONFORME (RIBA)";
+      spiegazione = "ATTENZIONE: Questo conto addebita interessi passivi di prestito (Riba) alle 00:00 CEST. Inoltre, l'addebito dello swap riduce l'equity del conto e può far scattare la violazione del Daily Drawdown Shield.";
+    } else if (tipoConto === 'cfd_islamic') {
+      if (notti > 14) {
+        costoTotale = 5.0 * lotti * (notti - 14); // Admin fee dopo 14 giorni
+        isWarning = true;
+        statusText = "ADMIN FEE ATTIVA (>14gg)";
+        spiegazione = "Zero swap per i primi 14 giorni. Oltre le 2 settimane, la prop applica una flat admin fee di gestione posizione.";
+      } else {
+        costoTotale = 0;
+        statusText = "CONFORME (SWAP-FREE)";
+        spiegazione = "Zero swap e zero interessi di prestito. Posizione mantenuta entro i 14 giorni gratuiti consentiti.";
+      }
+    } else if (tipoConto === 'futures_cme') {
+      costoTotale = 0;
+      statusText = "100% HALAL (CME FUTURES)";
+      spiegazione = "Sui Futures CME (Tradeify, Lucid, Topstep), le posizioni intraday vengono chiuse prima del settlement serale. Zero debito, zero prestito a leva e zero Riba.";
+    } else if (tipoConto === 'onchain_hl') {
+      costoTotale = (asset === 'ONCHAIN_HL' ? 1.5 : 2.5) * lotti * (notti / 3);
+      statusText = "100% HALAL (P2P FUNDING)";
+      spiegazione = "Su Hyperliquid (Propr.xyz), il funding rate è uno scambio peer-to-peer tra trader long e short senza alcuna intermediazione bancaria a tasso di usura (Zero Riba).";
+    }
+
+    const erosioneDD = (costoTotale / dailyMaxDD) * 100;
+
+    // Aggiornamento DOM
+    document.getElementById('resCosto').innerText = '$' + costoTotale.toFixed(2);
+    document.getElementById('resErosione').innerText = erosioneDD.toFixed(1) + '%';
+    document.getElementById('resStatus').innerText = statusText;
+
+    const boxCosto = document.getElementById('boxCosto');
+    const boxErosione = document.getElementById('boxErosione');
+    const boxStatus = document.getElementById('boxStatus');
+    const banner = document.getElementById('bannerSpiegazione');
+    const bannerText = document.getElementById('bannerText');
+
+    boxStatus.className = 'result-box ' + (isHalal ? (isWarning ? 'warning' : 'highlight') : 'warning');
+    banner.className = 'status-banner ' + (isHalal ? (isWarning ? 'status-warning' : 'status-halal') : 'status-riba');
+    bannerText.innerText = spiegazione;
+
+    if (erosioneDD > 20) {
+      boxErosione.className = 'result-box warning';
+    } else {
+      boxErosione.className = 'result-box';
+    }
+  }
+
+  // Esecuzione al caricamento
+  window.addEventListener('DOMContentLoaded', calcola);
+</script>
+
+</body>
+</html>

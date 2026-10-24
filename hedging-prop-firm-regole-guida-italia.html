@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hedging Prop Firm 2026: È Vietato o Consentito? Regole, Divieti di Arbitraggio & Simulatore | Humble Trading</title>
+  <meta name="description" content="Guida definitiva e calcolatore interattivo sull'Hedging nelle Prop Firm 2026: regole su Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid e Topstep. Divieti di Reverse Trading, arbitraggio di latenza e gestione del rischio." />
+  <meta name="keywords" content="prop firm hedging, hedging prop firm italia, reverse trading prop firm, arbitraggio prop firm, propr.xyz hedging, breakout prop hedging, ftmo hedging rules, tradeify hedging, calcolatore correlazione rischio trading" />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/hedging-prop-firm-regole-guida-italia.html" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#f59e0b" />
+  <meta property="og:title" content="Hedging Prop Firm 2026: Regole Ufficiali, Divieti & Simulatore di Rischio" />
+  <meta property="og:description" content="Scopri quando l'hedging è consentito e quando causa la revoca immediata del conto. Con simulatore interattivo di delta e posizioni correlate." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/hedging-prop-firm-regole-guida-italia.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Hedging Prop Firm 2026: Regole, Divieti di Arbitraggio e Calcolatore Delta Rischio",
+    "description": "Analisi approfondita sulle politiche di hedging nelle migliori Prop Firm 2026 e strumento di calcolo per il bilanciamento delle posizioni aperte.",
+    "author": {
+      "@type": "Organization",
+      "name": "Humble Trading",
+      "url": "https://claudioamati3-cmyk.github.io/humble-trading/hub.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Humble Trading",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://claudioamati3-cmyk.github.io/humble-trading/assets/img/logo.jpg"
+      }
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: rgba(15, 23, 42, 0.92);
+      --card-inner: #0B1120;
+      --border: rgba(56, 189, 248, 0.25);
+      --gold: #f59e0b;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --cyan: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top, #0F172A 0%, #070A10 75%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.65;
+      padding: 24px 16px 60px;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.88rem;
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.14);
+      color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.35); padding: 5px 14px;
+      border-radius: 999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 14px;
+    }
+    h1 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 14px; font-weight: 800; }
+    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 28px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      padding: 26px; margin-bottom: 28px; box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+    h2 { font-size: 1.45rem; color: #fff; margin-bottom: 16px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+    h3 { font-size: 1.15rem; color: var(--cyan); margin: 20px 0 10px; }
+    p { margin-bottom: 16px; color: #cbd5e1; font-size: 0.98rem; }
+    ul { margin-left: 20px; margin-bottom: 20px; color: #cbd5e1; }
+    li { margin-bottom: 8px; }
+    .alert-box {
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 22px; font-size: 0.94rem;
+    }
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5;
+    }
+    .alert-success {
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #86efac;
+    }
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.4); color: #fde68a;
+    }
+    /* Comparison Table */
+    .table-resp { overflow-x: auto; margin: 18px 0 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+    th { background: #0B1120; padding: 12px 14px; color: var(--cyan); font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+    .pill { display: inline-block; padding: 3px 9px; border-radius: 6px; font-weight: 700; font-size: 0.76rem; }
+    .pill-green { background: rgba(16,185,129,0.2); color: var(--emerald); }
+    .pill-red { background: rgba(239,68,68,0.2); color: var(--crimson); }
+    .pill-yellow { background: rgba(245,158,11,0.2); color: var(--gold); }
+
+    /* Interactive Simulator */
+    .sim-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;
+    }
+    label { display: block; font-size: 0.78rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; font-weight: 700; letter-spacing: 0.05em; }
+    select, input {
+      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
+      background: var(--card-inner); color: #fff; font-size: 0.96rem; font-weight: 600;
+    }
+    .res-box {
+      background: var(--card-inner); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 14px;
+      padding: 18px; margin-top: 14px;
+    }
+    .res-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .res-status { font-size: 1.15rem; font-weight: 800; }
+    .res-details { font-size: 0.92rem; color: #cbd5e1; line-height: 1.5; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 22px; border-radius: 12px; font-weight: 800; text-decoration: none;
+      transition: transform 0.15s ease; font-size: 0.95rem; margin-top: 10px;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #041208; }
+    .btn-tg { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; }
+    .btn-dc { background: linear-gradient(135deg, #5865f2, #4752c4); color: #fff; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hub.html">⬅ Torna all'Hub Suite Humble Trading</a>
+      <div>
+        <a href="classifica-prop-firm-2026.html" style="margin-right: 14px;">🏆 Classifica Prop 2026</a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Telegram @Hubmles</a>
+      </div>
+    </nav>
+
+    <span class="badge">⚖️ DOSSIER TECNICO &amp; SIMULATORE INTERATTIVO 2026</span>
+    <h1>Hedging Prop Firm nel 2026: È Vietato o Consentito? Regole Ufficiali, Divieti di Arbitraggio &amp; Simulatore Delta</h1>
+    <p class="lead">
+      La guida definitiva per capire quando aprire due posizioni contrapposte è una strategia di Risk Management consentita e quando costituisce una violazione fatale che porta alla chiusura istantanea del conto con azzeramento dei payout su <strong>Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid e Topstep</strong>.
+    </p>
+
+    <!-- SIMULATORE INTERATTIVO -->
+    <div class="card" style="border-color: rgba(245, 158, 11, 0.4);">
+      <h2>🧮 Simulatore Interattivo: Verifica Conformità Hedging &amp; Delta Rischio</h2>
+      <p>Imposta le due posizioni che intendi aprire per verificare se la strategia viola le regole della Prop Firm scelta e quale esposizione netta generi sul conto.</p>
+
+      <div class="sim-grid">
+        <div>
+          <label for="sim-prop">Prop Firm di Destinazione</label>
+          <select id="sim-prop" onchange="runHedgingSim()">
+            <option value="propr" selected>Propr.xyz (On-Chain Hyperliquid)</option>
+            <option value="breakout">Breakout Prop (CFD Static DD)</option>
+            <option value="ftmo">FTMO (CFD Tradizionale)</option>
+            <option value="tradeify">Tradeify (Futures CME)</option>
+            <option value="lucid">Lucid Trading (Futures CME)</option>
+            <option value="topstep">Topstep (Futures CME)</option>
+          </select>
+        </div>
+        <div>
+          <label for="sim-type">Tipologia di Hedging Eseguito</label>
+          <select id="sim-type" onchange="runHedgingSim()">
+            <option value="same_account" selected>Hedging sullo Stesso Conto (Stesso Asset Long/Short)</option>
+            <option value="correlated">Copertura Statistica Correlata (es. XAUUSD vs DXY o NQ vs MNQ)</option>
+            <option value="cross_account_same_prop">Hedging Incrociato tra 2 Conti Propri (Stessa Prop Firm)</option>
+            <option value="cross_prop">Hedging tra 2 Diverse Prop Firm (Reverse Trading / Passaggio Arbitrato)</option>
+            <option value="prop_vs_broker">Hedging tra Prop Firm e Conto Broker Personale</option>
+          </select>
+        </div>
+        <div>
+          <label for="sim-pos1">Posizione 1 (Asset &amp; Size)</label>
+          <input type="text" id="sim-pos1" value="Long 1.00 Lotto XAUUSD" oninput="runHedgingSim()" />
+        </div>
+        <div>
+          <label for="sim-pos2">Posizione 2 (Copertura &amp; Size)</label>
+          <input type="text" id="sim-pos2" value="Short 1.00 Lotto XAUUSD" oninput="runHedgingSim()" />
+        </div>
+      </div>
+
+      <div class="res-box" id="sim-res-box">
+        <div class="res-header">
+          <span style="font-size: 0.82rem; text-transform: uppercase; color: var(--muted); font-weight: 700;">Esito Regolamentare</span>
+          <span class="res-status" id="sim-badge" style="color: var(--emerald);">✅ CONSENTITO SULLO STESSO CONTO</span>
+        </div>
+        <div class="res-details" id="sim-text">
+          L'apertura di posizioni Long e Short simultanee sullo stesso conto è pienamente supportata dall'infrastruttura di Propr.xyz su Hyperliquid e dalle piattaforme CFD abilitate all'hedging. L'esposizione netta (Delta) diventa pari a 0, ma ricorda che pagherai doppio spread e commissioni di rollover overnight.
+        </div>
+      </div>
+    </div>
+
+    <!-- SEZIONE 1: I 4 LIVELLI DI HEDGING -->
+    <div class="card">
+      <h2>1. I 4 Livelli di Hedging: Cosa è Legale e Cosa è Truffa</h2>
+      <p>
+        Nel gergo del trading online il termine "hedging" (copertura) viene spesso usato in modo ambiguo. Nelle Prop Firm istituzionali del 2026 esistono quattro scenari completamente diversi tra loro:
+      </p>
+
+      <h3>A. Hedging Intraday sullo Stesso Conto (Pienamente Legale)</h3>
+      <p>
+        Significa aprire una posizione Long e una Short sullo stesso strumento finanziario all'interno del medesimo account (ad esempio per congelare un profitto prima di una notizia ad alta volatilità senza chiudere il trade primario).<br />
+        <strong>Stato 2026:</strong> Consentito sulla maggior parte delle piattaforme CFD (MetaTrader 5 con account Hedging, cTrader) e nei mercati on-chain di <strong>Propr.xyz</strong>. Sulle piattaforme Futures regolamentate dal CME (come Tradovate o TopstepX) vige invece la regola <em>FIFO (First In First Out)</em>: un ordine Short chiude automaticamente un ordine Long preesistente sulla stessa scadenza.
+      </p>
+
+      <h3>B. Copertura Correlata tra Asset Diversi (Legale e Strategica)</h3>
+      <p>
+        Operare contemporaneamente Long su Oro (<code>XAUUSD</code>) e Long su Dollaro Americano (<code>DXY</code>) o combinare contratti Nasdaq (<code>NQ</code>) ed S&amp;P 500 (<code>ES</code>). Questa forma di hedging statistico è 100% consentita da tutte le 6 Prop Firm approvate (Propr.xyz, Breakout Prop, FTMO, Tradeify, Lucid Trading, Topstep), a patto che il rischio combinato rispetti il Daily Drawdown Shield.
+      </p>
+
+      <div class="alert-box alert-danger">
+        <strong>⛔ C. Reverse Trading tra Conti Multipli (VIOLAZIONE FATALE / BAN IMMEDIATO):</strong><br />
+        Aprire 1 Lotto Long su un conto Prop e 1 Lotto Short su un secondo conto Prop della stessa società (o tra due account diversi tramite bot sincronizzati) per assicurarsi che un conto passi la Challenge mentre l'altro si brucia. Questo comportamento è classificato come <strong>frode contrattuale e arbitraggio di sistema</strong>. I software di sorveglianza (algoritmi di correlation matching, timestamp sincronizzati e impronte IP/MAC) rilevano la correlazione in pochi millisecondi: entrambi i conti vengono squalificati senza alcun rimborso.
+      </div>
+
+      <div class="alert-box alert-danger">
+        <strong>⛔ D. Hedging Incrociato tra Diverse Prop Firm (LATENCY &amp; PASS-THROUGH ARBITRAGE):</strong><br />
+        Molti trader credono di essere furbi aprendo contemporaneamente Long su FTMO e Short su Breakout Prop. Le società partner e i liquidity provider condividono database di risk feed aggregati per identificare ordini opposti a mercato aperto con timing identico. Quando rilevato, scatta il blocco dei payout per manipolazione delle condizioni simulate.
+      </div>
+    </div>
+
+    <!-- TABELLA COMPARATIVA -->
+    <div class="card">
+      <h2>2. Tabella Ufficiale Regole Hedging per Prop Firm (2026)</h2>
+      <div class="table-resp">
+        <table>
+          <thead>
+            <tr>
+              <th>Prop Firm</th>
+              <th>Asset</th>
+              <th>Hedging Stesso Conto</th>
+              <th>Reverse Trading Tra Conti</th>
+              <th>Drawdown Applicato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Propr.xyz</strong> (Tier S+)</td>
+              <td>On-Chain Hyperliquid</td>
+              <td><span class="pill pill-green">Consentito</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>Trailing On-Chain</td>
+            </tr>
+            <tr>
+              <td><strong>Breakout Prop</strong> (Tier S)</td>
+              <td>CFD / Crypto / Indici</td>
+              <td><span class="pill pill-green">Consentito</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>100% Statico sul Bilancio</td>
+            </tr>
+            <tr>
+              <td><strong>FTMO</strong> (Tier A)</td>
+              <td>CFD Standard</td>
+              <td><span class="pill pill-green">Consentito (MT5 Hedging)</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>Equity-Based Rollover 00:00</td>
+            </tr>
+            <tr>
+              <td><strong>Tradeify</strong> (Tier S+)</td>
+              <td>Futures CME (NQ, ES, GC)</td>
+              <td><span class="pill pill-yellow">Regola FIFO CME</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>End-of-Day (EOD)</td>
+            </tr>
+            <tr>
+              <td><strong>Lucid Trading</strong> (Tier S)</td>
+              <td>Futures CME</td>
+              <td><span class="pill pill-yellow">Regola FIFO CME</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>LucidFlex Zero Buffer</td>
+            </tr>
+            <tr>
+              <td><strong>Topstep</strong> (Tier A)</td>
+              <td>Futures CME (TopstepX)</td>
+              <td><span class="pill pill-yellow">Regola FIFO CME</span></td>
+              <td><span class="pill pill-red">Severamente Vietato</span></td>
+              <td>End-of-Day (EOD)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEZIONE 3: HEDGING TRA PROP E BROKER PERSONALE -->
+    <div class="card">
+      <h2>3. Hedging tra Prop Firm e Broker Personale: Conviene Davvero?</h2>
+      <p>
+        Una domanda frequente su TikTok e YouTube: <em>"Posso andare Long sulla Prop Firm con una Challenge da 100k e Short sul mio broker personale con capitale reale per proteggere la spesa della fee?"</em>
+      </p>
+      <p>
+        Dal punto di vista strettamente contrattuale, la Prop Firm non può verificare ciò che fai su un conto broker personale esterno non intestato alla società. Tuttavia, da un punto di vista <strong>matematico e operativo</strong>, questa pratica è quasi sempre disastrosa per tre motivi:
+      </p>
+      <ul>
+        <li><strong>Attrito Commissionale &amp; Spread:</strong> Paghi commissioni di apertura, chiusura e slippage su entrambi i broker, riducendo drasticamente l'aspettativa matematica.</li>
+        <li><strong>Leva Finanziaria Diseguale:</strong> Sulla Prop Firm disponi di leva elevata (o contratti futures ampi), mentre sui broker personali ESMA in Europa la leva su XAUUSD è limitata a 1:20 e sugli indici a 1:20. Per coprire un conto Prop da $100k sul broker personale dovresti depositare un margine spropositato.</li>
+        <li><strong>Soluzione Matematica Superiore:</strong> Invece di dissipare capitale in coperture inefficienti, utilizza il nostro <a href="calcolatore-breakeven-challenge-prop-firm.html" style="color: var(--cyan); font-weight: 700;">Calcolatore Break-Even Challenge</a> e dimensiona il rischio per trade allo 0,3% - 0,5% con il <a href="hub.html#calcolatore" style="color: var(--gold); font-weight: 700;">Calcolatore Lotti XAUUSD</a>. In questo modo ti bastano 10-12 stop loss consecutivi prima di toccare il limite di perdita, dandoti ampio margine statistico per superare la fase senza espedienti vietati.</li>
+      </ul>
+
+      <div class="btn-row">
+        <a href="hub.html#calcolatore" class="btn btn-gold">🧮 Apri Calcolatore Lotti XAUUSD Anti-Bruciatura</a>
+        <a href="https://t.me/Hubmles" target="_blank" rel="noopener" class="btn btn-tg">✈️ Entra nel Canale Telegram (@Hubmles)</a>
+        <a href="https://discord.gg/VFt4y4MY5" target="_blank" rel="noopener" class="btn btn-dc">💬 Server Discord Humble Trading</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runHedgingSim() {
+      const prop = document.getElementById("sim-prop").value;
+      const type = document.getElementById("sim-type").value;
+      const badge = document.getElementById("sim-badge");
+      const text = document.getElementById("sim-text");
+      const box = document.getElementById("sim-res-box");
+
+      if (type === "cross_account_same_prop" || type === "cross_prop") {
+        badge.textContent = "⛔ SEVERAMENTE VIETATO — RISCHIO SQUALIFICA IMMEDIATA";
+        badge.style.color = "#ef4444";
+        box.style.borderColor = "rgba(239, 68, 68, 0.5)";
+        box.style.background = "rgba(239, 68, 68, 0.08)";
+        text.innerHTML = "Il reverse trading speculare e l'hedging incrociato tra account multipli sono considerati <strong>abuso di sistema e arbitraggio vietato</strong> da tutte le Prop Firm (FTMO, Propr.xyz, Breakout, Tradeify). I sistemi di risk management incrociano automaticamente orari di esecuzione al millisecondo e indirizzi di rete. Entrambi i conti vengono revocati senza alcun rimborso o payout.";
+      } else if (type === "prop_vs_broker") {
+        badge.textContent = "⚠️ CONTRATTUALMENTE TOLLERATO MA MATEMATICAMENTE INEFFICIENTE";
+        badge.style.color = "#f59e0b";
+        box.style.borderColor = "rgba(245, 158, 11, 0.5)";
+        box.style.background = "rgba(245, 158, 11, 0.08)";
+        text.innerHTML = "La Prop Firm non ha visibilità sul tuo broker privato personale, ma pagherai doppio spread, commissioni e ti scontrerai con i vincoli di leva ESMA 1:20 in Italia. La matematica del trading professionale raccomanda di gestire il rischio unicamente tramite Stop Loss calibrato allo 0.5% del conto.";
+      } else if (prop === "tradeify" || prop === "lucid" || prop === "topstep") {
+        if (type === "same_account") {
+          badge.textContent = "ℹ️ REGOLA FIFO CME (FIRST IN FIRST OUT)";
+          badge.style.color = "#38bdf8";
+          box.style.borderColor = "rgba(56, 189, 248, 0.5)";
+          box.style.background = "rgba(56, 189, 248, 0.08)";
+          text.innerHTML = "Sui Futures regolamentati del CME (Chicago Mercantile Exchange) non è possibile detenere ordini Long e Short contemporanei sullo stesso contratto: l'ordine contrario chiuderà parzialmente o totalmente la posizione precedente. Per coperture su Futures si utilizzano combinazioni di contratti diversi (es. Long NQ vs Short MNQ o micro-hedging ES).";
+        } else {
+          badge.textContent = "✅ CONSENTITO (COPERTURA STATISTICA / MULTI-CONTRATTO)";
+          badge.style.color = "#10b981";
+          box.style.borderColor = "rgba(16, 185, 129, 0.5)";
+          box.style.background = "rgba(16, 185, 129, 0.08)";
+          text.innerHTML = "La copertura su strumenti diversi o contratti correlati è lecita e rispetta le direttive del CME e delle Prop Firm Futures (Tradeify, Lucid, Topstep), a condizione che il drawdown End-of-Day sia monitorato costantemente.";
+        }
+      } else {
+        badge.textContent = "✅ PIENAMENTE CONSENTITO SULLO STESSO CONTO";
+        badge.style.color = "#10b981";
+        box.style.borderColor = "rgba(16, 185, 129, 0.5)";
+        box.style.background = "rgba(16, 185, 129, 0.08)";
+        text.innerHTML = "Consentito su " + (prop === "propr" ? "Propr.xyz (On-chain Hyperliquid)" : (prop === "breakout" ? "Breakout Prop (CFD Static DD)" : "FTMO (piattaforme MT5 Hedging)")) + ". Il Delta monetario viene neutralizzato temporaneamente. Attenzione ai costi di mantenimento overnight (swap) e all'allargamento dello spread durante le notizie economiche.";
+      }
+    }
+  </script>
+</body>
+</html>

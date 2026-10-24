@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcolatore Regola di Consistenza Prop Firm (Consistency Rule 2026) | Humble Trading</title>
+  <meta name="description" content="Simulatore interattivo della Regola di Consistenza Prop Firm (30%, 40%, 50% o 0% su Propr.xyz, Breakout, FTMO, Tradeify, Lucid, Topstep). Calcola la diluizione per sbloccare il tuo Payout senza rischiare il blocco." />
+  <link rel="canonical" href="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regola-consistenza-prop-firm.html" />
+  <meta property="og:title" content="Calcolatore Regola di Consistenza Prop Firm 2026 | Humble Trading" />
+  <meta property="og:description" content="Simulatore istantaneo della Consistency Rule: verifica se il tuo miglior giorno di trading rispetta la soglia per il prelievo o calcola quanto profitto aggiuntivo serve per diluirlo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regola-consistenza-prop-firm.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolatore Regola di Consistenza Prop Firm 2026 — Humble Trading",
+    "url": "https://claudioamati3-cmyk.github.io/humble-trading/calcolatore-regola-consistenza-prop-firm.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Cos'è la Regola di Consistenza (Consistency Rule) nelle Prop Firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La Consistency Rule è una clausola contrattuale imposta da molte Prop Firm per garantire che il profitto del trader sia frutto di un processo replicabile e non di una singola scommessa fortunata (gambling o news trading). Solitamente impone che nessun singolo giorno di trading o singolo trade superi una certa percentuale (ad es. 30%, 40% o 50%) del profitto totale accumulato al momento della richiesta di Payout."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali Prop Firm non hanno alcuna Regola di Consistenza (0% Consistency)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Propr.xyz (su protocollo On-Chain Hyperliquid) e Breakout Prop (con drawdown statico sul bilancio) hanno 0% di regola di consistenza: puoi prelevare qualsiasi importo generato anche in una singola sessione. Sui Futures, anche Lucid Trading (conti Flex) non impone vincoli rigidi di consistenza percentuale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come posso diluire il miglior giorno se ho superato la Consistency Rule?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se il tuo miglior giorno supera la soglia consentita, non perdi il conto: la Prop Firm sospende il payout finché non generi ulteriore profitto distribuito in altri giorni. La formula matematica per calcolare il profitto totale necessario è: Profitto Totale Necessario = Profitto Miglior Giorno / (Soglia % / 100). Basterà continuare a operare a taglia ridotta (ad es. con micro-lotti) accumulando profitti costanti."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --card: #0F1623;
+      --border: rgba(56, 189, 248, 0.22);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0F172A 0%, var(--bg) 75%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 64px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    .nav {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav a { color: var(--cyan); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 26px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+    select, input {
+      width: 100%;
+      background: #070A10;
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 18px; }
+    .kpi {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-val { font-size: 1.7rem; font-weight: 900; margin-top: 4px; }
+    .kpi-val.ok { color: var(--emerald); }
+    .kpi-val.warn { color: var(--amber); }
+    .kpi-val.err { color: var(--red); }
+    .kpi-val.cyan { color: var(--cyan); }
+    .kpi-lbl { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+
+    /* Progress bar visualizer */
+    .bar-container {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      height: 24px;
+      position: relative;
+      overflow: hidden;
+      margin: 16px 0 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .bar-fill {
+      height: 100%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+      border-radius: 8px 0 0 8px;
+    }
+    .bar-threshold {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #FFF;
+      box-shadow: 0 0 8px #FFF;
+      z-index: 2;
+    }
+    .bar-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .info-box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    .info-box.success {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--emerald);
+    }
+    .info-box.danger {
+      background: rgba(239, 68, 68, 0.12);
+      border-left: 4px solid var(--red);
+    }
+    .info-box.info {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 4px solid var(--cyan);
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-tg { background: #229ED9; color: #fff; }
+    .btn-dc { background: #5865F2; color: #fff; }
+    .btn-prop { background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%); color: #000; }
+    .btn-hub { background: #1E293B; border: 1px solid var(--border); color: #fff; }
+
+    .table-resp { width: 100%; border-collapse: collapse; margin-top: 14px; }
+    .table-resp th, .table-resp td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      font-size: 0.92rem;
+    }
+    .table-resp th {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-pill.none { background: rgba(16, 185, 129, 0.18); color: var(--emerald); border: 1px solid var(--emerald); }
+    .badge-pill.strict { background: rgba(239, 68, 68, 0.18); color: var(--red); border: 1px solid var(--red); }
+    .badge-pill.mod { background: rgba(245, 158, 11, 0.18); color: var(--amber); border: 1px solid var(--amber); }
+
+    .content-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .content-section h2 { font-size: 1.45rem; font-weight: 800; margin: 20px 0 12px; color: var(--cyan); }
+    .content-section h3 { font-size: 1.15rem; font-weight: 700; margin: 16px 0 8px; color: var(--text); }
+    .content-section p { margin-bottom: 14px; color: #CBD5E1; }
+    .content-section ul, .content-section ol { margin: 0 0 18px 22px; color: #CBD5E1; }
+    .content-section li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <nav class="nav">
+    <a href="hub.html">⬅ Torna all'Hub Suite Humble Trading</a>
+    <a href="calcolatore-payout-prop-firm-regole-prelievo.html">💰 Calcolatore Payout & Split</a>
+    <a href="https://t.me/Hubmles" target="_blank" rel="noopener">✈️ Telegram (@Hubmles)</a>
+  </nav>
+
+  <span class="badge">🛡️ SIMULATORE #8 · CONSISTENCY SHIELD & ANTI-BLOCCO PAYOUT</span>
+  <h1>Calcolatore Regola di Consistenza Prop Firm: Verifica e Diluisci il Miglior Giorno</h1>
+  <p class="sub">
+    Hai fatto un profitto anomalo in una singola sessione e hai paura che la Prop Firm ti blocchi il Payout? 
+    Inserisci il profitto totale, il miglior giorno e la soglia percentuale per scoprire se sei conforme o esattamente quanti dollari di diluizione ti servono per incassare senza intoppi.
+  </p>
+
+  <!-- CALCULATOR INTERFACE -->
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="prop-preset">Preset Prop Firm Approvata</label>
+        <select id="prop-preset" onchange="applicaPreset()">
+          <option value="propr" data-threshold="0" data-firm="Propr.xyz" data-type="CFD/On-Chain" data-note="0% Consistenza (Nessun vincolo, Payout On-Demand)">Propr.xyz (0% Consistenza - Hyperliquid)</option>
+          <option value="breakout" data-threshold="0" data-firm="Breakout Prop" data-type="CFD" data-note="0% Consistenza (Drawdown Statico 100%)">Breakout Prop (0% Consistenza - Static Balance)</option>
+          <option value="tradeify_40" data-threshold="40" data-firm="Tradeify" data-type="Futures CME" data-note="Regola del 40% (Max 40% profitto in 1 singolo giorno)" selected>Tradeify Futures (Regola 40% Consistenza)</option>
+          <option value="tradeify_30" data-threshold="30" data-firm="Tradeify" data-type="Futures CME" data-note="Regola del 30% (Max 30% profitto su conti promo)">Tradeify Futures (Regola 30% Consistenza)</option>
+          <option value="lucid" data-threshold="0" data-firm="Lucid Trading" data-type="Futures CME" data-note="0% Consistenza su piani LucidFlex (Zero Buffer)">Lucid Trading (0% Consistenza - LucidFlex)</option>
+          <option value="topstep_50" data-threshold="50" data-firm="Topstep" data-type="Futures CME" data-note="Regola del 50% su TopstepX Payout (Nessun giorno > 50%)">Topstep Futures (Regola 50% Consistenza)</option>
+          <option value="ftmo_perf" data-threshold="0" data-firm="FTMO" data-type="CFD" data-note="Nessuna soglia matematica rigida sul conto standard (attenzione a news e scaling)">FTMO (Nessuna soglia fissa - Standard)</option>
+          <option value="custom" data-threshold="40" data-firm="Personalizzata" data-type="Custom" data-note="Regola personalizzata a scelta del trader">Personalizzata (Imposta percentuale manuale)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="total-profit">Profitto Totale Realizzato ($)</label>
+        <input type="number" id="total-profit" value="4500" step="100" oninput="aggiornaCalcolo()" />
+      </div>
+
+      <div>
+        <label for="best-day">Profitto del Miglior Giorno ($)</label>
+        <input type="number" id="best-day" value="2200" step="50" oninput="aggiornaCalcolo()" />
+      </div>
+
+      <div>
+        <label for="consistency-threshold">Soglia Max Consistenza (%)</label>
+        <input type="number" id="consistency-threshold" value="40" min="0" max="100" step="5" oninput="aggiornaCalcolo()" />
+      </div>
+    </div>
+
+    <!-- VISUAL PROGRESS BAR -->
+    <div style="margin-top: 10px;">
+      <div class="bar-meta">
+        <span>Incidenza Miglior Giorno: <strong id="bar-pct-label" style="color: var(--cyan);">0%</strong></span>
+        <span>Soglia Limite Richiesta: <strong id="bar-threshold-label">40%</strong></span>
+      </div>
+      <div class="bar-container">
+        <div id="bar-fill" class="bar-fill" style="width: 48%; background: var(--amber);"></div>
+        <div id="bar-threshold-marker" class="bar-threshold" style="left: 40%;"></div>
+      </div>
+    </div>
+
+    <!-- KPIS -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-lbl">Incidenza Miglior Giorno</div>
+        <div class="kpi-val cyan" id="kpi-actual-pct">48.9%</div>
+        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;" id="kpi-diff-lbl">+8.9% oltre la soglia</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-lbl">Stato Consegna Payout</div>
+        <div class="kpi-val warn" id="kpi-status-text">NON CONFORME</div>
+        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;" id="kpi-status-sub">Rischio rifiuto prelievo</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-lbl">Profitto Minimo Richiesto</div>
+        <div class="kpi-val" id="kpi-required-total" style="color: #FFF;">$5.500</div>
+        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Per rispettare la regola</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-lbl">Diluizione Necessaria</div>
+        <div class="kpi-val warn" id="kpi-dilution-needed">+$1.000</div>
+        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;" id="kpi-days-needed">~3-5 giorni di micro-trade</div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC EXPLANATION BOX -->
+    <div id="explanation-box" class="info-box danger">
+      <strong>⚠️ ATTENZIONE:</strong> Il tuo miglior giorno ($2.200) rappresenta il <strong>48.9%</strong> del tuo profitto totale ($4.500), superando la soglia consentita del <strong>40%</strong>. Per richiedere il payout in totale sicurezza senza rischiare il blocco, devi generare ancora <strong>+$1.000</strong> di profitto distribuito su altre sessioni.
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="cta-row">
+      <a id="btn-prop-direct" href="go.html?firm=tradeify" class="btn btn-prop">Apri Conto Tradeify con Sconto Partner →</a>
+      <button type="button" onclick="condividiRisultato()" class="btn btn-hub" style="cursor: pointer;">📲 Condividi Calcolo su Telegram</button>
+      <a href="https://t.me/Hubmles" target="_blank" class="btn btn-tg">✈️ Discutine su Telegram (@Hubmles)</a>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="content-section">
+    <h2>🏆 Confronto Regole di Consistenza Prop Firm Approvate 2026</h2>
+    <p>Ecco il riepilogo trasparente delle regole di consistenza applicate dalle 6 Prop Firm partner selezionate da Humble Trading:</p>
+    
+    <div style="overflow-x: auto;">
+      <table class="table-resp">
+        <thead>
+          <tr>
+            <th>Prop Firm</th>
+            <th>Mercato</th>
+            <th>Regola Consistenza</th>
+            <th>Soglia Max Giorno</th>
+            <th>Regola Singolo Trade</th>
+            <th>Valutazione Humble Trading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Propr.xyz</strong></td>
+            <td>Crypto / Gold / S&P On-Chain</td>
+            <td><span class="badge-pill none">0% Zero Vincoli</span></td>
+            <td>Nessun Limite</td>
+            <td>Nessun Limite</td>
+            <td style="color: var(--emerald);">🥇 Massima Libertà (Esecuzione Decentralizzata Hyperliquid)</td>
+          </tr>
+          <tr>
+            <td><strong>Breakout Prop</strong></td>
+            <td>CFD / Valute / Indici</td>
+            <td><span class="badge-pill none">0% Zero Vincoli</span></td>
+            <td>Nessun Limite</td>
+            <td>Nessun Limite</td>
+            <td style="color: var(--emerald);">🥇 Drawdown 100% Statico sul Bilancio iniziale</td>
+          </tr>
+          <tr>
+            <td><strong>Lucid Trading</strong></td>
+            <td>Futures CME (NQ, ES, GC)</td>
+            <td><span class="badge-pill none">0% Zero Vincoli (Flex)</span></td>
+            <td>Nessun Limite</td>
+            <td>Nessun Limite</td>
+            <td style="color: var(--emerald);">🥈 Piani LucidFlex senza requirement di buffer</td>
+          </tr>
+          <tr>
+            <td><strong>Tradeify</strong></td>
+            <td>Futures CME (NQ, ES, GC)</td>
+            <td><span class="badge-pill mod">30% - 40%</span></td>
+            <td>Max 40% del Totale</td>
+            <td>N/A</td>
+            <td style="color: var(--amber);">⚡ Regola EOD trasparente, ottima per conti Lightning</td>
+          </tr>
+          <tr>
+            <td><strong>Topstep</strong></td>
+            <td>Futures CME (NQ, ES, GC)</td>
+            <td><span class="badge-pill strict">50% Prelievo</span></td>
+            <td>Max 50% per Payout</td>
+            <td>N/A</td>
+            <td style="color: var(--cyan);">🏛️ Storica, richiede 2+ sessioni profittevoli equilibrate</td>
+          </tr>
+          <tr>
+            <td><strong>FTMO</strong></td>
+            <td>CFD Forex / Commodities</td>
+            <td><span class="badge-pill none">Nessuna soglia fissa</span></td>
+            <td>N/A sul conto base</td>
+            <td>Attenzione al news trading</td>
+            <td style="color: var(--cyan);">🥈 Regole basate su disciplina e assenza di gambling</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EDUCATIONAL GUIDE -->
+  <div class="content-section">
+    <h2>📖 Guida Matematica: Come Funziona e Come si Diluisce la Consistency Rule</h2>
+    
+    <h3>1. Perché le Prop Firm impongono la Regola di Consistenza?</h3>
+    <p>
+      Le Prop Firm serie non vogliono "giocatori d'azzardo" che aprono 10 lotti su una notizia macroeconomica (come CPI o Non-Farm Payrolls) e raddoppiano il conto in 12 secondi. 
+      Vogliono trader che abbiano un vantaggio statistico (**edge**) ripetibile nel tempo. La Consistency Rule serve a impedire il fenomeno del "Lucky Punch": se fai $4.000 in un solo giorno e il tuo profitto totale è $4.200, la Prop Firm ti chiede di dimostrare che sai gestire il rischio anche nelle sessioni successive.
+    </p>
+
+    <h3>2. La Formula Matematica Esatta</h3>
+    <p>
+      Se una Prop Firm richiede una soglia di consistenza del <strong>S%</strong> (ad esempio il 40%) e il tuo giorno più profittevole è stato pari a <strong>M</strong> dollari, la formula per calcolare il Profitto Totale Minimo (<strong>P<sub>min</sub></strong>) è:
+    </p>
+    <div style="background: rgba(0,0,0,0.5); padding: 14px; border-radius: 8px; font-family: monospace; color: var(--emerald); margin-bottom: 14px;">
+      P<sub>min</sub> = M / (S / 100)
+    </div>
+    <p>
+      Se hai realizzato $2.000 nel tuo giorno record con una soglia del 40%, il tuo profitto totale deve essere almeno pari a:
+      <code>$2.000 / 0.40 = $5.000</code>.
+      Finché il tuo conto è a $4.000, il prelievo sarà sospeso.
+    </p>
+
+    <h3>3. Le 3 Regole d'Oro per Diluire la Consistenza Senza Bruciare il Conto</h3>
+    <ul>
+      <li><strong>1. Non fare overtrading per raggiungere la quota:</strong> L'errore più comune dei trader è aumentare la size per "diluire in fretta". Se forzi i trade, rischi di prendere una serie di stop loss e colpire il Daily Drawdown.</li>
+      <li><strong>2. Usa micro-lotti e prendi profitto a piccoli target:</strong> Se ti mancano $500 per soddisfare la regola, apri trade con frazioni minime di rischio (ad es. 1 micro-contratto MNQ anziché NQ) prendendo piccoli profitti distribuiti su 3 o 4 sessioni.</li>
+      <li><strong>3. Scegli Prop Firm senza Consistency Rule se fai Swing o News Trading:</strong> Se la tua strategia si basa su grandi movimenti o breakout direzionali, orientati su <strong>Propr.xyz</strong> o <strong>Breakout Prop</strong>, dove non esiste alcuna penalità per i giorni con profitto eccezionale.</li>
+    </ul>
+  </div>
+
+  <!-- COMMUNITY FOOTER CTA -->
+  <div class="card" style="text-align: center; border-color: rgba(16, 185, 129, 0.4);">
+    <h2 style="font-size: 1.45rem; font-weight: 900; margin-bottom: 8px;">Unisciti alla Community Gratuita di Humble Trading</h2>
+    <p style="color: var(--muted); max-width: 620px; margin: 0 auto 20px;">
+      Ricevi ogni giorno i livelli di liquidità pre-market Londra & New York, tabelle di rischio e confronta le regole contrattuali delle Prop Firm insieme a oltre 200 trader italiani.
+    </p>
+    <div class="cta-row" style="max-width: 580px; margin: 0 auto;">
+      <a href="https://t.me/Hubmles" target="_blank" class="btn btn-tg">✈️ Canale Telegram (@Hubmles)</a>
+      <a href="https://discord.gg/VFt4y4MY5" target="_blank" class="btn btn-dc">💬 Server Discord Ufficiale</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function applicaPreset() {
+    const sel = document.getElementById("prop-preset");
+    const opt = sel.options[sel.selectedIndex];
+    const threshold = parseFloat(opt.getAttribute("data-threshold"));
+    const firm = opt.getAttribute("data-firm");
+
+    if (sel.value !== "custom") {
+      document.getElementById("consistency-threshold").value = threshold;
+    }
+
+    const btn = document.getElementById("btn-prop-direct");
+    if (sel.value.startsWith("tradeify")) {
+      btn.href = "go.html?firm=tradeify";
+      btn.innerText = "Apri Conto Tradeify con Sconto Partner →";
+    } else if (sel.value === "propr") {
+      btn.href = "go.html?firm=propr";
+      btn.innerText = "Apri Conto Propr.xyz (0% Consistenza) →";
+    } else if (sel.value === "breakout") {
+      btn.href = "go.html?firm=breakout";
+      btn.innerText = "Apri Conto Breakout Prop (0% Consistenza) →";
+    } else if (sel.value === "lucid") {
+      btn.href = "go.html?firm=lucid";
+      btn.innerText = "Apri Conto Lucid Trading (LucidFlex) →";
+    } else if (sel.value.startsWith("topstep")) {
+      btn.href = "go.html?firm=topstep";
+      btn.innerText = "Apri Conto Topstep con Sconto Partner →";
+    } else {
+      btn.href = "classifica-prop-firm-2026.html";
+      btn.innerText = "Vedi Classifica Prop Firm 2026 →";
+    }
+
+    aggiornaCalcolo();
+  }
+
+  function aggiornaCalcolo() {
+    const total = Math.max(1, parseFloat(document.getElementById("total-profit").value) || 0);
+    const best = Math.max(0, parseFloat(document.getElementById("best-day").value) || 0);
+    const threshold = parseFloat(document.getElementById("consistency-threshold").value) || 0;
+
+    const actualPct = total > 0 ? (best / total) * 100 : 0;
+    const isZeroRule = threshold === 0;
+
+    document.getElementById("kpi-actual-pct").innerText = actualPct.toFixed(1) + "%";
+    document.getElementById("bar-pct-label").innerText = actualPct.toFixed(1) + "%";
+    document.getElementById("bar-threshold-label").innerText = isZeroRule ? "Nessuna (0%)" : threshold + "%";
+
+    const fillElem = document.getElementById("bar-fill");
+    const markerElem = document.getElementById("bar-threshold-marker");
+    const clampedBar = Math.min(100, Math.max(0, actualPct));
+    fillElem.style.width = clampedBar + "%";
+
+    if (isZeroRule) {
+      markerElem.style.display = "none";
+    } else {
+      markerElem.style.display = "block";
+      markerElem.style.left = Math.min(100, Math.max(0, threshold)) + "%";
+    }
+
+    const statusTextElem = document.getElementById("kpi-status-text");
+    const statusSubElem = document.getElementById("kpi-status-sub");
+    const diffLblElem = document.getElementById("kpi-diff-lbl");
+    const reqTotalElem = document.getElementById("kpi-required-total");
+    const dilutionElem = document.getElementById("kpi-dilution-needed");
+    const daysElem = document.getElementById("kpi-days-needed");
+    const explainElem = document.getElementById("explanation-box");
+
+    if (isZeroRule) {
+      statusTextElem.className = "kpi-val ok";
+      statusTextElem.innerText = "CONFORME 100%";
+      statusSubElem.innerText = "Zero vincoli di consistenza";
+      diffLblElem.innerText = "Nessun limite imposto";
+      fillElem.style.background = "var(--emerald)";
+      reqTotalElem.innerText = "$" + Math.round(total).toLocaleString();
+      dilutionElem.className = "kpi-val ok";
+      dilutionElem.innerText = "$0";
+      daysElem.innerText = "Payout immediatamente richiedibile";
+
+      explainElem.className = "info-box success";
+      explainElem.innerHTML = "<strong>✅ NESSUNA REGOLA DI CONSISTENZA ATTIVA:</strong> Questa Prop Firm (come Propr.xyz, Breakout o LucidFlex) non impone vincoli sul miglior giorno. Puoi prelevare l'intero importo di <strong>$" + Math.round(total).toLocaleString() + "</strong> senza alcuna diluizione!";
+      return;
+    }
+
+    const requiredTotal = threshold > 0 ? (best / (threshold / 100)) : total;
+    const dilution = Math.max(0, requiredTotal - total);
+
+    reqTotalElem.innerText = "$" + Math.round(requiredTotal).toLocaleString();
+
+    if (actualPct <= threshold) {
+      const margin = threshold - actualPct;
+      statusTextElem.className = "kpi-val ok";
+      statusTextElem.innerText = "CONFORME ✅";
+      statusSubElem.innerText = "Sotto la soglia limite";
+      diffLblElem.innerText = "-" + margin.toFixed(1) + "% sotto la soglia (" + threshold + "%)";
+      fillElem.style.background = "var(--emerald)";
+      dilutionElem.className = "kpi-val ok";
+      dilutionElem.innerText = "$0";
+      daysElem.innerText = "Puoi richiedere il Payout subito!";
+
+      explainElem.className = "info-box success";
+      explainElem.innerHTML = "<strong>✅ CONGRATULAZIONI:</strong> Il tuo miglior giorno ($" + Math.round(best).toLocaleString() + ") pesa il <strong>" + actualPct.toFixed(1) + "%</strong>, pienamente inferiore alla soglia massima del <strong>" + threshold + "%</strong>. Il tuo conto è conforme e la richiesta di prelievo può essere processata regolarmente.";
+    } else {
+      const over = actualPct - threshold;
+      statusTextElem.className = "kpi-val err";
+      statusTextElem.innerText = "NON CONFORME ⛔";
+      statusSubElem.innerText = "Rischio blocco prelievo";
+      diffLblElem.innerText = "+" + over.toFixed(1) + "% sopra la soglia (" + threshold + "%)";
+      fillElem.style.background = actualPct > threshold * 1.3 ? "var(--red)" : "var(--amber)";
+      dilutionElem.className = "kpi-val warn";
+      dilutionElem.innerText = "+$" + Math.round(dilution).toLocaleString();
+
+      const estDays = Math.ceil(dilution / 250);
+      daysElem.innerText = "~" + Math.max(1, estDays) + " giorni (con target prudente di $250/giorno)";
+
+      explainElem.className = "info-box danger";
+      explainElem.innerHTML = "<strong>⚠️ ATTENZIONE (RISCHIO RIGETTO PAYOUT):</strong> Il tuo miglior giorno ($" + Math.round(best).toLocaleString() + ") rappresenta il <strong>" + actualPct.toFixed(1) + "%</strong> del totale ($" + Math.round(total).toLocaleString() + "), superando la soglia del <strong>" + threshold + "%</strong>.<br/>Per sbloccare il prelievo in conformità contrattuale, devi generare ancora <strong>+$" + Math.round(dilution).toLocaleString() + "</strong> di profitto aggiuntivo per portare il saldo totale a <strong>$" + Math.round(requiredTotal).toLocaleString() + "</strong>.";
+    }
+  }
+
+  function condividiRisultato() {
+    const actual = document.getElementById("kpi-actual-pct").innerText;
+    const status = document.getElementById("kpi-status-text").innerText;
+    const dilution = document.getElementById("kpi-dilution-needed").innerText;
+    const text = encodeURIComponent("Ho appena verificato la mia Regola di Consistenza Prop Firm su Humble Trading!\nIncidenza Miglior Giorno: " + actual + " | Stato: " + status + " | Diluizione: " + dilution + "\n\nVerifica il tuo conto gratis qui: " + window.location.href);
+    window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + text, "_blank");
+  }
+
+  window.addEventListener("DOMContentLoaded", applicaPreset);
+</script>
+
+</body>
+</html>
